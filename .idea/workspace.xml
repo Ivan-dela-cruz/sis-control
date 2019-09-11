@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5ee7458-ad29-492f-8b4b-c28d66e71c77" name="Default Changelist" comment="" />
+    <list default="true" id="b5ee7458-ad29-492f-8b4b-c28d66e71c77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/ajax/registroEquipoTecnicoSecundario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/base/base_tecnicoPrincipal.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/base/base_tecnicoSecundario.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listaOrdenesTecnicos.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesTecnicoSecundario.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/registroEquipoTecSecundario.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/errores/errorPaginaVacia.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/errores/errorPermisos.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/pdf/ordenesPdf.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/pdf/ordenesPdfIngreso.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sis-control.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sis-control.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/ClienteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/ClienteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/TecnicoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/TecnicoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_27_203308_create_tecnico_orden_trabajos_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/base/base_dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/base/base_dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenTecnico.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenTecnico.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalSolucion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalSolucion.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editCliente.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editCliente.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroCliente.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroCliente.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebarcliente.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebarsecundiario.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebartecnico.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebartecnico.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,15 +48,18 @@
     <session id="1588036211">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.114" value="1" />
           <entry key="project.open.time.116" value="1" />
           <entry key="project.open.time.162" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.193" value="1" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.50" value="1" />
+          <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.56" value="1" />
           <entry key="project.open.time.60" value="1" />
+          <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.63" value="1" />
           <entry key="project.open.time.64" value="2" />
           <entry key="project.open.time.66" value="1" />
@@ -33,7 +69,7 @@
           <entry key="project.open.time.81" value="3" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.93" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -41,20 +77,20 @@
           <entry key="dummy" value="3" />
           <entry key="env" value="18" />
           <entry key="html" value="35" />
-          <entry key="js" value="348" />
+          <entry key="js" value="351" />
           <entry key="json" value="2" />
-          <entry key="php" value="45114" />
+          <entry key="php" value="51398" />
           <entry key="vue" value="126" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="18" />
-          <entry key="Blade" value="22292" />
+          <entry key="Blade" value="25521" />
           <entry key="HTML" value="67" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="348" />
-          <entry key="PHP" value="22790" />
+          <entry key="JavaScript" value="351" />
+          <entry key="PHP" value="25845" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="Vue.js" value="126" />
         </counts>
@@ -65,21 +101,21 @@
           <entry key="editorconfig" value="1" />
           <entry key="env" value="1" />
           <entry key="html" value="4" />
-          <entry key="js" value="20" />
-          <entry key="json" value="1" />
-          <entry key="php" value="455" />
+          <entry key="js" value="21" />
+          <entry key="json" value="2" />
+          <entry key="php" value="528" />
           <entry key="vue" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="1" />
-          <entry key="Blade" value="275" />
+          <entry key="Blade" value="336" />
           <entry key="CSS" value="2" />
           <entry key="HTML" value="4" />
-          <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="20" />
-          <entry key="PHP" value="180" />
+          <entry key="JSON" value="2" />
+          <entry key="JavaScript" value="21" />
+          <entry key="PHP" value="192" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Vue.js" value="5" />
         </counts>
@@ -91,42 +127,49 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/user/base/base.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+            <state relative-caret-position="264">
+              <caret line="118" column="88" selection-start-line="118" selection-start-column="71" selection-end-line="118" selection-end-column="88" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/user/base/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="712" column="5" lean-forward="true" selection-start-line="712" selection-start-column="5" selection-end-line="712" selection-end-column="5" />
+              <folding>
+                <element signature="e#46#61#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesTecnicoSecundario.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="88" column="83" selection-start-line="88" selection-start-column="83" selection-end-line="88" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/pdf/ordenesPdfIngreso.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4209">
+              <caret line="210" column="60" selection-start-line="210" selection-start-column="60" selection-end-line="210" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/registroEquipoTecSecundario.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="485">
-              <caret line="101" column="10" selection-start-line="101" selection-start-column="10" selection-end-line="101" selection-end-column="10" />
+              <caret line="279" selection-start-line="279" selection-end-line="279" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/base/base_dashboard.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="153" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/user/css/main.css">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -136,9 +179,9 @@
       <list>
         <option value="blade." />
         <option value=".blade" />
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
         <option value="blade" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -166,49 +209,32 @@
       <find>recar</find>
       <find>papelera</find>
       <find>estado-equipo</find>
+      <find>editarFecha</find>
+      <find>listarOrdenesASIGNADAS</find>
+      <find>listarOrdenes</find>
+      <find>id-orden-detalle</find>
+      <find>orden</find>
+      <find>listar-or</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp7.3\htdocs\sis-control</dir>
     </dirStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/admin/base/base_dashboard.blade.php" />
-        <option value="$PROJECT_DIR$/app/OrdenTrabajo.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/LoginController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/listarAdmins.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_27_194048_create_orden_trabajos_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAsignacion.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrden.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/RegistroEquipoController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalSolucion.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenTecnico.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroAdmin.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/papelera/listarClientes.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/papelera/listarAdmins.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/UserController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/papelera/papeleraClientes.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/editAdmin.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editCliente.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/ClienteController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/modalsAdmin.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/modals/modalVistaTecnico.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/modalsCliente.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/papelera/papeleraTecnicos.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroCliente.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/registroAdmin.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/partials/formEdit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/TecnicoController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/crearEquipo.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/partials/form.blade.php" />
         <option value="$PROJECT_DIR$/app/Equipo.php" />
@@ -216,15 +242,41 @@
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/modalEquipos.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/admin/EquipoController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/papelera/papeleraEquipos.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/user/base/base.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/user/base/index.blade.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/resources/views/pdf/ordenesPdf.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/TecnicoController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/UserController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroCliente.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editCliente.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/ClienteController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/base/base_dashboard.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/errores/errorPermisos.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/base/base_tecnicoPrincipal.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/LoginController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/base/base_tecnicoSecundario.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/plantilla/sidebartecnico.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenTecnico.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/errores/errorPaginaVacia.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listaOrdenesTecnicos.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalSolucion.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/plantilla/sidebarsecundiario.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/ajax/registroEquipoTecnicoSecundario.js" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/registroEquipoTecSecundario.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/pdf/ordenesPdfIngreso.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesTecnicoSecundario.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" />
       </list>
     </option>
   </component>
@@ -334,6 +386,11 @@
       <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -342,12 +399,12 @@
     <option name="width" value="1300" />
     <option name="height" value="355" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -358,61 +415,7 @@
             <path>
               <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
               <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="extention" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
@@ -438,24 +441,29 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
               <item name="sis-control" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="ordenes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sis-control" type="b2602c69:ProjectViewProjectNode" />
               <item name="sis-control" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pdf" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -469,11 +477,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\pdf" />
+      <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\admin\dashboard\ordenes" />
+      <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\admin\base" />
       <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\user\base" />
       <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\admin\dashboard\papelera" />
-      <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\admin\dashboard\usuarios\clientes" />
-      <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\admin\dashboard\ordenes" />
-      <recent name="C:\xampp7.3\htdocs\sis-control\resources\views\admin\dashboard\usuarios\administradores" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -517,12 +525,15 @@
       <workItem from="1567771083505" duration="24668000" />
       <workItem from="1567851787696" duration="38689000" />
       <workItem from="1567948621846" duration="8526000" />
-      <workItem from="1567992191143" duration="576000" />
+      <workItem from="1567992191143" duration="3561000" />
+      <workItem from="1568027336080" duration="25828000" />
+      <workItem from="1568124599884" duration="21266000" />
+      <workItem from="1568204660180" duration="3079000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="406123000" />
+    <option name="totallyTimeSpent" value="459281000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -537,7 +548,7 @@
     <frame x="-8" y="-8" width="1296" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6649916" visible="true" weight="0.23139158" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6649916" visible="true" weight="0.2435275" />
       <window_info id="Structure" order="1" sideWeight="0.33500838" side_tool="true" weight="0.31877023" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -566,208 +577,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrden.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="202" column="44" selection-start-line="202" selection-start-column="44" selection-end-line="202" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/RegistroEquipoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="134" column="41" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenTecnico.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="776">
-          <caret line="262" column="21" selection-start-line="262" selection-start-column="21" selection-end-line="262" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalSolucion.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editAdmin.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroAdmin.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/papelera/listarClientes.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/papelera/listarAdmins.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/modalsAdmin.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/papelera/papeleraClientes.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editCliente.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2116">
-          <caret line="88" column="60" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="400" column="20" lean-forward="true" selection-start-line="388" selection-start-column="9" selection-end-line="400" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/modalsAdmin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="113" column="59" selection-start-line="113" selection-start-column="59" selection-end-line="113" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/modalsCliente.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="113" column="59" selection-start-line="113" selection-start-column="59" selection-end-line="113" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/papelera/papeleraTecnicos.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="121" column="93" selection-start-line="121" selection-start-column="93" selection-end-line="121" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/modals/modalVistaTecnico.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="114" column="59" selection-start-line="114" selection-start-column="59" selection-end-line="114" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroCliente.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/registroAdmin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/editAdmin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2254">
-          <caret line="25" column="91" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/partials/formEdit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2348">
-          <caret line="117" column="92" selection-start-line="117" selection-start-column="92" selection-end-line="117" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/equipos/show.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/administradores/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="20" column="24" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="20" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/partials/form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="107" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/TecnicoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="229" column="69" selection-start-line="229" selection-start-column="69" selection-end-line="229" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/equipos/crearEquipo.blade.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="30" column="46" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/equipos/partials/form.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Equipo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1612">
-          <caret line="145" column="11" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="32" column="67" selection-start-line="32" selection-start-column="67" selection-end-line="32" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="135" column="71" selection-start-line="135" selection-start-column="71" selection-end-line="135" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/equipos/modalEquipos.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -810,13 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/ClienteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4232">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/EquipoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
@@ -832,34 +634,270 @@
         <state relative-caret-position="-11086" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/public/user/css/main.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        <state relative-caret-position="253">
+          <caret line="224" column="63" selection-start-line="224" selection-start-column="62" selection-end-line="224" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/user/base/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/user/base/base.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
+        <state relative-caret-position="230">
           <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrden.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_194049_create_registro_equipos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_194048_create_orden_trabajos_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pdf/ordenesPdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <caret line="210" column="45" selection-start-line="210" selection-start-column="45" selection-end-line="210" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/registroCliente.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/editCliente.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="187" column="109" selection-start-line="187" selection-start-column="109" selection-end-line="187" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-623" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/ClienteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="159" column="48" selection-start-line="159" selection-start-column="48" selection-end-line="159" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="359" column="45" selection-start-line="359" selection-start-column="45" selection-end-line="359" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4830" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/inicio.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6693" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/base/menu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3519" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/auth/login_admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/errores/errorPermisos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2461">
+          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/plantilla/sidebartecnico.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/inicio/inicio.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/TecnicoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="119" column="59" selection-start-line="104" selection-start-column="12" selection-end-line="119" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAsignacion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1631" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenTecnico.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="240" lean-forward="true" selection-end-line="371" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/errores/errorPaginaVacia.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="115" selection-start-line="8" selection-start-column="115" selection-end-line="8" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="110" column="85" selection-start-line="110" selection-start-column="85" selection-end-line="110" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalSolucion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/base/base_tecnicoPrincipal.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="68" column="55" selection-start-line="68" selection-start-column="55" selection-end-line="68" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/base/base_dashboard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="153" />
+        <state relative-caret-position="232">
+          <caret line="65" column="66" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/user/css/main.css">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="42" selection-start-column="42" selection-end-column="42" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user/base/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listaOrdenesTecnicos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/plantilla/sidebarsecundiario.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1863">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/papelera/papeleraAdmins.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2208" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/base/base_tecnicoSecundario.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="141" column="80" lean-forward="true" selection-start-line="141" selection-end-line="141" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ajax/registroEquipoTecnicoSecundario.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="106" column="3" lean-forward="true" selection-start-line="106" selection-start-column="3" selection-end-line="106" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/registroEquipoTecSecundario.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
-          <caret line="101" column="10" selection-start-line="101" selection-start-column="10" selection-end-line="101" selection-end-column="10" />
+          <caret line="279" selection-start-line="279" selection-end-line="279" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="118" column="88" selection-start-line="118" selection-start-column="71" selection-end-line="118" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/pdf/ordenesPdfIngreso.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4209">
+          <caret line="210" column="60" selection-start-line="210" selection-start-column="60" selection-end-line="210" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesTecnicoSecundario.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="88" column="83" selection-start-line="88" selection-start-column="83" selection-end-line="88" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="712" column="5" lean-forward="true" selection-start-line="712" selection-start-column="5" selection-end-line="712" selection-end-column="5" />
+          <folding>
+            <element signature="e#46#61#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

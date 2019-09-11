@@ -6,7 +6,7 @@
             </a>
         </li>
         <li>
-            <h6 class="nav-header">TÉCNICO PRINCIPAL</h6>
+            <h6 class="nav-header">TÉCNICO SECUNDARIO</h6>
         </li>
         <li class="nav-item">
             <a class="nav-link active" href="index.html">
@@ -21,6 +21,7 @@
         <li>
             <h6 class="nav-header text-info">Aplicaciones</h6>
         </li>
+
         <li class="nav-item">
             <a class="nav-link nav-parent">
                 <i class="batch-icon batch-icon-clipboard-alt"></i>
@@ -28,12 +29,18 @@
             </a>
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('listar-ordenes-asignadas')}}">
-                        <i class="fa fa-check"></i> Ordenes asignadas
+                    <a class="nav-link" href="{{route('crear-ordenes')}}">
+                        <i class="fa fa-file"></i> Nueva orden
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('listar-ordenes-ingresos')}}">
+                        <i class="fa fa-list-alt"></i> Ordenes
                     </a>
                 </li>
             </ul>
         </li>
+
 
     </ul>
 </nav>

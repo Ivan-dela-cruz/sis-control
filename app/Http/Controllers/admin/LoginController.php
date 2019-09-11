@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Tecnico;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,11 +17,17 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
-            $user = User::where('email', $request->email)->where('estado_p',1)->first();
+            $user = User::where('email', $request->email)->where('estado_p', 1)->first();
             if ($user->is_admin() == 0) {
-                return redirect()->route('dashboard');
+                return redirect()->route('administrador');
             } elseif ($user->is_admin() == 1) {
-                return redirect()->route('tecnico');
+                $tecnico = Tecnico::find($user->id);
+                if ($tecnico->tipo_t == 0) {
+                    return redirect()->route('tecnico-principal');
+                } else {
+                    return redirect()->route('tecnico-secundario');
+                }
+
             } else {
                 return redirect()->route('user');
             }

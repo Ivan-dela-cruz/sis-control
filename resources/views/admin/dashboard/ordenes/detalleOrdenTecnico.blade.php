@@ -212,10 +212,11 @@
                             </div>
                             <hr>
                             <div class="divGenerarOrden pull-right">
-                                <button class="btn btn-success   btn-md  btnGenerarOrden" type="button">
+                                <a href="{{route('orden-pdf',$orden->id)}}"
+                                   class="btn btn-success   btn-md  btnGenerarOrden">
                                     <i class="batch-icon batch-icon-print"></i>
                                     Imprimir
-                                </button>
+                                </a>
                                 <button class="btn btn-deep-orange btn-md btnFechaOrdenCambio" type="button">
                                     <i class="batch-icon batch-icon-shuffle"></i>
                                     Modificar Fecha de salida
@@ -246,7 +247,7 @@
             var id_or = $('#id-orden-detalle').val();
             // $('.tecnico-encargado').text($(this).data('nombres-tec'));
             $.ajax({
-                url: "{{route('ordenes.update',$orden->id)}}",
+                url: "{{route('agregar-solucion',$orden->id)}}",
                 method: 'put',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -260,7 +261,7 @@
                     $('.orden-solucion-id{{$orden->id}}').text(data.observacion_solucion_or);
                     $('#solucion-anterior').val(data.observacion_solucion_or);
                     $('#idModal').modal('hide');
-                   // $('#orden-solucion').val('');
+                    // $('#orden-solucion').val('');
                 }
             })
         });

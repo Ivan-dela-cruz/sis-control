@@ -66,10 +66,8 @@
                     @include('admin.plantilla.sidebaradministrador')
                     {{--Valida que el usuario tenga el rol de tecnico--}}
                 @elseif (Auth::user()->tipo_p == 1)
-                    @include('admin.plantilla.sidebartecnico')
+                    @include('admin.plantilla.sidebarsecundiario')
 
-                @else
-                    @include('admin.plantilla.sidebarcliente')
                 @endif
 
             @endif

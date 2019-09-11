@@ -140,11 +140,9 @@
 
     <!-- SCRIPTS - DEMO START -->
     <!-- Form Validation -->
-    <script type="text/javascript" src="{{asset('assets/demo/js/forms-validation.js')}}"></script>
+    {{--- <script type="text/javascript" src="{{asset('assets/demo/js/forms-validation.js')}}"></script>--}}
     <!-- SCRIPTS - DEMO START -->
 
-    <script>
 
-    </script>
 
 @endsection

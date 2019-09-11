@@ -1,4 +1,4 @@
-@extends('admin.base.base_dashboard')
+@extends('admin.base.base_tecnicoSecundario')
 @section('title')
     Ordenes de trabajo
 @endsection
@@ -6,12 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <p class="font-italic pull-right">
-                <a href="{{route('administrador')}}">Inicio</a>/
-                <a href="{{route('listar-ordenes')}}">
-                    Ordenes
-                </a>/
-            </p>
+            <p class="font-italic pull-right"><a href="">Ordenes </a>/</p>
         </div>
     </div>
     <div class="row mb-5">
@@ -29,7 +24,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-7">
-                            {!! Form::open(['route' => 'listar-ordenes', 'method'=>'GET','autocomplete'=>'off','role'=>'search']) !!}
+                            {!! Form::open(['route' => 'listar-ordenes-ingresos', 'method'=>'GET','autocomplete'=>'off','role'=>'search']) !!}
                             <div class="input-group mb-3">
                                 {{Form::select('parametroBuscar',array(
                                    'cedula_p' => 'Cédula',
@@ -91,7 +86,7 @@
                                             <td>{{$orden->fecha_salida_or}}</td>
 
                                             <td class="text-right">
-                                                <a href="{{route('orden-pdf',$orden->id)}}"
+                                                <a href="{{route('orden-pdf-ingreso',$orden->id)}}"
                                                    class="btn  btn-orange btn-sm imprimirOrden"
                                                    data-id-orden="{{$orden->id}}">
                                                     <i class="batch-icon batch-icon-print"></i>

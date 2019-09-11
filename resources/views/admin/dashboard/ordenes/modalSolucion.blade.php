@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header badge-primary bg-gradient">
-                <h5 class="modal-title text-white" id="exampleModalLabel2">Asignar orden</h5>
+                <h5 class="modal-title text-white" id="exampleModalLabel2">Describa la solución</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -18,7 +18,10 @@
                         @method('put')
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-group font-bold" for="orden-solucion">Solución Técnica</label>
+                                <input id="id_or" type="hidden" name="id_or">
+                                <label hidden id="labelRechazoOrden" class="form-group font-bold" for="orden-solucion">Escriba
+                                    el inconveniente</label>
+                                <label id="labelSolucion" class="form-group font-bold" for="orden-solucion">Solución Técnica</label>
                                 <textarea class="form-control" id="orden-solucion"
                                           placeholder="Escriba un contenido"></textarea>
                             </div>
@@ -27,6 +30,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary btnGuardarSolucion">Guardar</button>
+                            <button hidden type="button" class="btn btn-primary btnRechazarOrden">Rechazar Orden
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -80,7 +85,6 @@
 </div>
 
 
-
 {{--  Modal para la camio fecha orden--}}
 <div id="idModalFechaOrden" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel"
@@ -115,7 +119,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger cancelar-fechaOrden" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger cancelar-fechaOrden" data-dismiss="modal">Cancelar
+                    </button>
                     <button disabled type="button" class="btn btn-primary btnFechaOrden">Guardar</button>
                 </div>
             </form>

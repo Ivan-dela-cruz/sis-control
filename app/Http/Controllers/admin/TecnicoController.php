@@ -89,30 +89,30 @@ class TecnicoController extends Controller
         $request->validate([
             //REGLAS DE VALIDACION
             'cedula_p' => 'required|numeric|unique:users',
-            'nombre_p' => 'required|alpha',
-            'apellido_p' => 'required|alpha',
+            'nombre_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'apellido_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
             'telefono_p' => 'required|numeric',
             'direccion_p' => 'required',
             'name' => 'required|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
 
             // valida campos del tecnico
-            'especialidad_t' => 'required|alpha',
-            'profesion_t' => 'required|alpha',
+            'especialidad_t' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'profesion_t' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
 
         ], [
             //MENSAJES CUANDO NO SE CUMPLE LA VALIDACION
             'email.unique' => 'Este email ya esta en uso',
             'email.required' => 'Este campo es obligatorio',
             'nombre_p.required' => 'Este campo es obligatorio',
-            'nombre_p.alpha' => 'Este campo solo acepta letras',
+            'nombre_p.regex' => 'Este campo solo acepta letras',
             'cedula_p.unique' => 'El usuario ya existe',
             'cedula_p.size' => 'El número debe contener 10 carácteres',
             'cedula_p.required' => 'Este campo es obligatorio',
             // 'cedula_p.max' => 'El número debe contener 10 carácteres',
             'cedula_p.numeric' => 'El campo solo acepta números',
             'apellido_p.required' => 'Este campo es obligatorio',
-            'apellido_p.alpha' => 'Este campo solo acepta letras',
+            'apellido_p.regex' => 'Este campo solo acepta letras',
             'direccion_p.required' => 'Este campo es obligatorio',
             'telefono_p.required' => 'Este campo es obligatorio',
             'telefono_p.numeric' => 'El campo solo acepta números',
@@ -121,9 +121,9 @@ class TecnicoController extends Controller
 
             //validaciones del tecnico
             'especialidad_t.required' => 'Este campo es obligatorio',
-            'especialidad_t.alpha' => 'Este debe contener solo carácteres',
+            'especialidad_t.regex' => 'Este debe contener solo carácteres',
             'profesion_t.required' => 'Este campo es obligatorio',
-            'profesion_t.alpha' => 'Este debe contener solo carácteres',
+            'profesion_t.regex' => 'Este debe contener solo carácteres',
         ]);
 
         //UNA VEZ VALIDADOS LOS CAMPOS
@@ -194,16 +194,16 @@ class TecnicoController extends Controller
         $request->validate([
             //REGLAS DE VALIDACION
             'cedula_p' => ['required', 'numeric', Rule::unique('users')->ignore($id)],
-            'nombre_p' => 'required|alpha',
-            'apellido_p' => 'required|alpha',
+            'nombre_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'apellido_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
             'telefono_p' => 'required|numeric',
             'direccion_p' => 'required',
             'name' => ['required', Rule::unique('users')->ignore($id)],
             'email' => ['required', 'string', 'email', Rule::unique('users')->ignore($id)],
 
             // valida campos del tecnico
-            'especialidad_t' => 'required|alpha',
-            'profesion_t' => 'required|alpha',
+            'especialidad_t' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'profesion_t' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
 
         ], [
             //MENSAJES CUANDO NO SE CUMPLE LA VALIDACION
@@ -211,14 +211,14 @@ class TecnicoController extends Controller
             'email.email' => 'Ingrese un email válido',
             'email.required' => 'Este campo es obligatorio',
             'nombre_p.required' => 'Este campo es obligatorio',
-            'nombre_p.alpha' => 'Este campo solo acepta letras',
+            'nombre_p.regex' => 'Este campo solo acepta letras',
             'cedula_p.unique' => 'El usuario ya existe',
             'cedula_p.size' => 'El número debe contener 10 carácteres',
             'cedula_p.required' => 'Este campo es obligatorio',
             // 'cedula_p.max' => 'El número debe contener 10 carácteres',
             'cedula_p.numeric' => 'El campo solo acepta números',
             'apellido_p.required' => 'Este campo es obligatorio',
-            'apellido_p.alpha' => 'Este campo solo acepta letras',
+            'apellido_p.regex' => 'Este campo solo acepta letras',
             'direccion_p.required' => 'Este campo es obligatorio',
             'telefono_p.required' => 'Este campo es obligatorio',
             'telefono_p.numeric' => 'El campo solo acepta números',
@@ -227,9 +227,9 @@ class TecnicoController extends Controller
 
             //validaciones del tecnico
             'especialidad_t.required' => 'Este campo es obligatorio',
-            'especialidad_t.alpha' => 'Este debe contener solo letras',
+            'especialidad_t.regex' => 'Este debe contener solo letras',
             'profesion_t.required' => 'Este campo es obligatorio',
-            'profesion_t.alpha' => 'Este debe contener solo letras',
+            'profesion_t.regex' => 'Este debe contener solo letras',
         ]);
 
         //UNA VEZ VALIDADOS LOS CAMPOS

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,15 +63,11 @@
             {{--Valida que el usuario haya iniciado sesión--}}
             @if(Auth::check())
 
-                {{--Valida que el usuario tenga el rol de adminsitrador--}}
-                @if (Auth::user()->tipo_p == 0)
-                    @include('admin.plantilla.sidebaradministrador')
-                    {{--Valida que el usuario tenga el rol de tecnico--}}
-                @elseif (Auth::user()->tipo_p == 1)
+
+                {{--Valida que el usuario tenga el rol de tecnico--}}
+                @if (Auth::user()->tipo_p == 1)
                     @include('admin.plantilla.sidebartecnico')
 
-                @else
-                    @include('admin.plantilla.sidebarcliente')
                 @endif
 
             @endif

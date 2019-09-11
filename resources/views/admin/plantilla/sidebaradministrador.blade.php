@@ -108,7 +108,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('listar-ordenes-asignadas')}}">
+                    <a class="nav-link" href="{{route('listar-ordenes-asignadas-admin')}}">
                         <i class="fa fa-check"></i> Ordenes asignadas
                     </a>
                 </li>

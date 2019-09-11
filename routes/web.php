@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return view('user.base.index');
+    return view('pdf.ordenesPdf');
 });
 
 Auth::routes();
@@ -22,15 +22,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/dashboard', function () {
+    Route::get('/administrador', function () {
         return view('admin/dashboard/inicio/inicio');
-    })->name('dashboard');
-    Route::get('/tecnico', function () {
-        return view('admin/dashboard/registros/registroUsuarios');
-    })->name('tecnico');
-    Route::get('/user', function () {
-        return view('welcome');
-    })->name('user');
+    })->name('administrador');
+
+
+    Route::get('/tecnico-principal', function () {
+        return view('admin.base.base_tecnicoPrincipal');
+    })->name('tecnico-principal');
+
+
+    Route::get('/tecnico-secundario', function () {
+        return view('admin.base.base_tecnicoSecundario');
+    })->name('tecnico-secundario');
+
+
+    ////<<<<<---------------------------------RUTAS PARA EL ADMISNITRADOR    ---------->>>
+
+    /// esta ruta lista todas las ordenes asignadas al tecnico principal
+    Route::get('listar-ordenes-asignadas-admin', 'admin\OrdenTrabajoController@listarOrdenesAsignadasAdministrador')->name('listar-ordenes-asignadas-admin');
+    Route::get('listar-ordenes', 'admin\OrdenTrabajoController@listarOrdenes')->name('listar-ordenes');
 
     //ruta get, pots, put, delete para registrar usuarios
     Route::resource('usuario', 'admin\UserController');
@@ -79,13 +90,33 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('ordenes', 'admin\OrdenTrabajoController');
     Route::post('generarOrden', 'admin\OrdenTrabajoController@genererOrden')->name('generarOrden');
-    Route::get('listar-ordenes', 'admin\OrdenTrabajoController@listarOrdenes')->name('listar-ordenes');
     Route::get('busqueda-ordenes', 'admin\OrdenTrabajoController@busquedaOrden')->name('busqueda-ordenes');
     Route::put('asignar-orden', 'admin\OrdenTrabajoController@asignarOrden')->name('asignar-orden');
-    Route::get('listar-ordenes-asignadas', 'admin\OrdenTrabajoController@listarOrdenesASIGNADAS')->name('listar-ordenes-asignadas');
     Route::get('revision-orden-tecnico/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnico')->name('revision-orden-tecnico');
-    Route::put('cambiar-fecha-orden', 'admin\OrdenTrabajoController@salidaOrden')->name('cambiar-fecha-orden');
 
+
+    ///// <<<<<<---------------------------------Rutas para los tecnicos principales------->>>>>>>>>>>>>>>>>>
+
+    /// esta ruta lista todas las ordenes asignadas al tecnico principal
+    Route::get('listar-ordenes-asignadas', 'admin\OrdenTrabajoController@listarOrdenesASIGNADAS')->name('listar-ordenes-asignadas');
+    //ruta para realizar los cambios de fecha por parte del tecnico pricipal
+    Route::put('cambiar-fecha-orden', 'admin\OrdenTrabajoController@salidaOrden')->name('cambiar-fecha-orden');
+    //ruta para agreagar la solucion por parte del tecnico principal
+    Route::put('agregar-solucion/{id}', 'admin\OrdenTrabajoController@solucionOrden')->name('agregar-solucion');
+    //ruta para rechazar la orden de trabajo por algun inconveniente
+    Route::put('rechazar-orden', 'admin\OrdenTrabajoController@rechazarOrden')->name('rechazar-orden');
+
+
+    ///<<<<<<<<<<<<<<<<<<<<<<--------------RUTAS PARA LOS TECNICOS SECUNDARIOS -------------------------->>>>>>>>>>>>>>>>>
+
+    Route::get('listar-ordenes-ingresos', 'admin\OrdenTrabajoController@listarOrdenes')->name('listar-ordenes-ingresos');
+    Route::get('crear-ordenes', 'admin\OrdenTrabajoController@index')->name('crear-ordenes');
+
+
+    //// <------- RUTAS PARA LOS PDFS ---------->>>>
+
+    Route::get('orden-pdf/{id}', 'admin\OrdenTrabajoController@pdfOrdenes')->name('orden-pdf');
+    Route::get('orden-pdf-ingreso/{id}', 'admin\OrdenTrabajoController@pdfOrdenesIngreso')->name('orden-pdf-ingreso');
 
     // <-------    rutas para los registros que estan en la papelera   -------------------->
 
@@ -97,5 +128,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('papelera-tecnicos', 'admin\TecnicoController@papeleraTecnico')->name('papelera-tecnicos');
     //ruta para el listar todos los equipos inhabilitados
     Route::get('papelera-equipos', 'admin\EquipoController@papeleraEquipos')->name('papelera-equipos');
+
 
 });

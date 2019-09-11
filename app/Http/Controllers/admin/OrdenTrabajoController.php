@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\Return_;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class OrdenTrabajoController extends Controller
 {
@@ -34,27 +35,12 @@ class OrdenTrabajoController extends Controller
         $userAuth = Auth::id();
         $user = User::find($userAuth);
 
-        if ($user->tipo_p == 0) {
-            // buscamos los datos del tecnico
-            $tecnico = $user;
-        } else {
-            // buscamos los datos del tecnico
-            $tecnico = Tecnico::find($userAuth);
-        }
 
         // obteneos la fecha actual del servidor
         $mytime = Carbon::now('America/Guayaquil');
         $fecha_hora = $mytime->toDateString();
 
-        /*$regis_equipos = DB::table('users')
-            ->join('equipos', 'users.id', '=', 'equipos.id_p')
-            ->join('registro_equipos', 'registro_equipos.id_e', '=', 'equipos.id')
-            ->select(
-                'users.*',
-                'equipos.*',
-                'registro_equipos.*'
-            )->paginate(3);
-        */
+
         // validamos que exista una orden
         $codigo_orden = 0;
         if (count($ordenes) != 0) {
@@ -64,14 +50,47 @@ class OrdenTrabajoController extends Controller
             // encontramos el nuemro de codigo para mostrarlo en el DOM
             $codigo_orden = $ultimoregistro->codigo_or + 1;
 
-            // retornamos la visat con los datos del tecnico y los datos de las ordenes
-            return view('admin.dashboard.ordenes.index', compact('codigo_orden', 'tecnico', 'fecha_hora'));
+
+            if ($user->tipo_p == 0) {
+                // buscamos los datos del tecnico
+                $tecnico = $user;
+                $nombres_tec = $tecnico->nombre_p . '  ' . $tecnico->apellido_p;
+                // retornamos la visat con los datos del tecnico y los datos de las ordenes
+                return view('admin.dashboard.ordenes.index', compact('codigo_orden', 'nombres_tec', 'fecha_hora'));
+            } else {
+                // buscamos los datos del tecnico
+                $tecnico = Tecnico::find($userAuth);
+                $nombres_tec = $tecnico->user->nombre_p . '  ' . $tecnico->user->apellido_p;
+                if ($tecnico->tipo_t == 1) {
+                    // retornamos la visat con los datos del tecnico y los datos de las ordenes
+                    return view('admin.dashboard.ordenes.registroEquipoTecSecundario', compact('codigo_orden', 'nombres_tec', 'fecha_hora'));
+                } else {
+                    return view('errores.errorPaginaVacia');
+                }
+            }
 
         } else {
             // si no existe ordenes registradas en la base de datos  se designara el valor de uno a los nueros de ordenes
 
             $codigo_orden = 1;
-            return view('admin.dashboard.ordenes.index', compact('codigo_orden', 'tecnico', 'fecha_hora'));
+
+            if ($user->tipo_p == 0) {
+                // buscamos los datos del tecnico
+                $tecnico = $user;
+                $nombres_tec = $tecnico->nombre_p . '  ' . $tecnico->apellido_p;
+                // retornamos la visat con los datos del tecnico y los datos de las ordenes
+                return view('admin.dashboard.ordenes.index', compact('codigo_orden', 'nombres_tec', 'fecha_hora'));
+            } else {
+                // buscamos los datos del tecnico
+                $tecnico = Tecnico::find($userAuth);
+                $nombres_tec = $tecnico->user->nombre_p . '  ' . $tecnico->user->apellido_p;
+                if ($tecnico->tipo_t == 1) {
+                    // retornamos la visat con los datos del tecnico y los datos de las ordenes
+                    return view('admin.dashboard.ordenes.registroEquipoTecSecundario', compact('codigo_orden', 'nombres_tec', 'fecha_hora'));
+                } else {
+                    return view('errores.errorPaginaVacia');
+                }
+            }
         }
 
 
@@ -104,33 +123,12 @@ class OrdenTrabajoController extends Controller
         }
     }
 
-    /* public function busquedaOrden()
-     {
-         $query = $_GET['query'];
-         if ($query == '') {
-             return response()->json(['mensaje' => 'Datos no encontrados']);
-
-         } else {
-             $orden = OrdenTrabajo::where('codigo_or', $query)->where('estado_or', 1)->first();
-
-             if ($orden) {
-                 return response()->json([
-                     'id' => $orden->id,
-                     'codigo_or' => $orden->codigo_or,
-                     'id_cli' => $orden->id_cli,
-                     'cliente' => $orden->user->nombre_p . '' . $orden->user->apellido_p,
-                     'observacion_problema_or' => $orden->observacion_problema_or,
-                     'etapa_servicio_or' => $orden->etapa_servicio_or,
-                     'estado_or' => $orden->estado_or,
-                 ]);
-             } else {
-                 return response()->json(['mensaje' => 'Datos no encontrados']);
-             }
-         }
-     }*/
 
     public function listarOrdenes(Request $request)
     {
+        $id_user = Auth::id();
+        $user = User::find($id_user);
+
         $parametro = $request->parametroBuscar;
         $query = trim($request->get('query'));
         if ($query != '') {
@@ -144,8 +142,24 @@ class OrdenTrabajoController extends Controller
                     ->where('users.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 0)
                     ->orderBy('orden_trabajos.id', 'desc')
-                    ->paginate(3);
-                return view('admin.dashboard.ordenes.listarOrdenes', compact('ordenes', 'parametro'));
+                    ->paginate(10);
+
+                /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+                /// en caso de que sea 0 corresponde a la vista del administrador
+                if ($user->tipo_p == 0) {
+                    return view('admin.dashboard.ordenes.listarOrdenes', compact('ordenes', 'parametro'));
+                }
+                /// en caso de que sea 0 corresponde a la vista tecnico
+                if ($user->tipo_p == 1) {
+                    /// aque evaluaremo solo tenga acceso el tecnico secundario
+                    /// mediante una consulta utilizando el id del usuario autenticado
+                    $tecnico = Tecnico::find($id_user);
+                    if ($tecnico->tipo_t == 1) {
+                        return view('admin.dashboard.ordenes.listarOrdenesTecnicoSecundario', compact('ordenes', 'parametro'));
+                    }
+
+                }
+
             } else {
                 $ordenes = DB::table('users')
                     ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
@@ -156,8 +170,22 @@ class OrdenTrabajoController extends Controller
                     ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 0)
                     ->orderBy('orden_trabajos.id', 'desc')
-                    ->paginate(3);
-                return view('admin.dashboard.ordenes.listarOrdenes', compact('ordenes', 'parametro'));
+                    ->paginate(10);
+                /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+                /// en caso de que sea 0 corresponde a la vista del administrador
+                if ($user->tipo_p == 0) {
+                    return view('admin.dashboard.ordenes.listarOrdenes', compact('ordenes', 'parametro'));
+                }
+                /// en caso de que sea 0 corresponde a la vista tecnico
+                if ($user->tipo_p == 1) {
+                    /// aque evaluaremo solo tenga acceso el tecnico secundario
+                    /// mediante una consulta utilizando el id del usuario autenticado
+                    $tecnico = Tecnico::find($id_user);
+                    if ($tecnico->tipo_t == 1) {
+                        return view('admin.dashboard.ordenes.listarOrdenesTecnicoSecundario', compact('ordenes', 'parametro'));
+                    }
+
+                }
             }
 
         } else {
@@ -169,8 +197,22 @@ class OrdenTrabajoController extends Controller
                     'users.*',
 
                     'orden_trabajos.*'
-                )->paginate(3);
-            return view('admin.dashboard.ordenes.listarOrdenes', compact('ordenes', 'parametro'));
+                )->paginate(10);
+            /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+            /// en caso de que sea 0 corresponde a la vista del administrador
+            if ($user->tipo_p == 0) {
+                return view('admin.dashboard.ordenes.listarOrdenes', compact('ordenes', 'parametro'));
+            }
+            /// en caso de que sea 0 corresponde a la vista tecnico
+            if ($user->tipo_p == 1) {
+                /// aque evaluaremo solo tenga acceso el tecnico secundario
+                /// mediante una consulta utilizando el id del usuario autenticado
+                $tecnico = Tecnico::find($id_user);
+                if ($tecnico->tipo_t == 1) {
+                    return view('admin.dashboard.ordenes.listarOrdenesTecnicoSecundario', compact('ordenes', 'parametro'));
+                }
+
+            }
         }
 
     }
@@ -261,7 +303,10 @@ class OrdenTrabajoController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
 
+
         try {
+            $userAuth = Auth::id();
+            $user = User::find($userAuth);
             DB::beginTransaction();
 
             $ordenes = OrdenTrabajo::all();
@@ -363,14 +408,37 @@ class OrdenTrabajoController extends Controller
 
             DB::commit();
             /// el valor que retora es para controlar el nuemro de registros realzao
-            return [
-                'var' => $i
-            ];
+
+            if ($user->tipo_p == 0) {
+                // return redirect('listar-ordenes');
+            } else {
+                // buscamos los datos del tecnico
+                $tecnico = Tecnico::find($userAuth);
+                if ($tecnico->tipo_t == 1) {
+                    // retornamos la visata de registros de las ordenes
+                    return redirect('listar-ordenes-ingresos');
+                }
+            }
+
+
             /// en caso que haya algun error en el registro de la cabecera el y detalle
             /// la trasaccion se anulara
         } catch (Exception $e) {
             // la funcion rollback anula la trasaccion o los ultimos cambios en la base de datos
             DB::rollBack();
+
+            $userAuth = Auth::id();
+            $user = User::find($userAuth);
+            if ($user->tipo_p == 0) {
+                return redirect('listar-ordenes');
+            } else {
+                // buscamos los datos del tecnico
+                $tecnico = Tecnico::find($userAuth);
+                if ($tecnico->tipo_t == 1) {
+                    // retornamos la visata de registros de las ordenes
+                    return redirect('listar-ordenes-ingresos');
+                }
+            }
         }
 
         // return $request;
@@ -458,7 +526,7 @@ class OrdenTrabajoController extends Controller
         return response()->json($orden);
     }
 
-    public function listarOrdenesASIGNADAS(Request $request)
+    public function listarOrdenesAsignadasAdministrador(Request $request)
     {
         $parametro = $request->parametroBuscar;
         $query = trim($request->get('query'));
@@ -473,8 +541,8 @@ class OrdenTrabajoController extends Controller
                     ->where('users.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 1)
                     ->orderBy('orden_trabajos.id', 'desc')
-                    ->paginate(3);
-                return view('admin.dashboard.ordenes.listarOrdenesAsignadas', compact('ordenes', 'parametro'));
+                    ->paginate(10);
+                return view('admin.dashboard.ordenes.listaOrdenesTecnicos', compact('ordenes', 'parametro'));
             } else {
                 $ordenes = DB::table('users')
                     ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
@@ -485,8 +553,8 @@ class OrdenTrabajoController extends Controller
                     ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 1)
                     ->orderBy('orden_trabajos.id', 'desc')
-                    ->paginate(3);
-                return view('admin.dashboard.ordenes.listarOrdenesAsignadas', compact('ordenes', 'parametro'));
+                    ->paginate(10);
+                return view('admin.dashboard.ordenes.listaOrdenesTecnicos', compact('ordenes', 'parametro'));
             }
 
         } else {
@@ -498,9 +566,80 @@ class OrdenTrabajoController extends Controller
                     'users.*',
 
                     'orden_trabajos.*'
-                )->paginate(3);
-            return view('admin.dashboard.ordenes.listarOrdenesAsignadas', compact('ordenes', 'parametro'));
+                )->paginate(10);
+            return view('admin.dashboard.ordenes.listaOrdenesTecnicos', compact('ordenes', 'parametro'));
         }
+
+    }
+
+    public function listarOrdenesASIGNADAS(Request $request)
+    {
+        $userAuth = Auth::id();
+        $user = User::find($userAuth);
+        if ($user->tipo_p == 1) {
+            $tecnicoAsignado = Tecnico::find($user->id);
+            if ($tecnicoAsignado->tipo_t == 0) {
+                $parametro = $request->parametroBuscar;
+                $query = trim($request->get('query'));
+                if ($query != '') {
+                    if ($parametro == 'cedula_p') {
+                        $ordenes = DB::table('users')
+                            ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                            ->select(
+                                'users.*',
+                                'orden_trabajos.*'
+                            )
+                            ->where('users.' . $parametro, 'like', '%' . $query . '%')
+                            ->where('orden_trabajos.estado_or', 1)
+                            // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
+                            ->where('orden_trabajos.id_tec', $userAuth)
+                            ->orderBy('orden_trabajos.id', 'desc')
+                            ->paginate(10);
+
+
+                        return view('admin.dashboard.ordenes.listarOrdenesAsignadas', compact('ordenes', 'parametro'));
+
+
+                    } else {
+                        $ordenes = DB::table('users')
+                            ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                            ->select(
+                                'users.*',
+                                'orden_trabajos.*'
+                            )
+                            ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
+                            ->where('estado_or', 1)
+                            // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
+                            ->where('orden_trabajos.id_tec', $userAuth)
+                            ->orderBy('orden_trabajos.id', 'desc')
+                            ->paginate(10);
+                        return view('admin.dashboard.ordenes.listarOrdenesAsignadas', compact('ordenes', 'parametro'));
+                    }
+
+                } else {
+                    $parametro = 'cedula_p';
+                    $ordenes = DB::table('users')
+                        ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                        ->where('estado_or', 1)
+                        // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
+                        ->where('orden_trabajos.id_tec', $userAuth)
+                        ->select(
+                            'users.*',
+
+                            'orden_trabajos.*'
+                        )->paginate(10);
+                    // si existen registros retornara la vista caso contrartio retoprnara una vista de datos vacios;
+
+                    //  return $ordenes;
+                    return view('admin.dashboard.ordenes.listarOrdenesAsignadas', compact('ordenes', 'parametro'));
+
+
+                }
+
+
+            }
+        }
+
 
     }
 
@@ -534,7 +673,7 @@ class OrdenTrabajoController extends Controller
     public function solucionOrden(Request $request, $id)
     {
         $observacion_solucion = $request->observacion_solucion_or;
-        $id_orden = $request->id_or;
+        $id_orden = $id;
 
         $orden = OrdenTrabajo::find($id_orden);
         $orden->observacion_solucion_or = $observacion_solucion;
@@ -542,5 +681,45 @@ class OrdenTrabajoController extends Controller
         $orden->save();
         return response()->json($orden);
     }
+
+    /// METODO PARA RECHAZAR LAS ORDENES DE TRABAJO POR PARTE DLE TECNICO PRINCIPAL
+    public function rechazarOrden(Request $request)
+    {
+        $observacion_solucion = $request->observacion_solucion_or;
+        $id_orden = $request->id_or;
+
+        $orden = OrdenTrabajo::find($id_orden);
+        $orden->observacion_solucion_or = $observacion_solucion;
+        $orden->etapa_servicio_or = 1;
+        $orden->id_tec = null;
+        $orden->estado_or = 0;
+        $orden->save();
+
+        return response()->json($orden);
+    }
+
+
+    public function pdfOrdenes($id)
+    {
+        $orden = OrdenTrabajo::find($id);
+        $registros = RegistroEquipo::where('id_or', $orden->id)->get();
+        $tecnico = Tecnico::where('id', $orden->id_tec)->first();
+        $pdf = PDF::loadView('pdf.ordenesPdf', compact('orden', 'registros', 'tecnico'));
+        // return view('pdf.ordenesPdf');
+        //   $pdf->setPaper('A4', 'landscape');
+        $nombrePdf = 'orden-' . $orden->codigo_or . '.pdf';
+
+        return $pdf->download($nombrePdf);
+    }
+
+    public function pdfOrdenesIngreso($id)
+    {
+        $orden = OrdenTrabajo::find($id);
+        $registros = RegistroEquipo::where('id_or', $orden->id)->get();
+        $pdf = PDF::loadView('pdf.ordenesPdfIngreso', compact('orden', 'registros'));
+        $pdfNombre = 'orden-Ingreso-' . $orden->codigo_or . '.pdf';
+        return $pdf->download($pdfNombre);
+    }
+
 
 }

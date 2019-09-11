@@ -72,23 +72,31 @@ class ClienteController extends Controller
         //Reglas de validacion de los campos del formulario  que vienen por POST
         $request->validate([
             //REGLAS DE VALIDACION
-            'cedula_p' => 'required|unique:users|size:10',
-            'nombre_p' => 'required',
-            'apellido_p' => 'required',
-            'telefono_p' => 'required',
+            'cedula_p' => 'required|numeric|unique:users',
+            'nombre_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'apellido_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'telefono_p' => 'required|numeric',
             'direccion_p' => 'required',
             'name' => 'required|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
         ], [
             //MENSAJES CUANDO NO SE CUMPLE LA VALIDACION
             'email.unique' => 'Este email ya esta en uso',
+            'email.required' => 'Este campo es obligatorio',
             'nombre_p.required' => 'Este campo es obligatorio',
+            'nombre_p.regex' => 'Este campo solo acepta letras',
             'cedula_p.unique' => 'El usuario ya existe',
             'cedula_p.size' => 'El número debe contener 10 carácteres',
+            'cedula_p.required' => 'Este campo es obligatorio',
+            // 'cedula_p.max' => 'El número debe contener 10 carácteres',
+            'cedula_p.numeric' => 'El campo solo acepta números',
             'apellido_p.required' => 'Este campo es obligatorio',
+            'apellido_p.regex' => 'Este campo solo acepta letras',
             'direccion_p.required' => 'Este campo es obligatorio',
             'telefono_p.required' => 'Este campo es obligatorio',
+            'telefono_p.numeric' => 'El campo solo acepta números',
             'name.unique' => 'El nombre de usuario ya existe',
+            'name.required' => 'Este campo es obligatorio',
         ]);
 
         //UNA VEZ VALIDADOS LOS CAMPOS
@@ -149,25 +157,31 @@ class ClienteController extends Controller
         $request->validate([
             //REGLAS DE VALIDACION
             'id' => 'required',
-            'cedula_p' => ['required', 'size:10', Rule::unique('users')->ignore($id)],
-            'nombre_p' => 'required',
-            'apellido_p' => 'required',
-            'telefono_p' => 'required',
+            'cedula_p' => ['required', 'numeric', Rule::unique('users')->ignore($id)],
+            'nombre_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'apellido_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
+            'telefono_p' => 'required|numeric',
             'direccion_p' => 'required',
             'name' => ['required', Rule::unique('users')->ignore($id)],
             'email' => ['required', 'string', 'email', Rule::unique('users')->ignore($id)],
         ], [
             //MENSAJES CUANDO NO SE CUMPLE LA VALIDACION
-            'id.required' => 'Usuario no encontrado',
             'email.unique' => 'Este email ya esta en uso',
-            'email.email' => 'Ingrese un email valido',
+            'email.required' => 'Este campo es obligatorio',
             'nombre_p.required' => 'Este campo es obligatorio',
+            'nombre_p.regex' => 'Este campo solo acepta letras',
             'cedula_p.unique' => 'El usuario ya existe',
             'cedula_p.size' => 'El número debe contener 10 carácteres',
+            'cedula_p.required' => 'Este campo es obligatorio',
+            // 'cedula_p.max' => 'El número debe contener 10 carácteres',
+            'cedula_p.numeric' => 'El campo solo acepta números',
             'apellido_p.required' => 'Este campo es obligatorio',
+            'apellido_p.regex' => 'Este campo solo acepta letras',
             'direccion_p.required' => 'Este campo es obligatorio',
             'telefono_p.required' => 'Este campo es obligatorio',
+            'telefono_p.numeric' => 'El campo solo acepta números',
             'name.unique' => 'El nombre de usuario ya existe',
+            'name.required' => 'Este campo es obligatorio',
         ]);
 
         //UNA VEZ VALIDADOS LOS CAMPOS

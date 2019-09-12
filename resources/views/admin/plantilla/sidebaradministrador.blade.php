@@ -112,6 +112,11 @@
                         <i class="fa fa-check"></i> Ordenes asignadas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('listar-ordenes-finalizadas-admin')}}">
+                        <i class="fa fa-check"></i> Ordenes finalizadas
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="nav-item">

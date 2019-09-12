@@ -16,13 +16,13 @@
                 <div class="lead">
                     <div class="col-lg-5">
                         <!-- USE THIS CODE Instead of the Commented Code Above -->
-                        <div class="">
-
-                            <a href="{{url()->previous()}}" class="btn btn-outline-white">
-                                <i class="batch-icon batch-icon-out"></i>
-                                Atras
-                            </a>
-
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <a href="{{url()->previous()}}" class="btn btn-outline-white">
+                                    <i class="batch-icon batch-icon-out"></i>
+                                    Atras
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,17 +188,17 @@
                                     <tr>
                                         @if ($orden->etapa_servicio_or==1)
                                             <td>
-                                                <span class="lbEtapa badge badge-primary">Ingreso</span>
+                                                <span class="badge badge-primary">Ingreso</span>
                                             </td>
                                         @endif
                                         @if ($orden->etapa_servicio_or==2)
                                             <td>
-                                                <span class="lbEtapa badge badge-warning">Revisón</span>
+                                                <span class="badge badge-warning">Revisón</span>
                                             </td>
                                         @endif
                                         @if ($orden->etapa_servicio_or==3)
                                             <td>
-                                                <span class="lbEtapa badge badge-success">Terminado</span>
+                                                <span class="badge badge-success">Terminado</span>
                                             </td>
                                         @endif
                                         <td>{{$orden->observacion_problema_or}}</td>
@@ -212,7 +212,7 @@
                             </div>
                             <hr>
                             <div class="divGenerarOrden pull-right">
-                                <a href="{{route('orden-pdf',$orden->id)}}"
+                                <a href="{{route('orden-pdf-ingreso',$orden->id)}}"
                                    class="btn btn-success   btn-md  btnGenerarOrden">
                                     <i class="batch-icon batch-icon-print"></i>
                                     Imprimir
@@ -260,10 +260,6 @@
                 success: function (data) {
                     $('.orden-solucion-id{{$orden->id}}').text(data.observacion_solucion_or);
                     $('#solucion-anterior').val(data.observacion_solucion_or);
-                    $('.lbEtapa').removeClass('badge-warning');
-                    $('.lbEtapa').addClass('badge-success');
-                    $('.lbEtapa').text('Terminado');
-
                     $('#idModal').modal('hide');
                     // $('#orden-solucion').val('');
                 }

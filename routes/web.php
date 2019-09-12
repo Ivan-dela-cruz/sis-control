@@ -92,7 +92,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('generarOrden', 'admin\OrdenTrabajoController@genererOrden')->name('generarOrden');
     Route::get('busqueda-ordenes', 'admin\OrdenTrabajoController@busquedaOrden')->name('busqueda-ordenes');
     Route::put('asignar-orden', 'admin\OrdenTrabajoController@asignarOrden')->name('asignar-orden');
+    Route::get('listar-ordenes-finalizadas-admin', 'admin\OrdenTrabajoController@listarOrdenesFinalizadasAdmin')->name('listar-ordenes-finalizadas-admin');
     Route::get('revision-orden-tecnico/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnico')->name('revision-orden-tecnico');
+    Route::get('revision-orden-admin-finalizada/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnicoFinalizada')->name('revision-orden-admin-finalizada');
 
 
     ///// <<<<<<---------------------------------Rutas para los tecnicos principales------->>>>>>>>>>>>>>>>>>
@@ -105,12 +107,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('agregar-solucion/{id}', 'admin\OrdenTrabajoController@solucionOrden')->name('agregar-solucion');
     //ruta para rechazar la orden de trabajo por algun inconveniente
     Route::put('rechazar-orden', 'admin\OrdenTrabajoController@rechazarOrden')->name('rechazar-orden');
+    // esta ruta muestra todas los ordenes terminadas del tecnico principal
+    Route::get('listar-ordenes-finalizadas', 'admin\OrdenTrabajoController@listarOrdenesFinalizadas')->name('listar-ordenes-finalizadas');
+    // esta ruta permite conocer el detalle de la ordenes que el tecnico ha culminado
+    Route::get('revision-orden-tecnico-finalizada/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnicoFinalizada')->name('revision-orden-tecnico-finalizada');
 
 
     ///<<<<<<<<<<<<<<<<<<<<<<--------------RUTAS PARA LOS TECNICOS SECUNDARIOS -------------------------->>>>>>>>>>>>>>>>>
 
     Route::get('listar-ordenes-ingresos', 'admin\OrdenTrabajoController@listarOrdenes')->name('listar-ordenes-ingresos');
     Route::get('crear-ordenes', 'admin\OrdenTrabajoController@index')->name('crear-ordenes');
+    Route::get('ver-orden/{id}', 'admin\OrdenTrabajoController@show')->name('ver-orden');
 
 
     //// <------- RUTAS PARA LOS PDFS ---------->>>>

@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <p class="pull-right font-italic"><a href="{{route('listar-ordenes-asignadas-admin')}}">Ordenes</a>/</p>
+            <p class="pull-right font-italic"><a href="{{route('listar-ordenes-asignadas-admin')}}">Ordenes</a>/Ordenes asignadas</p>
         </div>
     </div>
     <div class="row mb-5">

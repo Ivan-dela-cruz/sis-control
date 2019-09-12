@@ -24,7 +24,7 @@ function agregarRegistro() {
         '<td class="accesorio">' + accesorios_re + '</td>' +
         '<td class="problema">' + problema_re + '</td>' +
         '<td class="fecha_salida">' + fecha_salida_re + '</td>' +
-        '<td><a onclick="eliminar(' + contador + ')" data-id-item="' + contador + '" id="detalleOrden' + contador + '" class="btnEliminarItem btn btn-danger btn-sm">' +
+        '<td><a onclick="eliminar(' + contador + ')" id="detalleOrden' + contador + '" class="btn btn-danger btn-sm">' +
         '<i class="batch-icon batch-icon-delete"></i>' +
         ' </a><textarea hidden class="descripccion">' + descripcion_e + '</textarea></td>' +
         '</tr>';
@@ -37,7 +37,10 @@ function agregarRegistro() {
 
 
 }
-
+function eliminar(index) {
+    $('.id' + index).remove();
+    contador--;
+}
 function bloquearRegistroEquipo() {
     $('#serie_equipo').attr('disabled', 'disabled');
     $('#marca_e').attr('disabled', 'disabled');
@@ -52,12 +55,6 @@ function desbloquerRegistroEquipo() {
     $('#modelo_e').removeAttr('disabled');
     $('#tipo_t').removeAttr('disabled');
 
-}
-
-//funcion para eliminar los items creados en el detalle de la orden
-function eliminar(index) {
-    $('.id' + index).remove();
-    contador--;
 }
 
 
@@ -119,6 +116,7 @@ function desbloarBotonesOrnde() {
 }
 
 
+
 $('#btncerrarModal').click(function () {
     limpiarModal();
 });
@@ -147,6 +145,9 @@ $('.deleteModal').click(function () {
     $('#estado-actua-user').text($(this).data('estado-actual'));
     $('#ci-usuario').text($(this).data('cedula-actual'));
 });
+
+
+
 
 
 

@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <p class="font-italic pull-right"><a href="{{route('listar-ordenes')}}">Ordenes</a>/Detalle orden
+            <p class="font-italic pull-right"><a href="{{route('listar-ordenes-ingresos')}}">Ordenes</a>/Detalle orden
                 - {{$orden->codigo_or}} </p>
         </div>
     </div>
@@ -16,11 +16,15 @@
                 <div class="lead">
                     <div class="col-lg-5">
                         <!-- USE THIS CODE Instead of the Commented Code Above -->
-                        <div class="input-group mb-3">
+                        <div class="mb-3">
                             <div class="input-group-append">
-                                <a href="{{route('listar-ordenes')}}" class="btn btn-outline-white">
+                                <a href="{{route('listar-ordenes-ingresos')}}" class="btn btn-outline-white">
                                     <i class="batch-icon batch-icon-out"></i>
                                     Atras
+                                </a>
+                                <a href="{{route('ordenes.index')}}" class="btn btn-outline-white mx-3">
+                                    <i class="batch-icon batch-icon-clipboard-alt"></i>
+                                    Nueva
                                 </a>
                             </div>
                         </div>
@@ -34,8 +38,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
-
                                 <div class="col-md-5 mx-5">
+                                    <h3>Datos del cliente</h3>
                                     <div class="form-group">
                                         <p><b>Nombre cliente: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp; <label
@@ -61,6 +65,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mx-5">
+                                    <h3>Datos de la orden</h3>
                                     <div class="form-group">
                                         <p><b>N° Registro: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp; <label>{{$orden->codigo_or}}</label></p>
@@ -73,11 +78,6 @@
                                     <div class="form-group">
                                         <p><b>Fecha ingreso: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp;<label> {{$orden->fecha_salida_or}}</label></p>
-                                    </div>
-                                    <div class="form-group">
-                                        <p><b>Técnico: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="tecnico-encargado bg-success"></label>
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -140,22 +140,22 @@
                                     <tr>
                                         <th>Estado</th>
                                         <th>Problemática de la orden</th>
-                                        <th>Solución planteada</th>
                                     </tr>
                                     </thead>
                                     <tr>
                                         @if ($orden->etapa_servicio_or==1)
                                             <td>
-                                                <span class="badge badge-primary spanEtapaI">Ingreso</span>
+                                                <span class="badge badge-primary">Ingreso</span>
                                             </td>
                                         @endif
                                         @if ($orden->etapa_servicio_or==2)
                                             <td>
-                                                <span class="badge badge-warning spanEtapaR">Revisón</span>
+                                                <span class="badge badge-warning">Revisón</span>
                                             </td>
                                         @endif
+
                                         <td>{{$orden->observacion_problema_or}}</td>
-                                            <td>{{$orden->observacion_solucion_or}}</td>
+
                                     </tr>
                                     <tbody>
                                     </tbody>
@@ -163,28 +163,12 @@
                             </div>
                             <hr>
                             <div class="divGenerarOrden pull-right">
-                                <button class="btn btn-primary btn-md btnAsignar" type="button">
-                                    <i class="batch-icon batch-icon-user-alt"></i>
-                                    Asignar Técnico
-                                </button>
-
-                                <a hidden href="{{route('orden-pdf',$orden->id)}}"
-                                   class="btn btn-success   btn-md  btnImpriAsig">
-                                    <i class="batch-icon batch-icon-print"></i>
-                                    Imprimir
-                                </a>
 
                                 <a href="{{route('orden-pdf-ingreso',$orden->id)}}"
-                                   class="btn btn-success   btn-md  btnImpriAsigIngreso">
+                                   class="btn btn-success   btn-md  btnGenerarOrden">
                                     <i class="batch-icon batch-icon-print"></i>
                                     Imprimir
                                 </a>
-
-
-                                <button class="btn btn-danger  btn-md  btnCancelarOrden" type="button">
-                                    <i class="batch-icon batch-icon-delete"></i>
-                                    Anular
-                                </button>
                             </div>
 
                         </div>
@@ -193,69 +177,11 @@
             </div>
         </div>
     </div>
-
-    @include('admin.dashboard.ordenes.modalAsignacion')
 @endsection
 
 
 @section('script')
     <script>
-
-        $('.boton-asig').click(function () {
-            var id_tec = $(this).data('id-tecnico');
-            var id_or = $(this).data('id-orden');
-            $('.tecnico-encargado').text($(this).data('nombres-tec'));
-            $.ajax({
-                url: "{{route('asignar-orden')}}",
-                method: 'PUT',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    id_tec: id_tec,
-                    id_or: id_or,
-                    _token: "{{csrf_token()}}",
-                },
-                success: function (data) {
-                  //  $('.list-tecnico' + id_tec).remove();
-                    $('.btnImpriAsig').removeAttr('hidden');
-                    $('.btnImpriAsigIngreso').attr('hidden', 'hidden');
-                    $('.spanEtapaI').removeClass('badge-primary');
-                    $('.spanEtapaI').addClass('badge-warning');
-                    $('.spanEtapaI').text('Revisión');
-                }
-            })
-        });
-
-        $('.btnAsignar').click(function () {
-            $('#idModalAsig').modal('show');
-            // buscarTecnico();
-
-        });
-        $('#searchTecnico').keyup(function () {
-            // var query = $(this).val();
-            //buscarTecnico(query);
-        });
-        $('.asignar-tec').click(function () {
-            var tex = $(this).data('id-tecnico');
-            $('.tecnico-encargado').text(tex);
-        });
-
-        function buscarTecnico(query = '') {
-
-
-            $.ajax({
-                url: "{{ route('busqueda-tecnicos') }}",
-                method: 'GET',
-                data: {query: query},
-                dataType: 'json',
-                success: function (data) {
-                    $('.table-tecnicos').html(data.table_data);
-                    $('#total_records').text(data.total_data);
-                }
-            })
-
-        }
 
     </script>
 @endsection

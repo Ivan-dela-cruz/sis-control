@@ -91,7 +91,7 @@
                                             <td>{{$orden->fecha_salida_or}}</td>
 
                                             <td class="text-right">
-                                                <a href="{{route('orden-pdf',$orden->id)}}"
+                                                <a href="{{route('orden-pdf-ingreso',$orden->id)}}"
                                                    class="btn  btn-orange btn-sm imprimirOrden"
                                                    data-id-orden="{{$orden->id}}">
                                                     <i class="batch-icon batch-icon-print"></i>

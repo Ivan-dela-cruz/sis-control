@@ -32,6 +32,11 @@
                         <i class="fa fa-check"></i> Ordenes asignadas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('listar-ordenes-finalizadas')}}">
+                        <i class="fa fa-check"></i> Ordenes Finalizadas
+                    </a>
+                </li>
             </ul>
         </li>
 

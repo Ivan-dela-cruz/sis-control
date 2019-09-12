@@ -40,6 +40,7 @@
                                 <div class="row">
 
                                     <div class="col-md-5 mx-5">
+                                        <h3>Datos del cliente</h3>
                                         <div class="form-group">
                                             <p><b>Nombre cliente: </b>
                                                 &nbsp;&nbsp;&nbsp;&nbsp; <label class="nom_cli">S/N</label></p>
@@ -61,6 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 mx-5">
+                                        <h3>Datos de la orden</h3>
                                         <div class="form-group">
                                             <p><b>N° Registro: </b>
                                                 &nbsp;&nbsp;&nbsp;&nbsp; <label>{{$codigo_orden}}</label></p>
@@ -70,7 +72,7 @@
                                                 &nbsp;&nbsp;&nbsp;&nbsp;<label> {{$fecha_hora}}</label></p>
                                         </div>
                                         <div class="form-group">
-                                            <p><b>Técnico: </b>
+                                            <p><b>Regitrado por: </b>
 
                                                 &nbsp;&nbsp;&nbsp;&nbsp;<label> {{$nombres_tec}}</label>
                                             </p>
@@ -85,7 +87,6 @@
                                     <table id="tablaOrden" class="table table-hover align-middle">
                                         <thead class="thead-light">
                                         <tr>
-                                            <th>N°</th>
                                             <th>N° Serie</th>
                                             <th>Marca</th>
                                             <th>Modelo</th>
@@ -144,7 +145,7 @@
 
 
 @section('script')
-    <script type="text/javascript" src="{{asset('js/ajax/registroEquipoTecnicoSecundario.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/ajax/creaarOrdenIndex.js')}}"></script>
     <script>
         $('#btnGuardarModal').click(function () {
             $.ajax({
@@ -230,11 +231,7 @@
                             contador: contador,
                         },
                         success: function (data) {
-                            location.href = 'listar-ordenes-ingresos';
-                            $('.btnGenerarOrden').attr('disabled', 'disabled');
-                            $('.btnCancelarOrden').attr('disabled', 'disabled');
-                            $('#orden_decrip').removeClass("border-danger");
-
+                            location.href = 'ver-orden/' + data.id;
                         }
                     })
                     ;
@@ -245,6 +242,7 @@
             }
 
         });
+
 
         $('.btnsearchEquipo').click(function () {
             var query = $('#searchEquipo').val();
@@ -275,8 +273,33 @@
                 }
             })
         });
+        $('.searchInput').click(function () {
+            var query = $('#searchCliente').val();
+            $.ajax({
+                url: "busqueda-cliente/{query}",
+                method: 'GET',
+                data: {
+                    query: query
+                },
+                success: function (data) {
+                    if (data.mensaje == 'Datos no encontrados') {
+                        $('.nom_cli').text(data.mensaje);
+                        $('.ci_cli').text('');
+                        $('.dir_cli').text('');
+                        $('.tlf_cli').text('');
+                    } else {
+                        $('#ordencliente').val(data.id);
+                        $('.nom_cli').text(data.nombres);
+                        $('.ci_cli').text(data.cedula_p);
+                        $('.dir_cli').text(data.direccion_p);
+                        $('.tlf_cli').text(data.telefono_p);
+                    }
+
+                }
+            })
 
 
+        });
 
     </script>
 @endsection

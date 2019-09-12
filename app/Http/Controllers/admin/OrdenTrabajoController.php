@@ -169,7 +169,7 @@ class OrdenTrabajoController extends Controller
                     )
                     ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 0)
-                    ->orderBy('orden_trabajos.id', 'desc')
+                    ->orderBy('orden_trabajos.id', 'DESC')
                     ->paginate(10);
                 /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
                 /// en caso de que sea 0 corresponde a la vista del administrador
@@ -197,7 +197,9 @@ class OrdenTrabajoController extends Controller
                     'users.*',
 
                     'orden_trabajos.*'
-                )->paginate(10);
+                )
+                ->orderBy('orden_trabajos.id', 'DESC')
+                ->paginate(10);
             /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
             /// en caso de que sea 0 corresponde a la vista del administrador
             if ($user->tipo_p == 0) {
@@ -407,16 +409,21 @@ class OrdenTrabajoController extends Controller
             /// cerrando la transaccion de forma satisfatoria
 
             DB::commit();
-            /// el valor que retora es para controlar el nuemro de registros realzao
 
+            /// el valor que retorna la vista de las ordnes degenerandas
+
+            $userAuth = Auth::id();
+            $user = User::find($userAuth);
             if ($user->tipo_p == 0) {
-                // return redirect('listar-ordenes');
+                return response()->json([
+                    'id_or' => $orden
+                ]);
             } else {
                 // buscamos los datos del tecnico
                 $tecnico = Tecnico::find($userAuth);
                 if ($tecnico->tipo_t == 1) {
                     // retornamos la visata de registros de las ordenes
-                    return redirect('listar-ordenes-ingresos');
+                    return response()->json($orden);
                 }
             }
 
@@ -452,8 +459,15 @@ class OrdenTrabajoController extends Controller
      */
     public function show($id)
     {
+        // buscamos el usuario autenticado en el sistema
+        $userAuth = Auth::id();
+        $user = User::find($userAuth);
+
+        // buscamos la ordene de trabajo mediate el parametro id que llega por parametro
         $orden = OrdenTrabajo::find($id);
+        // buscammos todos los registros que son el detalle de la orden de trabajo
         $registros = RegistroEquipo::where('id_or', $orden->id)->paginate(10);
+        // finalmente buscamos los ddatos del tecnico en cargado de la orden
         $tecnicos = DB::table('users')
             ->join('tecnicos', 'users.id', '=', 'tecnicos.id')
             ->select(
@@ -467,8 +481,15 @@ class OrdenTrabajoController extends Controller
             ->where('tecnicos.tipo_t', 0)
             ->orderBy('id', 'desc')
             ->get();
+        if ($user->tipo_p == 0) {
+            return view('admin.dashboard.ordenes.detalleOrden', compact('orden', 'registros', 'tecnicos'));
+        } else {
+            $tec = Tecnico::find($user->id);
+            if ($tec->tipo_t == 1) {
+                return view('admin.dashboard.ordenes.detalleOrdenTecSecundario', compact('orden', 'registros'));
+            }
+        }
 
-        return view('admin.dashboard.ordenes.detalleOrden', compact('orden', 'registros', 'tecnicos'));
 
     }
 
@@ -540,6 +561,7 @@ class OrdenTrabajoController extends Controller
                     )
                     ->where('users.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 1)
+                    ->where('orden_trabajos.etapa_servicio_or', 2)
                     ->orderBy('orden_trabajos.id', 'desc')
                     ->paginate(10);
                 return view('admin.dashboard.ordenes.listaOrdenesTecnicos', compact('ordenes', 'parametro'));
@@ -552,6 +574,7 @@ class OrdenTrabajoController extends Controller
                     )
                     ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 1)
+                    ->where('orden_trabajos.etapa_servicio_or', 2)
                     ->orderBy('orden_trabajos.id', 'desc')
                     ->paginate(10);
                 return view('admin.dashboard.ordenes.listaOrdenesTecnicos', compact('ordenes', 'parametro'));
@@ -561,6 +584,7 @@ class OrdenTrabajoController extends Controller
             $parametro = 'cedula_p';
             $ordenes = DB::table('users')
                 ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                ->where('orden_trabajos.etapa_servicio_or', 2)
                 ->where('estado_or', 1)
                 ->select(
                     'users.*',
@@ -591,6 +615,7 @@ class OrdenTrabajoController extends Controller
                             )
                             ->where('users.' . $parametro, 'like', '%' . $query . '%')
                             ->where('orden_trabajos.estado_or', 1)
+                            ->where('orden_trabajos.etapa_servicio_or', 2)
                             // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
                             ->where('orden_trabajos.id_tec', $userAuth)
                             ->orderBy('orden_trabajos.id', 'desc')
@@ -609,6 +634,7 @@ class OrdenTrabajoController extends Controller
                             )
                             ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
                             ->where('estado_or', 1)
+                            ->where('orden_trabajos.etapa_servicio_or', 2)
                             // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
                             ->where('orden_trabajos.id_tec', $userAuth)
                             ->orderBy('orden_trabajos.id', 'desc')
@@ -623,6 +649,7 @@ class OrdenTrabajoController extends Controller
                         ->where('estado_or', 1)
                         // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
                         ->where('orden_trabajos.id_tec', $userAuth)
+                        ->where('orden_trabajos.etapa_servicio_or', 2)
                         ->select(
                             'users.*',
 
@@ -640,6 +667,202 @@ class OrdenTrabajoController extends Controller
             }
         }
 
+    }
+
+    public function listarOrdenesFinalizadas(Request $request)
+    {
+        $userAuth = Auth::id();
+        $user = User::find($userAuth);
+        // buscammos el tecnico que esta autenticado en el sistema
+        $tecnicoAsignado = Tecnico::find($user->id);
+
+
+        $parametro = $request->parametroBuscar;
+        $query = trim($request->get('query'));
+        if ($query != '') {
+            if ($parametro == 'cedula_p') {
+                /// si el paraetro de busqueda es el nuemro de cedula  se hara el filtrado por el numero de cedula
+                /// filtrando por la tabla de usuarios
+                $ordenes = DB::table('users')
+                    ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                    ->select(
+                        'users.*',
+                        'orden_trabajos.*'
+                    )
+                    ->where('users.' . $parametro, 'like', '%' . $query . '%')
+                    ->where('orden_trabajos.estado_or', 1)
+                    ->where('orden_trabajos.etapa_servicio_or', 3)
+                    // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
+                    ->where('orden_trabajos.id_tec', $userAuth)
+                    ->orderBy('orden_trabajos.id', 'desc')
+                    ->paginate(10);
+
+                if ($user->tipo_p == 0) {
+                    return view('errores.errorPaginaVacia');
+
+                } else {
+                    /// si no es el administrador busca el tipo de tecnico para retornar  la vista
+                    if ($tecnicoAsignado->tipo_t == 0) {
+                        return view('admin.dashboard.ordenes.listarOrdenesAsignadasFinalizadas', compact('ordenes', 'parametro'));
+                    }
+                }
+
+                /// si el parametro de busqueda es diferente al numeor de cedula
+                /// se buscara por el parametro de fecha y codigo de la orden de la tabla ordenes de trabajo
+            } else {
+                $ordenes = DB::table('users')
+                    ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                    ->select(
+                        'users.*',
+                        'orden_trabajos.*'
+                    )
+                    // se busc apor el tipode parametro de forma dinamica
+                    ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
+                    ->where('estado_or', 1)
+                    // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
+                    ->where('orden_trabajos.id_tec', $userAuth)
+                    ->where('orden_trabajos.etapa_servicio_or', 3)
+                    ->orderBy('orden_trabajos.id', 'desc')
+                    ->paginate(10);
+                if ($user->tipo_p == 0) {
+                    // sis es el adminsitrador se retorna a la visa del administrador
+                    return view('errores.errorPaginaVacia');
+                } else {
+                    /// si no es el administrador busca el tipo de tecnico para retornar  la vista
+                    if ($tecnicoAsignado->tipo_t == 0) {
+                        return view('admin.dashboard.ordenes.listarOrdenesAsignadasFinalizadas', compact('ordenes', 'parametro'));
+
+                    }
+
+                }
+            }
+
+        } else {
+            $parametro = 'cedula_p';
+            $ordenes = DB::table('users')
+                ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                ->where('estado_or', 1)
+                ->where('orden_trabajos.etapa_servicio_or', 3)
+                // condicion para enlistra solo las ordenes que petenezca al tecnico logeado
+                ->where('orden_trabajos.id_tec', $userAuth)
+                ->select(
+                    'users.*',
+
+                    'orden_trabajos.*'
+                )->paginate(10);
+            // si existen registros retornara la vista caso contrartio retoprnara una vista de datos vacios;
+
+            //  return $ordenes;
+            if ($user->tipo_p == 0) {
+                /// si es el administrador se reorna a la visata del administradors
+                return view('errores.errorPaginaVacia');
+            } else {
+                /// si no es el administrador busca el tipo de tecnico para retornar  la vista
+                if ($tecnicoAsignado->tipo_t == 0) {
+                    return view('admin.dashboard.ordenes.listarOrdenesAsignadasFinalizadas', compact('ordenes', 'parametro'));
+                }
+
+            }
+        }
+    }
+
+    /// metodo que busca todas las ordene sfinalizadas al perfil del administrador
+    public function listarOrdenesFinalizadasAdmin(Request $request)
+    {
+        $userAuth = Auth::id();
+        $user = User::find($userAuth);
+        if ($user->tipo_p == 0) {
+            $parametro = $request->parametroBuscar;
+            $query = trim($request->get('query'));
+            if ($query != '') {
+                if ($parametro == 'cedula_p') {
+                    /// si el paraetro de busqueda es el nuemro de cedula  se hara el filtrado por el numero de cedula
+                    /// filtrando por la tabla de usuarios
+                    $ordenes = DB::table('users')
+                        ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                        ->select(
+                            'users.*',
+                            'orden_trabajos.*'
+                        )
+                        ->where('users.' . $parametro, 'like', '%' . $query . '%')
+                        ->where('orden_trabajos.estado_or', 1)
+                        ->where('orden_trabajos.etapa_servicio_or', 3)
+                        ->orderBy('orden_trabajos.id', 'desc')
+                        ->paginate(10);
+
+
+                    return view('admin.dashboard.ordenes.listarOrdenesFinalizadasAdmin', compact('ordenes', 'parametro'));
+
+
+                    /// si el parametro de busqueda es diferente al numeor de cedula
+                    /// se buscara por el parametro de fecha y codigo de la orden de la tabla ordenes de trabajo
+                } else {
+                    $ordenes = DB::table('users')
+                        ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                        ->select(
+                            'users.*',
+                            'orden_trabajos.*'
+                        )
+                        // se busc apor el tipode parametro de forma dinamica
+                        ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
+                        ->where('estado_or', 1)
+                        ->where('orden_trabajos.etapa_servicio_or', 3)
+                        ->orderBy('orden_trabajos.id', 'desc')
+                        ->paginate(10);
+
+                    // sis es el adminsitrador se retorna a la visa del administrador
+                    return view('admin.dashboard.ordenes.listarOrdenesFinalizadasAdmin', compact('ordenes', 'parametro'));
+
+
+                }
+
+            } else {
+                $parametro = 'cedula_p';
+                $ordenes = DB::table('users')
+                    ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                    ->where('estado_or', 1)
+                    ->where('orden_trabajos.etapa_servicio_or', 3)
+                    ->select(
+                        'users.*',
+
+                        'orden_trabajos.*'
+                    )
+                    ->orderBy('orden_trabajos.id', 'desc')
+                    ->paginate(10);
+                // si existen registros retornara la vista caso contrartio retoprnara una vista de datos vacios;
+
+                /// si es el administrador se reorna a la visata del administradors
+                return view('admin.dashboard.ordenes.listarOrdenesFinalizadasAdmin', compact('ordenes', 'parametro'));
+
+
+            }
+        } else {
+            return view('errores.errorPaginaVacia');
+        }
+    }
+
+    // metodo que pasa muestra el detalle de la orden de trabajo asignada la tecnico
+    public function revisionOrdenTecnicoFinalizada($id)
+    {
+        // buscamos el tipo de usuario logeado para redirigir a la vista correpondiente
+        $id_us = Auth::id();
+        $user = User::find($id_us);
+
+
+        $orden = OrdenTrabajo::find($id);
+        $registros = RegistroEquipo::where('id_or', $orden->id)->paginate(10);
+        $tecnico = Tecnico::where('id', $orden->id_tec)->first();
+
+        /// buscamos el tipo de usuario y tecnico mediat eestas validaciones de los if()
+        if ($user->tipo_p == 0) {
+            return view('admin.dashboard.ordenes.detalleOrdenAdminFinalizada', compact('orden', 'registros', 'tecnico'));
+
+        } else {
+            /// vista cuando no sea el administrador y la cueanta correponda al tip de persona
+            /// con el rol de tecnico
+            return view('admin.dashboard.ordenes.detalleOrdenTecnicoFinalizada', compact('orden', 'registros', 'tecnico'));
+
+        }
 
     }
 

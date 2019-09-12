@@ -6,7 +6,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <p class="pull-right font-italic"><a href="{{route('listar-ordenes-asignadas')}}">Ordenes</a>/Detalle orden
+            <p class="pull-right font-italic"><a href="{{route('listar-ordenes-finalizadas')}}">Ordenes Finalizadas</a>/Detalle
+                orden
                 - {{$orden->codigo_or}} </p>
         </div>
     </div>
@@ -16,7 +17,7 @@
                 <div class="lead">
                     <div class="col-lg-5">
                         <!-- USE THIS CODE Instead of the Commented Code Above -->
-                        <div class="">
+                        <div class=" mb-3">
 
                             <a href="{{url()->previous()}}" class="btn btn-outline-white">
                                 <i class="batch-icon batch-icon-out"></i>
@@ -127,9 +128,8 @@
                                         <th>Tipo</th>
                                         <th>Accesorios</th>
                                         <th>Problema</th>
-                                        <th>Fecha de ingreso</th>
-                                        <th>Fecha de salida</th>
-                                        <th>Modificar salida</th>
+                                        <th width="100px">Fecha de ingreso</th>
+                                        <th width="105px">Fecha de salida</th>
 
                                     </tr>
                                     </thead>
@@ -160,13 +160,6 @@
                                             <td>{{$registro->problema_re}}</td>
                                             <td>{{Carbon\Carbon::parse($registro->created_at)->format('Y-m-d')}}</td>
                                             <td class="salida-regis{{$registro->id}}">{{$registro->fecha_salida_re}}</td>
-                                            <td>
-                                                <a data-fecha-registro="{{$registro->fecha_salida_re}}"
-                                                   data-id-registro="{{$registro->id}}"
-                                                   class="btn  btn-primary btn-sm editarFecha">
-                                                    <i class="batch-icon batch-icon-quill"></i>
-                                                </a>
-                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -186,19 +179,9 @@
                                     </tr>
                                     </thead>
                                     <tr>
-                                        @if ($orden->etapa_servicio_or==1)
-                                            <td>
-                                                <span class="lbEtapa badge badge-primary">Ingreso</span>
-                                            </td>
-                                        @endif
-                                        @if ($orden->etapa_servicio_or==2)
-                                            <td>
-                                                <span class="lbEtapa badge badge-warning">Revisón</span>
-                                            </td>
-                                        @endif
                                         @if ($orden->etapa_servicio_or==3)
                                             <td>
-                                                <span class="lbEtapa badge badge-success">Terminado</span>
+                                                <span class="badge badge-success">Terminado</span>
                                             </td>
                                         @endif
                                         <td>{{$orden->observacion_problema_or}}</td>
@@ -217,15 +200,6 @@
                                     <i class="batch-icon batch-icon-print"></i>
                                     Imprimir
                                 </a>
-                                <button class="btn btn-deep-orange btn-md btnFechaOrdenCambio" type="button">
-                                    <i class="batch-icon batch-icon-shuffle"></i>
-                                    Modificar Fecha de salida
-                                </button>
-                                <button class="btn btn-primary btn-md btnSolucion" type="button">
-                                    <i class="batch-icon batch-icon-user-alt"></i>
-                                    Agregar solución
-                                </button>
-
                             </div>
 
                         </div>
@@ -242,135 +216,5 @@
 @section('script')
     <script>
 
-        $('.btnGuardarSolucion').click(function () {
-            var texto = $('#orden-solucion').val();
-            var id_or = $('#id-orden-detalle').val();
-            // $('.tecnico-encargado').text($(this).data('nombres-tec'));
-            $.ajax({
-                url: "{{route('agregar-solucion',$orden->id)}}",
-                method: 'put',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    observacion_solucion_or: texto,
-                    id_or: id_or,
-                    _token: "{{csrf_token()}}",
-                },
-                success: function (data) {
-                    $('.orden-solucion-id{{$orden->id}}').text(data.observacion_solucion_or);
-                    $('#solucion-anterior').val(data.observacion_solucion_or);
-                    $('.lbEtapa').removeClass('badge-warning');
-                    $('.lbEtapa').addClass('badge-success');
-                    $('.lbEtapa').text('Terminado');
-
-                    $('#idModal').modal('hide');
-                    // $('#orden-solucion').val('');
-                }
-            })
-        });
-        $('.btnSolucion').click(function () {
-            $('#idModal').modal('show');
-            $('#orden-solucion').text($('#solucion-anterior').val());
-
-        });
-        $('.editarFecha').click(function () {
-            $('#idModalFecha').modal('show');
-            $('#fecha-actual').val($(this).data('fecha-registro'));
-            $('#id-regis').val($(this).data('id-registro'));
-
-        });
-        $('#n-fecha-salida').change(function () {
-            $('.btnFecha').removeAttr('disabled');
-        });
-        $('.cancelar-fecha').click(function () {
-            limpiarFecha();
-        });
-        $('.btnFecha').click(function () {
-            var fecha = $('#n-fecha-salida').val();
-            var id = $('#id-regis').val();
-            var url = "{{route('cambiar-fecha')}}";
-            $.ajax({
-                type: "put",
-                url: url,
-                method: 'PUT',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    _token: "{{csrf_token()}}",
-                    _method: "PUT",
-                    id: id,
-                    fecha_salida_re: fecha
-
-                },
-                success: function (data) {
-                    $('.salida-regis' + data.id).replaceWith("<td>" + data.fecha_salida_re + "</td>");
-                    limpiarFecha();
-                    $('#idModalFecha').modal('hide');
-                    // text(data.fecha_salida_re);
-                }
-            })
-
-        });
-
-        $('.btnFechaOrden').click(function () {
-            var fecha = $('#orden-fecha-modal').val();
-            var id = $('#id-ordentrajabo').val();
-            var url = "{{route('cambiar-fecha-orden')}}";
-            $.ajax({
-                type: "put",
-                url: url,
-                method: 'PUT',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    _token: "{{csrf_token()}}",
-                    _method: "PUT",
-                    id: id,
-                    fecha_salida_or: fecha
-
-                },
-                success: function (data) {
-                    $('.fecha-orden-salida').text(data.fecha_salida_or)
-                    limpiarFechaOrden();
-                    $('#idModalFechaOrden').modal('hide');
-
-                }
-            })
-        });
-        $('.btnFechaOrdenCambio').click(function () {
-            $('#idModalFechaOrden').modal('show');
-
-            $('.cod-orden').text('Orden - ' + $('#id-orden-cod').val());
-
-            $('#fecha-actual-orden').text($('.fecha-orden-salida').text());
-
-            $('#id-ordentrajabo').val($('#id-orden-detalle').val());
-        });
-
-        $('#orden-fecha-modal').change(function () {
-            $('.btnFechaOrden').removeAttr('disabled');
-        });
-
-        $('.cancelar-fechaOrden').click(function () {
-            limpiarFecha();
-        });
-
-        function limpiarFechaOrden() {
-            $('#fecha-actual-orden').text('');
-            $('#orden-fecha-modal').val('');
-            $('#id-ordentrajabo').val('');
-            $('.btnFechaOrden').attr('disabled', 'disabled');
-        }
-
-
-        function limpiarFecha() {
-            $('#fecha-actual').val('');
-            $('#n-fecha-salida').val('');
-            $('#id-regis').val('');
-            $('.btnFecha').attr('disabled', 'disabled');
-        }
     </script>
 @endsection

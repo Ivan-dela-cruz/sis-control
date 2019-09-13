@@ -130,15 +130,15 @@
 
         $('.anularOrden').click(function () {
             var id_or = $(this).data('id-orden');
-            $('#idModalEliminacion').modal('show');
-            $('#id-orden-status').val(id_or);
-            $('#txt-id').text(id_or);
+            $('#idModalEliminacionOrden').modal('show');
+            $('#id-orden-status-del').val(id_or);
+            $('#txt-id-del').text(id_or);
         });
-        $('.actionBtn').click(function () {
-            var id_or = $('#id-orden-status').val();
-            var url = "{{route('anular-orden')}}";
+        $('.actionBtnEliminar').click(function () {
+            var id_or = $('#id-orden-status-del').val();
+            var url = "{{route('eliminar-orden')}}";
             $.ajax({
-                type: "put",
+                type: "delete",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -146,11 +146,11 @@
                 data: {
                     id: id_or,
                     _token: "{{csrf_token()}}",
-                    _method: "PUT",
+                    _method: "delete",
                 },
                 success: function (data) {
-                    $('.orden' + data.id).remove();
-                    $('#idModalEliminacion').modal('hide');
+                    $('.orden' + id_or).remove();
+                    $('#idModalEliminacionOrden').modal('hide');
                 },
                 error: function (data) {
                     var errors = data.responseJSON;

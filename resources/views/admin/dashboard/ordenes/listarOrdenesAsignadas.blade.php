@@ -82,17 +82,17 @@
                                             <td>{{$orden->fecha_salida_or}}</td>
 
                                             <td class="text-right">
-                                                <a href="{{route('orden-pdf',$orden->id)}}"
+                                                <a title="Imprimir orden" href="{{route('orden-pdf',$orden->id)}}"
                                                    class="btn  btn-orange btn-sm imprimirOrden"
                                                    data-id-orden="{{$orden->id}}">
                                                     <i class="batch-icon batch-icon-print"></i>
                                                 </a>
-                                                <a href="{{route('revision-orden-tecnico',$orden->id)}}"
+                                                <a title="Ver detalles" href="{{route('revision-orden-tecnico',$orden->id)}}"
                                                    data-id-orden="{{$orden->id}}"
                                                    class="btn  btn-success btn-sm verOrden">
                                                     <i class="batch-icon batch-icon-eye"></i>
                                                 </a>
-                                                <a data-id-orden="{{$orden->id}}"
+                                                <a title="Rechazar orden"  data-id-orden="{{$orden->id}}"
                                                    class="anularOrden btn btn-danger btn-sm">
                                                     <i class="batch-icon batch-icon-shuffle"></i>
                                                 </a>

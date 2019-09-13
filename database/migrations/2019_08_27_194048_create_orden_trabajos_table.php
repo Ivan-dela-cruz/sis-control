@@ -26,6 +26,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->text('observacion_solucion_or')->nullable();
             $table->integer('etapa_servicio_or')->default('1');
             $table->integer('estado_or')->default('0');
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             // relaciona la orden d trabajo con el usaurio con rol de cliente

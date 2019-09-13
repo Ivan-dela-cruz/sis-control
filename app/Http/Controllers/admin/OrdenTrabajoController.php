@@ -141,6 +141,7 @@ class OrdenTrabajoController extends Controller
                     )
                     ->where('users.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 0)
+                    ->where('orden_trabajos.status', 1)
                     ->orderBy('orden_trabajos.id', 'desc')
                     ->paginate(10);
 
@@ -169,6 +170,7 @@ class OrdenTrabajoController extends Controller
                     )
                     ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
                     ->where('estado_or', 0)
+                    ->where('orden_trabajos.status', 1)
                     ->orderBy('orden_trabajos.id', 'DESC')
                     ->paginate(10);
                 /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
@@ -193,6 +195,7 @@ class OrdenTrabajoController extends Controller
             $ordenes = DB::table('users')
                 ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
                 ->where('estado_or', 0)
+                ->where('orden_trabajos.status', 1)
                 ->select(
                     'users.*',
 
@@ -529,9 +532,16 @@ class OrdenTrabajoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    ///metodo que permite la eliminacion de forma definitiva de las ordenes
+    public function destroy(Request $request)
     {
-        //
+        $orden = OrdenTrabajo::find($request->id);
+
+        $orden->delete();
+        return response()->json([
+
+            'mensaje' => 'Eliminado correctamente'
+        ]);
     }
 
     public function asignarOrden(Request $request)
@@ -944,5 +954,93 @@ class OrdenTrabajoController extends Controller
         return $pdf->download($pdfNombre);
     }
 
+//metodo para anular las ordnes de trabajo y pasarlas a la papelera
+    public function anularOrden(Request $request)
+    {
+        //buscamo la orden a anular mediata el request que viene por peticion ajax
+        //obtenemos el id
+        $orden = OrdenTrabajo::find($request->id);
+
+        //comparamos si la orden esta en estado 1 parra cambiar su setado a a0
+        if ($orden->status == 1) {
+            $orden->status = 0;
+            $orden->save();
+
+        } else {
+            // si sul estado es 0 se cambiara a estado 1 y volvera a ser visualizada con las ordenes validas
+            $orden->status = 1;
+            $orden->save();
+        }
+
+        return response()->json($orden);
+    }
+
+    public function listarOrdenesAnuladas(Request $request)
+    {
+        $id_user = Auth::id();
+        $user = User::find($id_user);
+        // evaluamos si el usuaro autentticado tiene el perfil d eadministrador
+        // si es verdadero ejecutara la accion de busqueda
+        if ($user->tipo_p == 0) {
+
+            $parametro = $request->parametroBuscar;
+            $query = trim($request->get('query'));
+            if ($query != '') {
+                if ($parametro == 'cedula_p') {
+                    $ordenes = DB::table('users')
+                        ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                        ->select(
+                            'users.*',
+                            'orden_trabajos.*'
+                        )
+                        ->where('users.' . $parametro, 'like', '%' . $query . '%')
+                        ->where('estado_or', 0)
+                        ->where('orden_trabajos.status', 0)
+                        ->orderBy('orden_trabajos.id', 'desc')
+                        ->paginate(10);
+
+                    /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+                    /// en caso de que sea 0 corresponde a la vista del administrador
+
+                    return view('admin.dashboard.ordenes.listarOrdenesAnuladas', compact('ordenes', 'parametro'));
+
+
+                } else {
+                    $ordenes = DB::table('users')
+                        ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                        ->select(
+                            'users.*',
+                            'orden_trabajos.*'
+                        )
+                        ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
+                        ->where('estado_or', 0)
+                        ->where('orden_trabajos.status', 0)
+                        ->orderBy('orden_trabajos.id', 'DESC')
+                        ->paginate(10);
+
+                    return view('admin.dashboard.ordenes.listarOrdenesAnuladas', compact('ordenes', 'parametro'));
+
+                }
+
+            } else {
+                $parametro = 'cedula_p';
+                $ordenes = DB::table('users')
+                    ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                    ->where('estado_or', 0)
+                    ->where('orden_trabajos.status', 0)
+                    ->select(
+                        'users.*',
+
+                        'orden_trabajos.*'
+                    )
+                    ->orderBy('orden_trabajos.id', 'DESC')
+                    ->paginate(10);
+                return view('admin.dashboard.ordenes.listarOrdenesAnuladas', compact('ordenes', 'parametro'));
+            }
+        } else {
+            // sino es adminitrador mostrarar una ventana vacia
+            return view('errores.errorPaginaVacia');
+        }
+    }
 
 }

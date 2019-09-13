@@ -126,7 +126,7 @@
             </a>
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('listar-ordenes')}}">Ordenes anuladas</a>
+                    <a class="nav-link" href="{{route('listar-ordenes-anuladas')}}">Ordenes anuladas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('papelera-admins')}}">Administradores</a>

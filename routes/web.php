@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     /// esta ruta lista todas las ordenes asignadas al tecnico principal
     Route::get('listar-ordenes-asignadas-admin', 'admin\OrdenTrabajoController@listarOrdenesAsignadasAdministrador')->name('listar-ordenes-asignadas-admin');
     Route::get('listar-ordenes', 'admin\OrdenTrabajoController@listarOrdenes')->name('listar-ordenes');
+    /// ruta pa eliminar las ordenes  es importante recordar que una vez realizado esta accion no habara reversa d ela accion
+    Route::delete('eliminar-orden', 'admin\OrdenTrabajoController@destroy')->name('eliminar-orden');
 
     //ruta get, pots, put, delete para registrar usuarios
     Route::resource('usuario', 'admin\UserController');
@@ -95,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('listar-ordenes-finalizadas-admin', 'admin\OrdenTrabajoController@listarOrdenesFinalizadasAdmin')->name('listar-ordenes-finalizadas-admin');
     Route::get('revision-orden-tecnico/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnico')->name('revision-orden-tecnico');
     Route::get('revision-orden-admin-finalizada/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnicoFinalizada')->name('revision-orden-admin-finalizada');
+    Route::put('anular-orden', 'admin\OrdenTrabajoController@anularOrden')->name('anular-orden');
 
 
     ///// <<<<<<---------------------------------Rutas para los tecnicos principales------->>>>>>>>>>>>>>>>>>
@@ -135,6 +138,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('papelera-tecnicos', 'admin\TecnicoController@papeleraTecnico')->name('papelera-tecnicos');
     //ruta para el listar todos los equipos inhabilitados
     Route::get('papelera-equipos', 'admin\EquipoController@papeleraEquipos')->name('papelera-equipos');
+    // ruta para listar las ordenes anuladas
+    Route::get('listar-ordenes-anuladas', 'admin\OrdenTrabajoController@listarOrdenesAnuladas')->name('listar-ordenes-anuladas');
 
 
 });

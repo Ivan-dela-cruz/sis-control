@@ -255,48 +255,100 @@ class OrdenTrabajoController extends Controller
      */
     public function store(Request $request)
     {
-        // reglas de validacion para los campos que son obligatorios
-        $validator = Validator::make($request->all(), [
-
-            'id_p' => 'required',
-            'serie_e' => 'required',
-            'marca_e' => 'required',
-            'modelo_t' => 'required',
-            'descripcion_e' => 'required',
-            'problema_re' => 'required',
-            'fecha_salida_re' => 'required',
-            'accesorios_re' => 'required',
-        ], [
-            //mensajes personalizados que van aparecer en el modal
-            'id_p.required' => 'Por favor seleccione un cliente',
-            'serie_e.required' => 'El número de serie es obligatorio',
-            'marca_e.required' => 'La marca del equipo es obligatorio',
-            'modelo_t.required' => 'El modelo del equipo  es obligatorio',
-            'descripcion_e.required' => 'La descripción es obligatoria',
-            'problema_re.required' => 'El diagnóstico es obligatorio',
-            'fecha_salida_re.required' => 'Debe elegir una fecha de salida para el equipo',
-            'accesorios_re.required' => 'El campo de los accesorios esta vacío',
-        ]);
-
-        //condicion que valida si existe errores si no existe entra registrara el equipo
-        //caso contrario retornara la lista d errores
-        if ($validator->passes()) {
-
-            return response()->json([
-                'success' => 'Datos validados correctamente.',
-                'id_p' => $request->id_p,
-                'serie_e' => $request->serie_e,
-                'marca_e' => $request->marca_e,
-                'modelo_t' => $request->modelo_t,
-                'descripcion_e' => $request->descripcion_e,
-                'problema_re' => $request->problema_re,
-                'fecha_salida_re' => $request->fecha_salida_re,
-                'accesorios_re' => $request->accesorios_re,
+        $equipo = Equipo::where('serie_e', $request->serie_e)->first();
+        if ($equipo == null) {
+            // reglas de validacion para los campos que son obligatorios
+            $validator = Validator::make($request->all(), [
+                'id_p' => 'required',
+                'serie_e' => 'required',
+                'marca_e' => 'required',
+                'modelo_t' => 'required',
+                'descripcion_e' => 'required',
+                'problema_re' => 'required',
+                'fecha_salida_re' => 'required',
+                'accesorios_re' => 'required',
+            ], [
+                //mensajes personalizados que van aparecer en el modal
+                'id_p.required' => 'Por favor seleccione un cliente',
+                'serie_e.required' => 'El número de serie es obligatorio',
+                'marca_e.required' => 'La marca del equipo es obligatorio',
+                'modelo_t.required' => 'El modelo del equipo  es obligatorio',
+                'descripcion_e.required' => 'La descripción es obligatoria',
+                'problema_re.required' => 'El diagnóstico es obligatorio',
+                'fecha_salida_re.required' => 'Debe elegir una fecha de salida para el equipo',
+                'accesorios_re.required' => 'El campo de los accesorios esta vacío',
             ]);
 
-        }
+            //condicion que valida si existe errores si no existe entra registrara el equipo
+            //caso contrario retornara la lista d errores
+            if ($validator->passes()) {
 
-        return response()->json(['error' => $validator->errors()->all()]);
+                return response()->json([
+                    'mensaje' => 'Datos validados correctamente.',
+                    'id_p' => $request->id_p,
+                    'serie_e' => $request->serie_e,
+                    'marca_e' => $request->marca_e,
+                    'modelo_t' => $request->modelo_t,
+                    'descripcion_e' => $request->descripcion_e,
+                    'problema_re' => $request->problema_re,
+                    'fecha_salida_re' => $request->fecha_salida_re,
+                    'accesorios_re' => $request->accesorios_re,
+                ]);
+            }
+            return response()->json(['error' => $validator->errors()->all(),
+                                        'message'=>'0']);
+        } else {
+
+            $validator = Validator::make($request->all(), [
+                'id_p' => 'required',
+                'serie_e' => 'required',
+                'problema_re' => 'required',
+                'fecha_salida_re' => 'required',
+                'accesorios_re' => 'required',
+
+            ], [
+                //mensajes personalizados que van aparecer en el modal
+                'id_p.required' => 'Por favor seleccione un cliente',
+                'serie_e.required' => 'El número de serie es obligatorio',
+                'problema_re.required' => 'El diagnóstico es obligatorio',
+                'fecha_salida_re.required' => 'Debe elegir una fecha de salida para el equipo',
+                'accesorios_re.required' => 'El campo de los accesorios esta vacío',
+
+            ]);
+            if ($validator->passes()) {
+
+                if ($equipo->id_p == $request->id_p) {
+                    return response()->json([
+                        'mensaje' => 'Datos validados correctamente.',
+                        'id_p' => $equipo->id_p,
+                        'serie_e' => $equipo->serie_e,
+                        'marca_e' => $equipo->marca_e,
+                        'modelo_t' => $equipo->modelo_t,
+                        'descripcion_e' => $equipo->descripcion_e,
+                        'problema_re' => $request->problema_re,
+                        'fecha_salida_re' => $request->fecha_salida_re,
+                        'accesorios_re' => $request->accesorios_re,
+                    ]);
+                } else {
+                    return response()->json([
+                        'mensaje' => 'error',
+                        'id_p' => $equipo->id_p,
+                        'serie_e' => $equipo->serie_e,
+                        'marca_e' => $equipo->marca_e,
+                        'modelo_t' => $equipo->modelo_t,
+                        'descripcion_e' => $equipo->descripcion_e,
+                        'problema_re' => $request->problema_re,
+                        'fecha_salida_re' => $request->fecha_salida_re,
+                        'accesorios_re' => $request->accesorios_re,
+                    ]);
+                }
+
+            }
+            return response()->json(['error' => $validator->errors()->all(),
+                                        'message'=>'existe']);
+
+
+        }
 
         //return response()->json($request);
     }

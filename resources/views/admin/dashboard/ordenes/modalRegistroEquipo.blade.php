@@ -18,18 +18,19 @@
                             <div class="col-lg-12">
                                 <!-- USE THIS CODE Instead of the Commented Code Above -->
                                 <div class="input-group mb-3">
-                                    <input id="searchEquipo" type="text" class="form-control"
+                                    <input hidden id="searchEquipo" type="text" class="form-control"
                                            placeholder="Número de serie del equipo"
                                            aria-label="Buscar equipo"
                                            aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btnsearchEquipo btn btn-primary" type="button">Buscar</button>
+                                        <button hidden class="btnsearchEquipo btn btn-primary" type="button">Buscar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <div class="alert alert-danger print-error-msg" style="display:none">
+                        <div id="errores" class="alert alert-danger print-error-msg" style="display:none">
                             <ul></ul>
                         </div>
                         <form method="post" class="form-horizontal" role="modal">
@@ -44,7 +45,7 @@
                                     <div class="col-lg-12">
                                         <div class="divResgitroEquipo media-body">
                                             <div class="form-group">
-                                                <label for="serie_equipo">Número de serie</label>
+                                                <label id="lbserie" for="serie_equipo">Número de serie</label>
                                                 <input name="serie_equipo" id="serie_equipo" class="form-control"
                                                        type="text">
 
@@ -111,6 +112,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <a id="mensaje-equipo" hidden class="text-danger">No se puede agregar, el equipo pertence a otro usuario. Actualize los datos del equipo para
+                                continuar.</a>
                             <div class="modal-footer">
                                 <button id="btncerrarModal" type="button" class="btn btn-secondary"
                                         data-dismiss="modal">Cerrar
@@ -167,6 +170,7 @@
 
 
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary actionBtn">Guardar</button>

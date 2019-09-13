@@ -4,43 +4,12 @@ $(document).ready(function () {
 var contador = 0; //variable para controlar el numero de equipos en la lista del detalle de la orden
 //funcion para ver los agregar lo equipos al detalle de la orden
 
-function agregarRegistro() {
-    var id_p = $('#ordencliente').val();
-    // var _token = "{{csrf_token()}}";
-    var serie_e = $('#serie_equipo').val();
-    var marca_e = $('#marca_e').val();
-    var modelo_t = $('#modelo_e').val();
-    var tipo_t = $('#tipo_t').val();
-    var descripcion_e = $('#descripcion_e').val();
-    var problema_re = $('#problema_re').val();
-    var fecha_salida_re = $('#fecha_salida_re').val();
-    var accesorios_re = $('#accesorios_re').val();
 
-    var fila = '<tr class="id' + contador + '">' +
-        '<td class="serie">' + serie_e + '</td>' +
-        '<td class="marca">' + marca_e + '</td>' +
-        '<td class="modelo">' + modelo_t + '</td>' +
-        '<td class="tipo">' + tipo_t + '</td>' +
-        '<td class="accesorio">' + accesorios_re + '</td>' +
-        '<td class="problema">' + problema_re + '</td>' +
-        '<td class="fecha_salida">' + fecha_salida_re + '</td>' +
-        '<td><a onclick="eliminar(' + contador + ')" id="detalleOrden' + contador + '" class="btn btn-danger btn-sm">' +
-        '<i class="batch-icon batch-icon-delete"></i>' +
-        ' </a><textarea hidden class="descripccion">' + descripcion_e + '</textarea></td>' +
-        '</tr>';
-    contador++;
-    $('#tablaOrden').append(fila);
-    // $('.divGenerarOrden').show();
-    //$('.btnGenerarOrden').removeAttr('disabled');
-    desbloarBotonesOrnde();
-    //$('.btnCancelarOrden').removeAttr('disabled');
-
-
-}
 function eliminar(index) {
     $('.id' + index).remove();
     contador--;
 }
+
 function bloquearRegistroEquipo() {
     $('#serie_equipo').attr('disabled', 'disabled');
     $('#marca_e').attr('disabled', 'disabled');
@@ -91,6 +60,7 @@ function limpiarModal() {
     $('#accesorios_re').val('');
     $('#fecha_salida_re').val('');
     $('#searchEquipo').val('');
+    $('#mensaje-equipo').attr('hidden', 'hidden');
     desbloquerRegistroEquipo();
 }
 
@@ -114,7 +84,6 @@ function desbloarBotonesOrnde() {
         $('.btnCancelarOrden').removeAttr('disabled');
     }
 }
-
 
 
 $('#btncerrarModal').click(function () {

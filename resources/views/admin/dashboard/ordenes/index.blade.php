@@ -153,7 +153,46 @@
 @section('script')
     <script type="text/javascript" src="{{asset('js/ajax/creaarOrdenIndex.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            limpiarModal();
+        });
+
+        function agregarRegistro(data) {
+            var id_p = data.id_p;
+            // var _token = "{{csrf_token()}}";
+            var serie_e = data.serie_e;
+            var marca_e = data.marca_e;
+            var modelo_t = data.modelo_t;
+            var tipo_t = data.tipo_t;
+            var descripcion_e = data.descripcion_e;
+            var problema_re = data.problema_re;
+            var fecha_salida_re = data.fecha_salida_re;
+            var accesorios_re = data.accesorios_re;
+
+            var fila = '<tr class="id' + contador + '">' +
+                '<td class="serie">' + serie_e + '</td>' +
+                '<td class="marca">' + marca_e + '</td>' +
+                '<td class="modelo">' + modelo_t + '</td>' +
+                '<td class="tipo">' + tipo_t + '</td>' +
+                '<td class="accesorio">' + accesorios_re + '</td>' +
+                '<td class="problema">' + problema_re + '</td>' +
+                '<td class="fecha_salida">' + fecha_salida_re + '</td>' +
+                '<td><a onclick="eliminar(' + contador + ')" id="detalleOrden' + contador + '" class="btn btn-danger btn-sm">' +
+                '<i class="batch-icon batch-icon-delete"></i>' +
+                ' </a><textarea hidden class="descripccion">' + descripcion_e + '</textarea></td>' +
+                '</tr>';
+            contador++;
+            $('#tablaOrden').append(fila);
+            // $('.divGenerarOrden').show();
+            //$('.btnGenerarOrden').removeAttr('disabled');
+            desbloarBotonesOrnde();
+            //$('.btnCancelarOrden').removeAttr('disabled');
+
+
+        }
+
         $('#btnGuardarModal').click(function () {
+
             $.ajax({
                 url: "{{route('ordenes.store')}}",
                 method: 'POST',
@@ -177,12 +216,16 @@
                 success: function (data) {
 
                     if ($.isEmptyObject(data.error)) {
-
-                        // alert(data.success);
-                        agregarRegistro();
-                        limpiarModal();
-
+                        if (data.mensaje == 'error') {
+                            $('#errores').hide();
+                            $('#mensaje-equipo').removeAttr('hidden');
+                        } else {
+                            agregarRegistro(data);
+                            limpiarModal();
+                            $('#errores').hide();
+                        }
                     } else {
+                        $('#errores').show();
                         printErrorMsg(data.error);
 
                     }
@@ -217,6 +260,76 @@
 
 
         });
+        // busca los equipos cuando el input de la serie_e pierde el focus
+        $('#serie_equipo').blur(function () {
+            var query = $(this).val();
+            $.ajax({
+                url: "busqueda-equipo/{query}",
+                method: 'GET',
+                data: {
+                    query: query
+                },
+                success: function (data) {
+                    if (data.mensaje == 'Datos no encontrados') {
+                        // $('#serie_equipo').val('');
+                        $('#marca_e').val('');
+                        $('#modelo_e').val('');
+                        $('#descripcion_e').val('');
+                        // $('#searchEquipo').val(data.mensaje);
+                        desbloquerkeyup();
+                    } else {
+                        $('#serie_equipo').val(data.serie_e);
+                        $('#marca_e').val(data.marca_e);
+                        $('#modelo_e').val(data.modelo_t);
+                        $('#tipo_t').val(data.tipo_t);
+                        $('#descripcion_e').val(data.descripcion_e);
+                        $('#searchEquipo').val(data.serie_e);
+                        bloquearKeyup();
+                    }
+
+                }
+            })
+
+        });
+
+
+        $('#serie_equipo').keyup(function () {
+            if (validarSerie($(this).val()) > 0) {
+                $('#serie_equipo').addClass('border-danger');
+                $('#btnGuardarModal').attr('disabled', 'disabled');
+                $('#lbserie').text('El equipo ya se encuentra registrado en el detalle');
+                $('#lbserie').addClass('text-danger');
+            } else {
+                $('#btnGuardarModal').removeAttr('disabled');
+                $('#serie_equipo').removeClass('border-danger');
+                $('#lbserie').text('Número de serie');
+                $('#lbserie').removeClass('text-danger');
+            }
+
+        });
+
+
+        function validarSerie(serie) {
+            let equipos = [];
+            var validar = 0;
+            document.querySelectorAll('#tablaOrden tbody tr').forEach(function (e) {
+                let fila = {
+                    serie: e.querySelector('.serie').innerText,
+                };
+                equipos.push(fila);
+            });
+
+
+            for (var i = 0; i < equipos.length; i += 1) {
+                // console.log("En el índice '" + i + "' hay este valor: " + equipos[i]['serie']);
+                if (equipos[i]['serie'] == serie) {
+                    console.log('son iguales' + serie + ' :  ' + equipos[i]['serie']);
+                    validar++;
+                }
+            }
+            return validar;
+        }
+
         $('.btnGenerarOrden').click(function () {
             let materiales = [];
             var fechaval = $('#fecha_orden').val();
@@ -309,6 +422,18 @@
             })
         });
 
+        function bloquearKeyup() {
+            $('#marca_e').attr('disabled', 'disabled');
+            $('#modelo_e').attr('disabled', 'disabled');
+            $('#tipo_t').attr('disabled', 'disabled');
 
+        }
+
+        function desbloquerkeyup() {
+            $('#marca_e').removeAttr('disabled');
+            $('#modelo_e').removeAttr('disabled');
+            $('#tipo_t').removeAttr('disabled');
+
+        }
     </script>
 @endsection

@@ -155,7 +155,7 @@
                                             </td>
                                         @endif
                                         <td>{{$orden->observacion_problema_or}}</td>
-                                            <td>{{$orden->observacion_solucion_or}}</td>
+                                        <td>{{$orden->observacion_solucion_or}}</td>
                                     </tr>
                                     <tbody>
                                     </tbody>
@@ -180,11 +180,16 @@
                                     Imprimir
                                 </a>
 
+                                @if ($orden->status==1)
+                                    @if ($orden->etapa_servicio_or==1)
+                                        <button class="btn btn-danger  btn-md  anularOrden" type="button">
+                                            <i class="batch-icon batch-icon-delete"></i>
+                                            Anular
+                                        </button>
+                                    @endif
 
-                                <button class="btn btn-danger  btn-md  btnCancelarOrden" type="button">
-                                    <i class="batch-icon batch-icon-delete"></i>
-                                    Anular
-                                </button>
+                                @endif
+
                             </div>
 
                         </div>
@@ -217,12 +222,13 @@
                     _token: "{{csrf_token()}}",
                 },
                 success: function (data) {
-                  //  $('.list-tecnico' + id_tec).remove();
+                    //  $('.list-tecnico' + id_tec).remove();
                     $('.btnImpriAsig').removeAttr('hidden');
                     $('.btnImpriAsigIngreso').attr('hidden', 'hidden');
                     $('.spanEtapaI').removeClass('badge-primary');
                     $('.spanEtapaI').addClass('badge-warning');
                     $('.spanEtapaI').text('Revisión');
+                    $('.anularOrden').attr('hidden', 'hidden');
                 }
             })
         });
@@ -240,6 +246,44 @@
             var tex = $(this).data('id-tecnico');
             $('.tecnico-encargado').text(tex);
         });
+
+
+        $('.anularOrden').click(function () {
+            var id_or = $(this).data('id-orden');
+            $('#idModalEliminacion').modal('show');
+            $('#id-orden-status').val(id_or);
+            $('#txt-id').text($(this).data('cod-orden'));
+        });
+        $('.actionBtn').click(function () {
+            var id_or = '{{$orden->id}}';
+            var url = "{{route('anular-orden')}}";
+            $.ajax({
+                type: "put",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,//"estado-admin/" + $(this).data('id-user') + "/",
+                data: {
+                    id: id_or,
+                    _token: "{{csrf_token()}}",
+                    _method: "PUT",
+                },
+                success: function (data) {
+
+                    $('#idModalEliminacion').modal('hide');
+                    location.href = "{{route('listar-ordenes')}}";
+                },
+                error: function (data) {
+                    var errors = data.responseJSON;
+                    if (errors) {
+                        $.each(errors, function (i) {
+                            console.log(errors[i]);
+                        });
+                    }
+                }
+            });
+        });
+
 
         function buscarTecnico(query = '') {
 

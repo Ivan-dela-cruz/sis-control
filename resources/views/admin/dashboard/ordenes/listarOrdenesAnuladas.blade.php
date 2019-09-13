@@ -8,8 +8,8 @@
         <div class="col-md-12">
             <p class="font-italic pull-right">
                 <a href="{{route('administrador')}}">Inicio</a>/
-                <a href="{{route('listar-ordenes')}}">
-                    Ordenes
+                <a href="{{route('listar-ordenes-anuladas')}}">
+                    Ordenes anuladas
                 </a>/
             </p>
         </div>
@@ -91,19 +91,21 @@
                                             <td>{{$orden->fecha_salida_or}}</td>
 
                                             <td class="text-right">
-                                                <a title="Imprimir orden"
-                                                   href="{{route('orden-pdf-ingreso',$orden->id)}}"
-                                                   class="btn  btn-deep-orange btn-sm imprimirOrden"
-                                                   data-id-orden="{{$orden->id}}">
-                                                    <i class="batch-icon batch-icon-print"></i>
+                                                <a title="Restaurar orden"
+                                                   data-cod-orden="{{$orden->codigo_or}}"
+                                                   data-id-orden="{{$orden->id}}"
+                                                   class="btn  btn-success btn-sm restaurarOrden">
+                                                    <i class="batch-icon batch-icon-refresh"></i>
                                                 </a>
-                                                <a title="Ver detalles" href="{{route('ordenes.show',$orden->id)}}"
+                                                <a title="Ver detalles" href="{{route('orden-papelera-detalle',$orden->id)}}"
                                                    data-id-orden="{{$orden->id}}"
                                                    class="btn  btn-primary btn-sm verOrden">
                                                     <i class="batch-icon batch-icon-eye"></i>
                                                 </a>
 
-                                                <a title="Anular orden" data-id-orden="{{$orden->id}}"
+                                                <a title="Eliminar orden"
+                                                   data-cod-orden="{{$orden->codigo_or}}"
+                                                   data-id-orden="{{$orden->id}}"
                                                    class="anularOrden btn btn-danger btn-sm">
                                                     <i class="batch-icon batch-icon-delete"></i>
                                                 </a>
@@ -132,7 +134,7 @@
             var id_or = $(this).data('id-orden');
             $('#idModalEliminacionOrden').modal('show');
             $('#id-orden-status-del').val(id_or);
-            $('#txt-id-del').text(id_or);
+            $('#txt-id-del').text($(this).data('cod-orden'));
         });
         $('.actionBtnEliminar').click(function () {
             var id_or = $('#id-orden-status-del').val();
@@ -151,6 +153,44 @@
                 success: function (data) {
                     $('.orden' + id_or).remove();
                     $('#idModalEliminacionOrden').modal('hide');
+                },
+                error: function (data) {
+                    var errors = data.responseJSON;
+                    if (errors) {
+                        $.each(errors, function (i) {
+                            console.log(errors[i]);
+                        });
+                    }
+                }
+            });
+        });
+
+        $('.restaurarOrden').click(function () {
+            var id_or = $(this).data('id-orden');
+            $('#idModalEliminacion').modal('show');
+            $('#exampleModalLabelAnular').text('Restaurar orden');
+            $('.sms-anular').text('¿Está seguro que desea restaurar la orden?');
+            $('#id-orden-status').val(id_or);
+            $('#txt-id').text($(this).data('cod-orden'));
+        });
+        $('.actionBtn').click(function () {
+            var id_or = $('#id-orden-status').val();
+            var url = "{{route('anular-orden')}}";
+            $.ajax({
+                type: "put",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,//"estado-admin/" + $(this).data('id-user') + "/",
+                data: {
+                    id: id_or,
+                    _token: "{{csrf_token()}}",
+                    _method: "PUT",
+                },
+                success: function (data) {
+                    $('#idModalEliminacion').modal('hide');
+                    $('.orden' + data.id).remove();
+                   // location.href = "{{route('listar-ordenes-anuladas')}}";
                 },
                 error: function (data) {
                     var errors = data.responseJSON;

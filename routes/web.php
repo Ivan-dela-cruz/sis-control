@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('listar-ordenes', 'admin\OrdenTrabajoController@listarOrdenes')->name('listar-ordenes');
     /// ruta pa eliminar las ordenes  es importante recordar que una vez realizado esta accion no habara reversa d ela accion
     Route::delete('eliminar-orden', 'admin\OrdenTrabajoController@destroy')->name('eliminar-orden');
+    Route::get('orden-papelera-detalle/{id}', 'admin\OrdenTrabajoController@ordenPapeleraDetalle')->name('orden-papelera-detalle');
 
     //ruta get, pots, put, delete para registrar usuarios
     Route::resource('usuario', 'admin\UserController');

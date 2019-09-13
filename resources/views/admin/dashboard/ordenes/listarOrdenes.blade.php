@@ -103,7 +103,9 @@
                                                     <i class="batch-icon batch-icon-eye"></i>
                                                 </a>
 
-                                                <a title="Anular orden" data-id-orden="{{$orden->id}}"
+                                                <a title="Anular orden"
+                                                   data-cod-orden="{{$orden->codigo_or}}"
+                                                   data-id-orden="{{$orden->id}}"
                                                    class="anularOrden btn btn-danger btn-sm">
                                                     <i class="batch-icon batch-icon-delete"></i>
                                                 </a>
@@ -132,7 +134,7 @@
             var id_or = $(this).data('id-orden');
             $('#idModalEliminacion').modal('show');
             $('#id-orden-status').val(id_or);
-            $('#txt-id').text(id_or);
+            $('#txt-id').text($(this).data('cod-orden'));
         });
         $('.actionBtn').click(function () {
             var id_or = $('#id-orden-status').val();

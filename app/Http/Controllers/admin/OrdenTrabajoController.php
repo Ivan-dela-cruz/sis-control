@@ -1043,4 +1043,35 @@ class OrdenTrabajoController extends Controller
         }
     }
 
+    // fucnio para ver el detalle de la orden que se encuentra en la papelera
+    public function ordenPapeleraDetalle($id)
+    {
+        // buscamos el usuario autenticado en el sistema
+        $userAuth = Auth::id();
+        $user = User::find($userAuth);
+
+        // buscamos la ordene de trabajo mediate el parametro id que llega por parametro
+        $orden = OrdenTrabajo::find($id);
+        // buscammos todos los registros que son el detalle de la orden de trabajo
+        $registros = RegistroEquipo::where('id_or', $orden->id)->paginate(10);
+        // finalmente buscamos los ddatos del tecnico en cargado de la orden
+        $tecnicos = DB::table('users')
+            ->join('tecnicos', 'users.id', '=', 'tecnicos.id')
+            ->select(
+                'users.*',
+                'tecnicos.id as id_tec',
+                'tecnicos.especialidad_t',
+                'tecnicos.profesion_t'
+            )
+            ->where('users.estado_p', 1)
+            ->where('users.tipo_p', 1)
+            ->where('tecnicos.tipo_t', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.dashboard.ordenes.detalleOrdenPapelera', compact('orden', 'registros', 'tecnicos'));
+
+
+    }
+
 }

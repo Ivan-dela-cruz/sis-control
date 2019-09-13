@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header badge-primary bg-gradient">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Anular Orden de Trabajo</h5>
+                <h5 class="modal-title text-white" id="exampleModalLabelAnular">Anular Orden de Trabajo</h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -16,7 +16,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-10 mx-3">
-                            <p>¿Está seguro que desa anular la orden?</p>
+                            <p class="sms-anular">¿Está seguro que desea anular la orden?</p>
                             <a href="#">orden - <span id="txt-id"></span></a>
                             <input hidden type="text" class="form-control" id="id-orden-status">
                         </div>

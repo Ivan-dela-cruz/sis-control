@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5ee7458-ad29-492f-8b4b-c28d66e71c77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenPapelera.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_27_194048_create_orden_trabajos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_27_194048_create_orden_trabajos_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,18 +57,18 @@
           <entry key="html" value="35" />
           <entry key="js" value="500" />
           <entry key="json" value="2" />
-          <entry key="php" value="56292" />
+          <entry key="php" value="56733" />
           <entry key="vue" value="126" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="18" />
-          <entry key="Blade" value="26975" />
+          <entry key="Blade" value="27268" />
           <entry key="HTML" value="68" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="499" />
-          <entry key="PHP" value="29285" />
+          <entry key="PHP" value="29433" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="Vue.js" value="126" />
         </counts>
@@ -83,14 +81,14 @@
           <entry key="html" value="4" />
           <entry key="js" value="24" />
           <entry key="json" value="2" />
-          <entry key="php" value="564" />
+          <entry key="php" value="567" />
           <entry key="vue" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="1" />
-          <entry key="Blade" value="368" />
+          <entry key="Blade" value="371" />
           <entry key="CSS" value="2" />
           <entry key="HTML" value="4" />
           <entry key="JSON" value="2" />
@@ -107,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="45" column="17" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="17" />
+            <state relative-caret-position="164">
+              <caret line="46" column="130" selection-start-line="46" selection-start-column="130" selection-end-line="46" selection-end-column="130" />
             </state>
           </provider>
         </entry>
@@ -116,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="541" lean-forward="true" selection-start-line="541" selection-end-line="541" />
+            <state relative-caret-position="293">
+              <caret line="1046" column="40" selection-start-line="1046" selection-start-column="20" selection-end-line="1046" selection-end-column="40" />
               <folding>
                 <element signature="e#46#61#0#PHP" expanded="true" />
               </folding>
@@ -125,20 +123,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenPapelera.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="151" column="38" selection-start-line="151" selection-start-column="38" selection-end-line="151" selection-end-column="38" />
+            <state relative-caret-position="140">
+              <caret line="200" column="59" selection-start-line="200" selection-start-column="34" selection-end-line="200" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="71">
+              <caret line="136" column="55" selection-start-line="136" selection-start-column="55" selection-end-line="136" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="172">
-              <caret line="151" column="29" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+              <caret line="106" column="89" lean-forward="true" selection-start-line="106" selection-start-column="50" selection-end-line="106" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -146,8 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="60" column="63" selection-start-line="60" selection-start-column="63" selection-end-line="60" selection-end-column="63" />
+            <state relative-caret-position="186">
+              <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -167,7 +174,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>#username</find>
       <find>USER</find>
       <find>bd-example-modal-sizes</find>
       <find>fade</find>
@@ -195,8 +201,9 @@
       <find>listar-ordenes-asignadas</find>
       <find>listarOrdenesASIGNADAS</find>
       <find>listarOrdenes</find>
-      <find>listar-ordenes</find>
       <find>destro</find>
+      <find>show</find>
+      <find>listar-ordenes</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp7.3\htdocs\sis-control</dir>
@@ -208,7 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/clientes/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/usuarios/tecnico/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/equipos/modalEquipos.blade.php" />
@@ -253,12 +259,13 @@
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenAdminFinalizada.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_27_194048_create_orden_trabajos_table.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAsignadas.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/plantilla/sidebaradministrador.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenPapelera.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php" />
       </list>
     </option>
   </component>
@@ -509,12 +516,12 @@
       <workItem from="1568204660180" duration="5765000" />
       <workItem from="1568224958399" duration="3206000" />
       <workItem from="1568238722929" duration="8127000" />
-      <workItem from="1568288257206" duration="25809000" />
+      <workItem from="1568288257206" duration="29828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="499109000" />
+    <option name="totallyTimeSpent" value="503128000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -558,11 +565,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_27_194049_create_registro_equipos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-69" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pdf/ordenesPdf.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-69">
@@ -726,13 +728,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/TecSecundario.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4368">
-          <caret line="70" column="61" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesTecnicoSecundario.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -852,41 +847,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="151" column="29" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="60" column="63" selection-start-line="60" selection-start-column="63" selection-end-line="60" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/OrdenTrabajoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="541" lean-forward="true" selection-start-line="541" selection-end-line="541" />
+        <state relative-caret-position="293">
+          <caret line="1046" column="40" selection-start-line="1046" selection-start-column="20" selection-end-line="1046" selection-end-column="40" />
           <folding>
             <element signature="e#46#61#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="46" column="130" selection-start-line="46" selection-start-column="130" selection-end-line="46" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/modalAnularOrden.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4324">
+          <caret line="70" column="61" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenesAnuladas.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="151" column="38" selection-start-line="151" selection-start-column="38" selection-end-line="151" selection-end-column="38" />
+        <state relative-caret-position="172">
+          <caret line="106" column="89" lean-forward="true" selection-start-line="106" selection-start-column="50" selection-end-line="106" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/detalleOrdenPapelera.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="200" column="59" selection-start-line="200" selection-start-column="34" selection-end-line="200" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard/ordenes/listarOrdenes.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="136" column="55" selection-start-line="136" selection-start-column="55" selection-end-line="136" selection-end-column="55" />
         </state>
       </provider>
     </entry>

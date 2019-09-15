@@ -34,6 +34,22 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <h4>Datos del cliente</h4>
                             <div class="row">
 

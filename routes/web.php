@@ -11,8 +11,9 @@
 |
 */
 Route::get('/', function () {
-    return view('pdf.ordenesPdf');
+    return redirect()->route('login');
 });
+
 
 Auth::routes();
 
@@ -22,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('cliente', 'admin\OrdenTrabajoController@listarOrdenesClinetes')->name('cliente');
+    Route::get('ver-orden-cliente/{id}', 'admin\OrdenTrabajoController@verOrdenCliente')->name('ver-orden-cliente');
+    Route::get('historial-cliente','admin\OrdenTrabajoController@listarHistorialOrdenesClinetes')->name('historial-cliente');
     Route::get('/administrador', function () {
         return view('admin/dashboard/inicio/inicio');
     })->name('administrador');

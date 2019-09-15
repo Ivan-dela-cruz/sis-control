@@ -283,12 +283,24 @@ class OrdenTrabajoController extends Controller
             //caso contrario retornara la lista d errores
             if ($validator->passes()) {
 
+                $tipoequipo = 'CPU';
+                if ($request->tipo_t == 1) {
+                    $tipoequipo = 'Laptop';
+                } elseif ($request->tipo_t == 2) {
+                    $tipoequipo = 'CPU';
+                } elseif ($request->tipo_t == 3) {
+                    $tipoequipo = 'Monitor';
+                } else {
+                    $tipoequipo = 'Tablet';
+                }
+
                 return response()->json([
                     'mensaje' => 'Datos validados correctamente.',
                     'id_p' => $request->id_p,
                     'serie_e' => $request->serie_e,
                     'marca_e' => $request->marca_e,
                     'modelo_t' => $request->modelo_t,
+                    'tipo_t' => $tipoequipo,
                     'descripcion_e' => $request->descripcion_e,
                     'problema_re' => $request->problema_re,
                     'fecha_salida_re' => $request->fecha_salida_re,
@@ -296,7 +308,7 @@ class OrdenTrabajoController extends Controller
                 ]);
             }
             return response()->json(['error' => $validator->errors()->all(),
-                                        'message'=>'0']);
+                'message' => '0']);
         } else {
 
             $validator = Validator::make($request->all(), [
@@ -318,24 +330,46 @@ class OrdenTrabajoController extends Controller
             if ($validator->passes()) {
 
                 if ($equipo->id_p == $request->id_p) {
+                    $tipoequipo = 'CPU';
+                    if ($equipo->tipo_t == 1) {
+                        $tipoequipo = 'Laptop';
+                    } elseif ($equipo->tipo_t == 2) {
+                        $tipoequipo = 'CPU';
+                    } elseif ($equipo->tipo_t == 3) {
+                        $tipoequipo = 'Monitor';
+                    } else {
+                        $tipoequipo = 'Tablet';
+                    }
                     return response()->json([
                         'mensaje' => 'Datos validados correctamente.',
                         'id_p' => $equipo->id_p,
                         'serie_e' => $equipo->serie_e,
                         'marca_e' => $equipo->marca_e,
                         'modelo_t' => $equipo->modelo_t,
+                        'tipo_t' => $tipoequipo,
                         'descripcion_e' => $equipo->descripcion_e,
                         'problema_re' => $request->problema_re,
                         'fecha_salida_re' => $request->fecha_salida_re,
                         'accesorios_re' => $request->accesorios_re,
                     ]);
                 } else {
+                    $tipoequipo = 'CPU';
+                    if ($equipo->tipo_t == 1) {
+                        $tipoequipo = 'Laptop';
+                    } elseif ($equipo->tipo_t == 2) {
+                        $tipoequipo = 'CPU';
+                    } elseif ($equipo->tipo_t == 3) {
+                        $tipoequipo = 'Monitor';
+                    } else {
+                        $tipoequipo = 'Tablet';
+                    }
                     return response()->json([
                         'mensaje' => 'error',
                         'id_p' => $equipo->id_p,
                         'serie_e' => $equipo->serie_e,
                         'marca_e' => $equipo->marca_e,
                         'modelo_t' => $equipo->modelo_t,
+                        'tipo_t' => $tipoequipo,
                         'descripcion_e' => $equipo->descripcion_e,
                         'problema_re' => $request->problema_re,
                         'fecha_salida_re' => $request->fecha_salida_re,
@@ -345,7 +379,7 @@ class OrdenTrabajoController extends Controller
 
             }
             return response()->json(['error' => $validator->errors()->all(),
-                                        'message'=>'existe']);
+                'message' => 'existe']);
 
 
         }
@@ -434,13 +468,24 @@ class OrdenTrabajoController extends Controller
                         $registro->save();
                     } /// si no existe el equipo se crea el equipo y posteriormente su detalle de registro
                     else {
+
+                        $tipoequipo = 'CPU';
+                        if ($det[$i]['tipo'] == 'Laptop') {
+                            $tipoequipo = 1;
+                        } elseif ($det[$i]['tipo'] == 'CPU') {
+                            $tipoequipo = 2;
+                        } elseif ($det[$i]['tipo'] == 'Monitor') {
+                            $tipoequipo = 3;
+                        } else {
+                            $tipoequipo = 4;
+                        }
                         // registramos el nuevo equipo
                         $nuevoEquipo = new Equipo();
                         $nuevoEquipo->id_p = $request->id_p;
                         $nuevoEquipo->serie_e = $det[$i]['serie'];
                         $nuevoEquipo->marca_e = $det[$i]['marca'];
                         $nuevoEquipo->modelo_t = $det[$i]['modelo'];
-                        $nuevoEquipo->tipo_t = $det[$i]['tipo'];
+                        $nuevoEquipo->tipo_t = $tipoequipo;
                         $nuevoEquipo->descripcion_e = $det[$i]['descripcion'];
                         $nuevoEquipo->save();
 
@@ -1123,6 +1168,180 @@ class OrdenTrabajoController extends Controller
 
         return view('admin.dashboard.ordenes.detalleOrdenPapelera', compact('orden', 'registros', 'tecnicos'));
 
+
+    }
+
+
+    public function listarOrdenesClinetes(Request $request)
+    {
+        $id_user = Auth::id();
+        $user = User::find($id_user);
+
+        $parametro = $request->parametroBuscar;
+        $query = trim($request->get('query'));
+        if ($query != '') {
+
+            $ordenes = DB::table('users')
+                ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                ->select(
+                    'users.*',
+                    'orden_trabajos.*'
+                )
+                ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
+                ->where('orden_trabajos.id_cli', $user->id)
+                ->where('orden_trabajos.status', 1)
+                ->orderby('orden_trabajos.updated_at', 'DESC')
+                ->paginate(10);
+            //consultamos todas las ordenes finalizadas para mostrar una alerte al usuario
+            $ordenesFin = OrdenTrabajo::where('id_cli', $user->id)
+                ->where('status', 1)
+                ->where('etapa_servicio_or', 3)
+                ->orderby('updated_at', 'ASC')
+                ->get();
+            $finalizadas = 0;
+            if (count($ordenesFin) != 0) {
+                $finalizadas = 1;
+            }
+
+            $ordenFin = $ordenesFin->last();
+            /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+            /// en caso de que sea 2 corresponde a la vista del clinete
+
+            if ($user->tipo_p == 2) {
+                return view('user.inicio.index', compact('ordenes', 'parametro', 'query', 'finalizadas', 'ordenFin'));
+            }
+
+
+        } else {
+            $parametro = 'codigo_or';
+            $ordenes = DB::table('users')
+                ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                ->where('orden_trabajos.id_cli', $user->id)
+                ->where('orden_trabajos.status', 1)
+                ->select(
+                    'users.*',
+
+                    'orden_trabajos.*'
+                )
+                ->orderby('orden_trabajos.updated_at', 'DESC')
+                ->paginate(10);
+            //consultamos todas las ordenes finalizadas para mostrar una alerte al usuario
+            $ordenesFin = OrdenTrabajo::where('id_cli', $user->id)
+                ->where('status', 1)
+                ->where('etapa_servicio_or', 3)
+                ->orderby('updated_at', 'ASC')
+                ->get();
+            $finalizadas = 0;
+            if (count($ordenesFin) != 0) {
+                $finalizadas = 1;
+            }
+
+            $ordenFin = $ordenesFin->last();
+            /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+            /// en caso de que sea 2 corresponde a la vista del cliente
+            if ($user->tipo_p == 2) {
+                return view('user.inicio.index', compact('ordenes', 'parametro', 'query', 'finalizadas', 'ordenFin'));
+            }
+
+        }
+
+    }
+
+    // metodo que permite al usuario visializar la orden
+    public function verOrdenCliente($id)
+    {
+        $orden = OrdenTrabajo::find($id);
+        $registros = RegistroEquipo::where('id_or', $orden->id)->paginate(5);
+
+        // buscamos si existe un tecnico asignado para retornar los datos del tecnico
+        // caso contrario se retornara un valor nulo
+        if ($orden->id_tec == '') {
+            $tecnico = null;
+        } else {
+            $tecnico = Tecnico::where('id', $orden->id_tec)->first();
+        }
+
+        $parametro = 'codigo_or';
+        $query = '';
+        $finalizadas = 0;
+        return view('user.inicio.verOrden', compact('orden', 'registros', 'tecnico', 'parametro', 'query', 'finalizadas'));
+    }
+
+    // metodo para revisar el historial de todas las ordenes perteneciente al cliente
+    public function listarHistorialOrdenesClinetes(Request $request)
+    {
+        $id_user = Auth::id();
+        $user = User::find($id_user);
+
+        $parametro = $request->parametroBuscar;
+        $query = trim($request->get('query'));
+        if ($query != '') {
+
+            $ordenes = DB::table('users')
+                ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                ->select(
+                    'users.*',
+                    'orden_trabajos.*'
+                )
+                ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
+                ->where('orden_trabajos.id_cli', $user->id)
+                ->where('orden_trabajos.status', 1)
+                ->where('orden_trabajos.etapa_servicio_or', 3)
+                ->orderby('orden_trabajos.updated_at', 'DESC')
+                ->paginate(10);
+            //consultamos todas las ordenes finalizadas para mostrar una alerte al usuario
+            $ordenesFin = OrdenTrabajo::where('id_cli', $user->id)
+                ->where('status', 1)
+                ->where('etapa_servicio_or', 3)
+                ->orderby('updated_at', 'ASC')
+                ->get();
+            $finalizadas = 0;
+            if (count($ordenesFin) != 0) {
+                $finalizadas = 1;
+            }
+
+            $ordenFin = $ordenesFin->last();
+            /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+            /// en caso de que sea 2 corresponde a la vista del clinete
+
+            if ($user->tipo_p == 2) {
+                return view('user.inicio.historial', compact('ordenes', 'parametro', 'query', 'finalizadas', 'ordenFin'));
+            }
+
+
+        } else {
+            $parametro = 'codigo_or';
+            $ordenes = DB::table('users')
+                ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
+                ->where('orden_trabajos.id_cli', $user->id)
+                ->where('orden_trabajos.status', 1)
+                ->where('orden_trabajos.etapa_servicio_or', 3)
+                ->select(
+                    'users.*',
+
+                    'orden_trabajos.*'
+                )
+                ->orderby('orden_trabajos.updated_at', 'DESC')
+                ->paginate(10);
+            //consultamos todas las ordenes finalizadas para mostrar una alerte al usuario
+            $ordenesFin = OrdenTrabajo::where('id_cli', $user->id)
+                ->where('status', 1)
+                ->where('etapa_servicio_or', 3)
+                ->orderby('updated_at', 'ASC')
+                ->get();
+            $finalizadas = 0;
+            if (count($ordenesFin) != 0) {
+                $finalizadas = 1;
+            }
+
+            $ordenFin = $ordenesFin->last();
+            /// esta condiciones evaluan el tipo de usuario para dirigirle a la vista correspondiente
+            /// en caso de que sea 2 corresponde a la vista del cliente
+            if ($user->tipo_p == 2) {
+                return view('user.inicio.historial', compact('ordenes', 'parametro', 'query', 'finalizadas', 'ordenFin'));
+            }
+
+        }
 
     }
 

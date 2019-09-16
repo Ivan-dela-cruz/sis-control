@@ -188,7 +188,7 @@
         $('#btnGuardarModal').click(function () {
 
             $.ajax({
-                url: "{{route('ordenes.store')}}",
+                url: "{{route('registro-validar')}}",
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

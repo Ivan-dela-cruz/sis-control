@@ -14,7 +14,7 @@
             <div class="card-header bg-dark bg-gradient">
                 <p class="lead">
                     Ordenes de trabajo
-                    <a class="btn btn-outline-white btn-sm pull-right" href="{{route('ordenes.index')}}">
+                    <a class="btn btn-outline-white btn-sm pull-right" href="{{route('crear-ordenes')}}">
                         <i class="batch-icon batch-icon-add"></i>
                         Agregar
                     </a>

@@ -22,7 +22,7 @@
                                     <i class="batch-icon batch-icon-out"></i>
                                     Atras
                                 </a>
-                                <a href="{{route('ordenes.index')}}" class="btn btn-outline-white mx-3">
+                                <a href="{{route('crear-ordenes')}}" class="btn btn-outline-white mx-3">
                                     <i class="batch-icon batch-icon-clipboard-alt"></i>
                                     Nueva
                                 </a>

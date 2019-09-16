@@ -116,6 +116,9 @@ class ClienteController extends Controller
         //GUARADAR LOS DATOS EN LA TABLA USUARIOS
         $user->save();
 
+        //asignamos el rol de cliente al nuevo usuario creado
+        $user->assignRole('cliente');
+
         //return $user;
         return redirect()->route('clientes.index');
     }

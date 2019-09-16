@@ -145,16 +145,21 @@ class TecnicoController extends Controller
 
 
         // creamos el tecnico con el usuario creado anteriormente
-
         $tecnico = new Tecnico();
-
         $tecnico->id = $user->id;
-
         $tecnico->especialidad_t = $request->especialidad_t;
         $tecnico->profesion_t = $request->profesion_t;
         $tecnico->tipo_t = $request->tipo_t;
-
         $tecnico->save();
+
+        if ($request->tipo_t == 0) {
+            /// le asignamos un rol de admnistrador
+            $user->assignRole('principal');
+        }
+        if ($request->tipo_t == 1) {
+            /// le asignamos un rol de admnistrador
+            $user->assignRole('secundario');
+        }
 
         return redirect()->route('tecnicos.index');
     }

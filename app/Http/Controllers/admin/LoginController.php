@@ -18,20 +18,21 @@ class LoginController extends Controller
             'password' => $request->password
         ])) {
             $user = User::where('email', $request->email)->where('estado_p', 1)->first();
-            if ($user->is_admin() == 0) {
-                return redirect()->route('administrador');
-            } elseif ($user->is_admin() == 1) {
-                $tecnico = Tecnico::find($user->id);
-                if ($tecnico->tipo_t == 0) {
-                    return redirect()->route('tecnico-principal');
-                } else {
+            $rol = $user->roles->implode('name', ', ');
+            switch ($rol) {
+                case 'admin';
+                    return redirect()->route('administrador');
+                    break;
+                case 'secundario';
                     return redirect()->route('tecnico-secundario');
-                }
-
-            } else {
-                return redirect()->route('cliente');
+                    break;
+                case 'principal';
+                    return redirect()->route('tecnico-principal');
+                    break;
+                case 'cliente';
+                    return redirect()->route('cliente');
+                    break;
             }
-
         }
         return redirect()->back();
 

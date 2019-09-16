@@ -182,7 +182,10 @@
 
                                 @if ($orden->status==1)
                                     @if ($orden->etapa_servicio_or==1)
-                                        <button class="btn btn-danger  btn-md  anularOrden" type="button">
+                                        <button class="btn btn-danger  btn-md  anularOrden"
+                                                data-cod-orden="{{$orden->codigo_or}}"
+                                                data-id-orden="{{$orden->id}}"
+                                                type="button">
                                             <i class="batch-icon batch-icon-delete"></i>
                                             Anular
                                         </button>

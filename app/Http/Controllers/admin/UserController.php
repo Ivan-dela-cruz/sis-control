@@ -145,6 +145,9 @@ class UserController extends Controller
         //GUARADAR LOS DATOS EN LA TABLA USUARIOS
         $user->save();
 
+        /// le asignamos un rol de admnistrador
+        $user->assignRole('admin');
+
         //return $user;
         return redirect()->route('usuario.index');
 

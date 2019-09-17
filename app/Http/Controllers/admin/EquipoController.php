@@ -125,12 +125,14 @@ class EquipoController extends Controller
         //Reglas de validacion de los campos del formulario  que vienen por POST
         $request->validate([
             //REGLAS DE VALIDACION
+            'id_p' => 'required',
             'serie_e' => 'required|unique:equipos|min:1|max:120',
             'marca_e' => 'required',
             'modelo_t' => 'required',
             'descripcion_e' => 'required',
         ], [
             //MENSAJES CUANDO NO SE CUMPLE LA VALIDACION
+            'id_p.required' => 'Debe elejir un cliente',
             'serie_e.unique' => 'Este equipo ya existe',
             'serie_e.required' => 'Este campo es obligatorio',
             'serie_e.min' => 'El número de serie debe contener mas de 2 caracteres',
@@ -245,9 +247,16 @@ class EquipoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $equipo = Equipo::find($request->id);
+
+       $equipo->delete();
+
+        return response()->json([
+
+            'mensaje' => 'Eliminado correctamente'
+        ]);
     }
 
     public function busquedaCliente(Request $request)

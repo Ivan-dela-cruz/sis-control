@@ -32,17 +32,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        $user_password = Hash::make('root1234');
-        DB::table('users')->insert(array('id' => '1',
-            'cedula_p' => '1750474012',
-            'nombre_p' => 'admin',
-            'apellido_p' => 'admin',
-            'telefono_p' => '0985247455',
-            'direccion_p' => 's/n',
-            'tipo_p' => '0',
-            'name' => 'admin',
-            'email' => 'admin@gamil.com',
-            'password' => $user_password));
+       
     }
 
     /**

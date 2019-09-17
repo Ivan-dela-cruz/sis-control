@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id = Auth::id();
+        $user = User::where('id', $id)->where('estado_p', 1)->first();
+        $rol = $user->roles->implode('name', ', ');
+        switch ($rol) {
+            case 'admin';
+                return redirect()->route('administrador');
+                break;
+            case 'secundario';
+                return redirect()->route('tecnico-secundario');
+                break;
+            case 'principal';
+                return redirect()->route('tecnico-principal');
+                break;
+            case 'cliente';
+                return redirect()->route('cliente');
+                break;
+        }
     }
 }

@@ -96,7 +96,7 @@
                                                        data-estado-user="{{$user->estado_p}}"
                                                        data-estado-actual="inactivo"
                                                        data-cedula-actual="{{$user->cedula_p}}"
-                                                       class="deleteModal btn btn-deep-orange btn-sm">
+                                                       class="deleteModal btn btn-success btn-sm">
                                                         <i class="batch-icon batch-icon-shuffle"></i>
                                                     </a>
                                                 @else
@@ -108,7 +108,11 @@
                                                         <i class="batch-icon batch-icon-shuffle"></i>
                                                     </a>
                                                 @endif
-
+                                                <a data-id-regis="{{$user->id}}"
+                                                   data-cod-regis="{{$user->cedula_p}}"
+                                                   class="btn  btn-danger btn-sm eliminarRegistro">
+                                                    <i class="batch-icon batch-icon-delete"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -126,7 +130,7 @@
     </div>
 
 
-
+    @include('admin.dashboard.papelera.modalEliminacion')
 @endsection
 
 
@@ -384,6 +388,40 @@
             });
         });
 
+        $('.eliminarRegistro').click(function () {
+            var id_or = $(this).data('id-regis');
+            $('#idModalEliminacionRegistro').modal('show');
+            $('#id-orden-status-del').val(id_or);
+            $('#txt-id-del').text($(this).data('cod-regis'));
+        });
+        $('.actionBtnEliminar').click(function () {
+            var id_or = $('#id-orden-status-del').val();
+            var url = "{{route('eliminar-user')}}";
+            $.ajax({
+                type: "delete",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,//"estado-admin/" + $(this).data('id-user') + "/",
+                data: {
+                    id: id_or,
+                    _token: "{{csrf_token()}}",
+                    _method: "delete",
+                },
+                success: function (data) {
+                    $('.usuario' + id_or).remove();
+                    $('#idModalEliminacionRegistro').modal('hide');
+                },
+                error: function (data) {
+                    var errors = data.responseJSON;
+                    if (errors) {
+                        $.each(errors, function (i) {
+                            console.log(errors[i]);
+                        });
+                    }
+                }
+            });
+        });
 
     </script>
 @endsection

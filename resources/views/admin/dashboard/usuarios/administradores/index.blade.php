@@ -99,7 +99,7 @@
                                                 </a>
 
                                                 <a href="{{route('usuario.edit',$user->id)}}"
-                                                   data-id-user="{{$user->id}}" class="btn  btn-warning btn-sm">
+                                                   data-id-user="{{$user->id}}" class="btn  btn-orange btn-sm">
                                                     <i class="batch-icon batch-icon-quill"></i>
                                                 </a>
                                                 @if($user->estado_p==0)
@@ -115,7 +115,7 @@
                                                        data-estado-user="{{$user->estado_p}}"
                                                        data-estado-actual="activo"
                                                        data-cedula-actual="{{$user->cedula_p}}"
-                                                       class="deleteModal btn btn-success btn-sm">
+                                                       class="deleteModal btn btn-danger btn-sm">
                                                         <i class="batch-icon batch-icon-shuffle"></i>
                                                     </a>
                                                 @endif

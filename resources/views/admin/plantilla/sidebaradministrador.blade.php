@@ -2,14 +2,12 @@
     <ul class="nav nav-pills flex-column">
         <li class="logo-nav-item">
             <a class="navbar-brand" href="#">
-                <img src="{{asset('img/logoaj.png')}}" width="145" height="145" alt="QuillPro">
+                <img src="{{asset('img/logoaj.png')}}" width="120" height="120" alt="QuillPro">
             </a>
         </li>
-        <li>
-            <h6 class="nav-header">Administrador</h6>
-        </li>
+
         <li class="nav-item">
-            <a class="nav-link active" href="index.html">
+            <a class="nav-link active" href="{{route('administrador')}}">
                 <i class="batch-icon batch-icon-browser-alt"></i>
                 Panel de control <span class="sr-only">(current)</span>
             </a>
@@ -19,7 +17,7 @@
 
     <ul class="nav nav-pills flex-column">
         <li>
-            <h6 class="nav-header text-info">Aplicaciones</h6>
+            <h6 class="nav-header text-priamry font-weight-bold">Aplicaciones</h6>
         </li>
         <li class="nav-item">
             <a class="nav-link nav-parent" href="#">
@@ -85,10 +83,9 @@
         </li>
 
     </ul>
-
     <ul class="nav nav-pills flex-column">
         <li>
-            <h6 class="nav-header text-info">Oredenes</h6>
+            <h6 class="nav-header text-priamry font-weight-bold">Oredenes</h6>
         </li>
 
         <li class="nav-item">
@@ -114,15 +111,23 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('listar-ordenes-finalizadas-admin')}}">
-                        <i class="fa fa-check"></i> Ordenes finalizadas
+                        <i class="fa fa-print"></i> Ordenes finalizadas
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
+
+    </ul>
+
+    <ul class="nav nav-pills flex-column">
+        <li>
+            <h6 class="nav-header text-warning font-weight-bold">Papelera</h6>
+        </li>
+
+        <li  class="nav-item">
             <a class="nav-link nav-parent text-warning">
                 <i class="batch-icon batch-icon-bin-alt"></i>
-                Papelera
+                Anulados
             </a>
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">

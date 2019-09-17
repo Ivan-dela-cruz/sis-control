@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\OrdenTrabajo;
+use App\Tecnico;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -101,10 +105,10 @@ class UserController extends Controller
         //Reglas de validacion de los campos del formulario  que vienen por POST
         $request->validate([
             //REGLAS DE VALIDACION
-            'cedula_p' => 'required|numeric|unique:users',
+            'cedula_p' => 'required|numeric|unique:users|digits:10',
             'nombre_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
             'apellido_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
-            'telefono_p' => 'required|numeric',
+            'telefono_p' => 'required|numeric|digits_between:8,20',
             'direccion_p' => 'required',
             'name' => 'required|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
@@ -115,15 +119,15 @@ class UserController extends Controller
             'nombre_p.required' => 'Este campo es obligatorio',
             'nombre_p.regex' => 'Este campo solo acepta letras',
             'cedula_p.unique' => 'El usuario ya existe',
-            'cedula_p.size' => 'El número debe contener 10 carácteres',
+            'cedula_p.digits' => 'El número debe contener 10 carácteres',
             'cedula_p.required' => 'Este campo es obligatorio',
-            // 'cedula_p.max' => 'El número debe contener 10 carácteres',
             'cedula_p.numeric' => 'El campo solo acepta números',
             'apellido_p.required' => 'Este campo es obligatorio',
             'apellido_p.regex' => 'Este campo solo acepta letras',
             'direccion_p.required' => 'Este campo es obligatorio',
             'telefono_p.required' => 'Este campo es obligatorio',
             'telefono_p.numeric' => 'El campo solo acepta números',
+            'telefono_p.digits_between' => 'El número debe ser entre 8-20 cáracteres',
             'name.unique' => 'El nombre de usuario ya existe',
             'name.required' => 'Este campo es obligatorio',
         ]);
@@ -357,10 +361,10 @@ class UserController extends Controller
         $request->validate([
             //REGLAS DE VALIDACION
             'id' => 'required',
-            'cedula_p' => ['required','numeric', 'size:10', Rule::unique('users')->ignore($id)],
+            'cedula_p' => ['required', 'numeric', 'digits:10', Rule::unique('users')->ignore($id)],
             'nombre_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
             'apellido_p' => 'required|regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u',
-            'telefono_p' => 'required|numeric',
+            'telefono_p' => 'required|numeric|digits_between:8,20',
             'direccion_p' => 'required',
             'name' => ['required', Rule::unique('users')->ignore($id)],
             'email' => ['required', 'string', 'email', Rule::unique('users')->ignore($id)],
@@ -371,15 +375,15 @@ class UserController extends Controller
             'nombre_p.required' => 'Este campo es obligatorio',
             'nombre_p.regex' => 'Este campo solo acepta letras',
             'cedula_p.unique' => 'El usuario ya existe',
-            'cedula_p.size' => 'El número debe contener 10 carácteres',
+            'cedula_p.digits' => 'El número debe contener 10 carácteres',
             'cedula_p.required' => 'Este campo es obligatorio',
-            // 'cedula_p.max' => 'El número debe contener 10 carácteres',
             'cedula_p.numeric' => 'El campo solo acepta números',
             'apellido_p.required' => 'Este campo es obligatorio',
             'apellido_p.regex' => 'Este campo solo acepta letras',
             'direccion_p.required' => 'Este campo es obligatorio',
             'telefono_p.required' => 'Este campo es obligatorio',
             'telefono_p.numeric' => 'El campo solo acepta números',
+            'telefono_p.digits_between' => 'El número debe ser entre 8-20 cáracteres',
             'name.unique' => 'El nombre de usuario ya existe',
             'name.required' => 'Este campo es obligatorio',
         ]);
@@ -411,9 +415,19 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    ///metodo que permite la eliminacio permanente de los usuario
+    /// pueden ser administradores, clientes o tecnicos
+    /// la eliminacion se lo hace  mediante una peticion ajax
+    public function destroy(Request $request)
     {
-        //
+        $user = User::find($request->id);
+
+        $user->delete();
+        return response()->json([
+
+            'mensaje' => 'Eliminado correctamente'
+        ]);
     }
 
     public function pepeleraAdmins(Request $request)
@@ -446,6 +460,41 @@ class UserController extends Controller
             ///retornamos los datos a la vista de la papelera y el ultimo valor definido en la busqueda
             return view('admin.dashboard.papelera.papeleraAdmins', compact('users', 'parametro'));
         }
+    }
+
+    ///metodo para noticar las ordenes creadas al momento de que un usuario inicie una sesion
+    public function InicioSesionUser()
+    {
+        /// obtiene la fecha actual del servidor
+        $mytime = Carbon::now();
+        $fechaHoy = Carbon::parse($mytime)->format('Y-m-d');
+
+        /// buscar ordes
+        $ordenesNuevas = OrdenTrabajo::whereDate('created_at', $fechaHoy)->where('status', 1)->where('estado_or', 0)->get();
+        $ordenesFinalizadas = OrdenTrabajo::whereDate('updated_at', $fechaHoy)
+            ->where('status', 1)
+            ->where('etapa_servicio_or', 3)
+            ->where('estado_or', 1)->get();
+
+        $ordenesAsignadas = OrdenTrabajo::where('status', 1)
+            ->where('etapa_servicio_or', 2)
+            ->where('estado_or', 1)->get();
+
+        $tecnicos = DB::table('users')
+            ->join('tecnicos', 'users.id', '=', 'tecnicos.id')
+            ->select(
+                'users.*',
+                'tecnicos.id as id_tec',
+                'tecnicos.especialidad_t',
+                'tecnicos.profesion_t',
+                'tecnicos.tipo_t'
+            )
+            ->where('tipo_p', '1')
+            ->where('estado_p', 1)
+            ->get();
+        return view('admin/dashboard/inicio/inicio', compact(
+            'ordenesNuevas', 'fechaHoy', 'ordenesFinalizadas', 'ordenesAsignadas','tecnicos'
+        ));
     }
 
 }

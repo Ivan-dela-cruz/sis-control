@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\OrdenTrabajo;
 use App\Tecnico;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
+
             $user = User::where('email', $request->email)->where('estado_p', 1)->first();
             $rol = $user->roles->implode('name', ', ');
             switch ($rol) {

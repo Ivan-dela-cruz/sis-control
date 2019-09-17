@@ -40,38 +40,53 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
+                            {!! Form::open(['route' => 'equipos.store', 'files' => true]) !!}
                             <h3>Datos del cliente</h3>
                             <div class="row">
 
                                 <div class="col-md-5 mx-5">
                                     <div class="form-group">
                                         <p><b>Nombre cliente: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp; <label class="nom_cli">S/N</label></p>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input readonly="readonly" name="nom_cli" value="{{ old('nom_cli') }}"
+                                                   id="nom_cli" type="text" class="nom_cli">
+                                        </p>
                                         <input hidden id="ordencliente" type="text">
                                     </div>
                                     <div class="form-group">
                                         <p><b>N° Cédula: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp; <label class="ci_cli"> 0000000000</label></p>
+
+                                            <input readonly="readonly" name="ci_cli" value="{{ old('ci_cli') }}"
+                                                   id="ci_cli" type="text" class="ci_cli">
+                                        </p>
                                     </div>
+                                    @if($errors->has('id_p'))
+                                        <p style="font-size: 15px;" class="text-danger">{{$errors->first('id_p')}} </p>
+                                    @endif
                                 </div>
                                 <div class="col-md-5 mx-5">
 
                                     <div class="form-group">
                                         <p><b>Dirección cliente: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli">
-                                                Ciudad/Avenida/Calle</label>
+                                            &nbsp;
+                                            <input readonly="readonly" name="dir_cli" value="{{ old('dir_cli') }}"
+                                                   id="dir_cli" type="text" class="dir_cli">
                                         </p>
                                     </div>
                                     <div class="form-group">
                                         <p><b>Télefono: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="tlf_cli"> 00000</label></p>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input readonly="readonly" name="tlf_cli" value="{{ old('tlf_cli') }}"
+                                                   id="tlf_cli" type="text" class="tlf_cli">
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <h3>Datos del Equipo</h3>
-                            {!! Form::open(['route' => 'equipos.store', 'files' => true]) !!}
-                            <input type="hidden" name="id_p" id="id_p" class="cliente-equipo">
+
+                            <input type="hidden" name="id_p" id="id_p" class="cliente-equipo" value="{{ old('id_p') }}">
+
                             @include('admin.dashboard.equipos.partials.form')
 
                             {!! Form::close() !!}
@@ -103,16 +118,16 @@
                 },
                 success: function (data) {
                     if (data.mensaje == 'Datos no encontrados') {
-                        $('.nom_cli').text(data.mensaje);
-                        $('.ci_cli').text('');
-                        $('.dir_cli').text('');
-                        $('.tlf_cli').text('');
+                        $('.nom_cli').val(data.mensaje);
+                        $('.ci_cli').val('');
+                        $('.dir_cli').val('');
+                        $('.tlf_cli').val('');
                     } else {
                         $('#ordencliente').val(data.id);
-                        $('.nom_cli').text(data.nombres);
-                        $('.ci_cli').text(data.cedula_p);
-                        $('.dir_cli').text(data.direccion_p);
-                        $('.tlf_cli').text(data.telefono_p);
+                        $('.nom_cli').val(data.nombres);
+                        $('.ci_cli').val(data.cedula_p);
+                        $('.dir_cli').val(data.direccion_p);
+                        $('.tlf_cli').val(data.telefono_p);
                         $('#id_p').val(data.id)
                     }
 

@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class RolesAndPermissions extends Seeder
 {
@@ -121,6 +123,21 @@ class RolesAndPermissions extends Seeder
 
         $role->givePermissionTo('read cliente');
         $role->givePermissionTo('update cliente');
+
+
+        ///crearmos el usario por defecto
+        $user_password = Hash::make('root1234');
+        $user = User::create(['cedula_p' => '1750474012',
+            'nombre_p' => 'admin',
+            'apellido_p' => 'admin',
+            'telefono_p' => '0985247455',
+            'direccion_p' => 's/n',
+            'tipo_p' => '0',
+            'name' => 'admin',
+            'email' => 'admin@gamil.com',
+            'password' => $user_password]);
+
+        $user->assignRole('admin');
 
     }
 }

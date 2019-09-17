@@ -61,18 +61,28 @@ Route::group(['middleware' => ['role:secundario']], function () {
     Route::post('registro-validar', 'admin\OrdenTrabajoController@store')->name('registro-validar');
 });
 
+
+////<<<<<<<---------------<<<<<<<<<<<<---------RUTAS DE MODIFICACION DE LOS ORDENES PARA PERMISIOS DE UPDATE ORDEN------->>>>>---->>>>>>
+Route::group(['middleware' => ['permission:update orden| update registros']], function () {
+
+    //ruta para agreagar la solucion por parte del tecnico principal
+    Route::put('agregar-solucion/{id}', 'admin\OrdenTrabajoController@solucionOrden')->name('agregar-solucion');
+    //ruta para realizar los cambios de fecha por parte del tecnico pricipal
+    Route::put('cambiar-fecha-orden', 'admin\OrdenTrabajoController@salidaOrden')->name('cambiar-fecha-orden');
+    ///RUTA PARA CAMBIAR LAS FECHAS DE SALIDA DE CADA EUIPO REGISTRADO
+    Route::put('cambiar-fecha', 'admin\RegistroEquipoController@updateFecha')->name('cambiar-fecha');
+});
+
+
+
 ///// <<<<<<---------------------------------Rutas para los tecnicos principales------->>>>>>>>>>>>>>>>>>
-Route::group(['middleware' => ['role_or_permission:principal']], function () {
+Route::group(['middleware' => ['role:principal']], function () {
     Route::get('/tecnico-principal', function () {
         return view('admin.base.base_tecnicoPrincipal');
     })->name('tecnico-principal');
 
     /// esta ruta lista todas las ordenes asignadas al tecnico principal
     Route::get('listar-ordenes-asignadas', 'admin\OrdenTrabajoController@listarOrdenesASIGNADAS')->name('listar-ordenes-asignadas');
-    //ruta para realizar los cambios de fecha por parte del tecnico pricipal
-    Route::put('cambiar-fecha-orden', 'admin\OrdenTrabajoController@salidaOrden')->name('cambiar-fecha-orden');
-    //ruta para agreagar la solucion por parte del tecnico principal
-    Route::put('agregar-solucion/{id}', 'admin\OrdenTrabajoController@solucionOrden')->name('agregar-solucion');
     //ruta para rechazar la orden de trabajo por algun inconveniente
     Route::put('rechazar-orden', 'admin\OrdenTrabajoController@rechazarOrden')->name('rechazar-orden');
     // esta ruta muestra todas los ordenes terminadas del tecnico principal
@@ -86,9 +96,7 @@ Route::group(['middleware' => ['role_or_permission:principal']], function () {
 Route::group(['middleware' => ['role:admin']], function () {
 
     ////<<<<<---------------------------------RUTAS PARA EL ADMISNITRADOR    ---------->>>.
-    Route::get('/administrador', function () {
-        return view('admin/dashboard/inicio/inicio');
-    })->name('administrador');
+    Route::get('/administrador', 'admin\UserController@InicioSesionUser')->name('administrador');
 
     ////<<<<<<----------------------RUTAS PARA LAS ORDENES -----------------<<<<<<<<<<<<<<<<<<<
     /// esta ruta lista todas las ordenes asignadas al tecnico principal
@@ -107,7 +115,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('revision-orden-admin-finalizada/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnicoFinalizada')->name('revision-orden-admin-finalizada');
     ///RUTA QUE PERMITE ELIMINAR UNA ORDEN SE TRABAJA EN SEGUNDO PLANO CON AJAX
     Route::put('anular-orden', 'admin\OrdenTrabajoController@anularOrden')->name('anular-orden');
-
+    Route::get('revision-orden-admin/{id}', 'admin\OrdenTrabajoController@revisionOrdenTecnico')->name('revision-orden-admin');
 
     //////////////<<<<<<<<<<<<<<<<<<<---------------RUTAS PARA EL USUARIO-------------------------->>>>>>>>>>>>>>>>>>>>>>>
     //ruta DEL CONTROLADOR DE RECURSOS get, pots, put, delete para registrar usuarios
@@ -116,6 +124,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('ver-admin/{id}', 'admin\UserController@verAdmin')->name('ver-admin');
     //url para cambiar el estado del usuario
     Route::put('estado-admin', 'admin\UserController@recargarSeccion')->name('estado-admin');
+    ///ruta pa la eliminacion de los uuarios del sistema pueden ser clientes administradores o tecnicos la ruta se maneja via ajax
+    Route::delete('eliminar-user', 'admin\UserController@destroy')->name('eliminar-user');
 
     //////<-----------<<<<----------------RUTAS PARA LA GESTION DE LOS TECNICOS ----------->>>>>>>>>>>>>>
     Route::get('lista-tecnicos', 'admin\UserController@tecnicos')->name('lista-tecnicos');
@@ -134,7 +144,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('busqueda-cliente-equipo', 'admin\EquipoController@busquedaCliente')->name('busqueda-cliente-equipo');
     ///RUTA PARA HABILITAR O DESAHABILTAR LOS EQUIPOS
     Route::put('estado-equipo', 'admin\EquipoController@desactivarEquipo')->name('estado-equipo');
-
+    //ruta para eliminar los equipos de forma definitiva
+    Route::delete('eliminar-equipo', 'admin\EquipoController@destroy')->name('eliminar-equipo');
 
     /////<<<<<<<<<<<------------------<<<<<<<<<<----------RUTAS PARA LA GESTION DE CLIENTES ------------->>>>>>>>>>---------->>>>>>>>>
     ///rutas para gestionar los clientes
@@ -147,8 +158,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //ruta para la gestion de registro de equipos
     Route::resource('registro-equipos', 'admin\RegistroEquipoController');
-    ///RUTA PARA CAMBIAR LAS FECHAS DE SALIDA DE CADA EUIPO REGISTRADO
-    Route::put('cambiar-fecha', 'admin\RegistroEquipoController@updateFecha')->name('cambiar-fecha');
+
 
 
     // <<<<<<<<-------<<<<<<<<<<<<<----------- rutas para los registros que estan en la papelera  --------->>>>>>>>>>>>>>> -------------------->>>>>>>>>>>>>>>>>

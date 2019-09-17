@@ -126,7 +126,7 @@
                                                        data-estado-user="{{$tecnico->estado_p}}"
                                                        data-estado-actual="activo"
                                                        data-cedula-actual="{{$tecnico->cedula_p}}"
-                                                       class="deleteModal btn btn-deep-orange btn-sm">
+                                                       class="deleteModal btn btn-danger btn-sm">
                                                         <i class="batch-icon batch-icon-shuffle"></i>
                                                     </a>
                                                 @endif
@@ -147,11 +147,11 @@
         </div>
     </div>
 
-
+    @include('admin.dashboard.usuarios.tecnico.modals.modalVistaTecnico')
 
 @endsection
 
-@include('admin.dashboard.usuarios.tecnico.modals.modalVistaTecnico')
+
 
 @section('script')
     <script>

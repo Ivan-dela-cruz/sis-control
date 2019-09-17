@@ -91,7 +91,7 @@
                                                    data-id-orden="{{$orden->id}}">
                                                     <i class="batch-icon batch-icon-print"></i>
                                                 </a>
-                                                <a href="{{route('ordenes.show',$orden->id)}}"
+                                                <a href="{{route('ver-orden',$orden->id)}}"
                                                    data-id-orden="{{$orden->id}}"
                                                    class="btn  btn-success btn-sm verOrden">
                                                     <i class="batch-icon batch-icon-eye"></i>

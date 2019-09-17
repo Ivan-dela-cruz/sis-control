@@ -7,9 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/img/favicon.png">
 
-    <title>QuillPro - Bootstrap 4 Dashboard Template</title>
-
-    <title>AJ-COMPUTACIÓN|500</title>
+    <title>AJ-COMPUTACIÓN|404</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
@@ -48,24 +46,29 @@
 <div class="container-fluid">
     <div class="row">
         <div class="right-column">
+
             <main class="main-content p-5" role="main">
                 <div class="row">
                     <div class="col-md-12 my-5 text-center">
                         <div class="text-danger">
-                            <i class="batch-icon batch-icon-browser-close batch-icon-xxl"></i>
-                            <i class="batch-icon batch-icon-browser-close batch-icon-xxl"></i>
-                            <i class="batch-icon batch-icon-browser-close batch-icon-xxl"></i>
+                            <i class="batch-icon batch-icon-link-alt batch-icon-xxl"></i>
+                            <i class="batch-icon batch-icon-search batch-icon-xxl"></i>
+                            <i class="batch-icon batch-icon-link-alt batch-icon-xxl"></i>
                         </div>
-                        <h1 class="display-1">500</h1>
-                        <div class="display-4 mb-3">Error del Servidor</div>
-                        <div class="lead">Estás viendo esta página porque hay un error con nuestro servidor.</div>
-                        <div class="lead">No entre en pánico, solo espere un poco y luego actualice.</div>
-                        <div class="lead">Si ya lo ha hecho y este error sigue apareciendo, envíenos un correo electrónico a<a href="mailto:email@example.com"> email@example.com</a>.</div>
+                        <h1 class="display-1">404</h1>
+                        <div class="display-4 mb-3">Página no encontrada</div>
+                        <div class="lead">No podemos encontrar la página que estás buscando.
+                        </div>
+                        <div class="lead">Consulte con el administrador <br>
+                            <a class="btn btn-primary btn-gradient waves-effect waves-light"
+                               href="{{url()->previous()}}">regresar atras </a>.
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 </div>
+
 </body>
 </html>

@@ -80,16 +80,6 @@
 
                     @yield('content')
 
-                    <div class="row mb-5">
-                        <div class="col-md-12">
-                            <footer>
-                                Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link"
-                                                target="_blank"
-                                                style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span
-                                            style="color:#ffa733;font-weight:bold">5</span>Builder</a>
-                            </footer>
-                        </div>
-                    </div>
 
                 </main>
             </div>

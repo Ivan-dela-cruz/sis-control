@@ -87,7 +87,7 @@
                                                    data-id-orden="{{$orden->id}}">
                                                     <i class="batch-icon batch-icon-print"></i>
                                                 </a>
-                                                <a href="{{route('revision-orden-tecnico',$orden->id)}}"
+                                                <a href="{{route('revision-orden-admin',$orden->id)}}"
                                                    data-id-orden="{{$orden->id}}"
                                                    class="btn  btn-success btn-sm verOrden">
                                                     <i class="batch-icon batch-icon-eye"></i>

@@ -331,6 +331,8 @@
         }
 
         $('.btnGenerarOrden').click(function () {
+            $(this).attr('disabled', 'disabled');
+            $('.btnCancelarOrden').attr('disabled', 'disabled');
             let materiales = [];
             var fechaval = $('#fecha_orden').val();
             var descripor = $('#orden_decrip').val();

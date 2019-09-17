@@ -14,7 +14,7 @@
                     </div>
                     <div class="tile-right">
                         <div class="tile-number">1,359</div>
-                        <div class="tile-description">Customers Online</div>
+                        <div class="tile-description">Ordenes nuevas</div>
                     </div>
                 </div>
             </div>

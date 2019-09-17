@@ -90,7 +90,7 @@
                                             <td class="text-center">
 
                                                 @if($equipo->estado_e==0)
-                                                    <a data-id-equipo="{{$equipo->id}}"
+                                                    <a title="Habilitar registro" data-id-equipo="{{$equipo->id}}"
                                                        data-serie-equipo="{{$equipo->serie_e}}"
                                                        data-estado-equipo="{{$equipo->tipo_t}}"
                                                        data-estado-actual="inactivo"
@@ -106,8 +106,9 @@
                                                         <i class="batch-icon batch-icon-shuffle"></i>
                                                     </a>
                                                 @endif
-                                                <a href="{{route('equipos.edit',$equipo->id)}}"
-                                                   data-id-user="{{$equipo->id}}" class="btn  btn-danger btn-sm">
+                                                <a title="Eliminar equipo" data-id-regis="{{$equipo->id}}"
+                                                   data-cod-regis="{{$equipo->serie_e}}"
+                                                   class="btn  btn-danger btn-sm eliminarRegistro">
                                                     <i class="batch-icon batch-icon-delete"></i>
                                                 </a>
                                             </td>
@@ -126,6 +127,7 @@
     </div>
     </div>
     @include('admin.dashboard.equipos.modalEquipos')
+    @include('admin.dashboard.papelera.modalEliminacion')
 @endsection
 
 @section('script')
@@ -215,6 +217,41 @@
                     $('#estado-equipo-edit').val('');
                     $('#estado-actua-equipo').text('');
                     $('#serie_equipo').text('');
+                },
+                error: function (data) {
+                    var errors = data.responseJSON;
+                    if (errors) {
+                        $.each(errors, function (i) {
+                            console.log(errors[i]);
+                        });
+                    }
+                }
+            });
+        });
+
+        $('.eliminarRegistro').click(function () {
+            var id_or = $(this).data('id-regis');
+            $('#idModalEliminacionRegistro').modal('show');
+            $('#id-orden-status-del').val(id_or);
+            $('#txt-id-del').text($(this).data('cod-regis'));
+        });
+        $('.actionBtnEliminar').click(function () {
+            var id_or = $('#id-orden-status-del').val();
+            var url = "{{route('eliminar-equipo')}}";
+            $.ajax({
+                type: "delete",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,//"estado-admin/" + $(this).data('id-user') + "/",
+                data: {
+                    id: id_or,
+                    _token: "{{csrf_token()}}",
+                    _method: "delete",
+                },
+                success: function (data) {
+                    $('.equipo' + id_or).remove();
+                    $('#idModalEliminacionRegistro').modal('hide');
                 },
                 error: function (data) {
                     var errors = data.responseJSON;

@@ -56,11 +56,11 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="direccion_p" class="active">Tipo de usuario</label>
-            <select disabled class="form-control" name="tipo_p" id="tipo_p">
-                <option selected value="2">Cliente</option>
+            <label hidden for="direccion_p" class="active">Tipo de usuario</label>
+            <select hidden disabled class="form-control" name="tipo_p" id="tipo_p">
+                <option  value="2">Cliente</option>
                 <option  value="0">Administrador</option>
-                <option value="1">Técnico</option>
+                <option selected value="1">Técnico</option>
             </select>
         </div>
         <div class="form-group">

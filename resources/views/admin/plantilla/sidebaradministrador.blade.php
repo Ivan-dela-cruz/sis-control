@@ -2,7 +2,7 @@
     <ul class="nav nav-pills flex-column">
         <li class="logo-nav-item">
             <a class="navbar-brand" href="#">
-                <img src="{{asset('img/logoaj.png')}}" width="120" height="120" alt="QuillPro">
+                <img src="{{asset('img/rrr.png')}}" width="120" height="120" alt="QuillPro">
             </a>
         </li>
 
@@ -119,35 +119,5 @@
 
     </ul>
 
-    <ul class="nav nav-pills flex-column">
-        <li>
-            <h6 class="nav-header text-warning font-weight-bold">Papelera</h6>
-        </li>
-
-        <li  class="nav-item">
-            <a class="nav-link nav-parent text-warning">
-                <i class="batch-icon batch-icon-bin-alt"></i>
-                Anulados
-            </a>
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('listar-ordenes-anuladas')}}">Ordenes anuladas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('papelera-admins')}}">Administradores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('papelera-tecnicos')}}">Técnicos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('papelera-clientes')}}">Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('papelera-equipos')}}">Equipos</a>
-                </li>
-
-            </ul>
-        </li>
-
-    </ul>
+   
 </nav>

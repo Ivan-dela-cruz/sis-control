@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>AJ-COMPUTACIÓN</title>
+    <title>COMPUMEGA</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -44,13 +44,15 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Latacunga</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> 099 932 3908</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> compumega2019@gmail.com</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> Dirección: Sucre y Quito 09-29 Ambato</a></li>
             </ul>
             <ul class="header-links pull-right">
 
+                {{--
                 <li><a href="#"><i class="fa fa-user-o"></i> Mi perfil</a></li>
+                --}}
             </ul>
         </div>
     </div>
@@ -140,38 +142,40 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <div class="col-md-4 col-xs-6">
+
+                <div class="col-md-6 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Contactos</h3>
                         <ul class="footer-links">
-                            <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker"></i>Sucre y Quito 09-29 Ambato - Ecuador</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-phone"></i>099 932 3908</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>compumega2019@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="clearfix visible-xs"></div>
 
-                <div class="col-md-4 col-xs-6">
+                <div class="col-md-6 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Información</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Mis ordenes</a></li>
-                            <li><a href="#">pendientes</a></li>
+                            <li><a href="{{route('historial-cliente')}}">Mis ordenes</a></li>
+                            <li><a href="{{route('cliente')}}">Ordenes pendientes</a></li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="col-md-4 col-xs-6">
-                    <div class="footer">
-                        <h3 class="footer-title">Servicios</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">Mantenimiento</a></li>
-                            <li><a href="#">Reparaciones</a></li>
-                        </ul>
-                    </div>
-                </div>
+                {{----         <div class="col-md-4 col-xs-6">
+                                    <div class="footer">
+                                        <h3 class="footer-title">Servicios</h3>
+                                        <ul class="footer-links">
+                                            <li><a href="#">Mantenimiento</a></li>
+                                            <li><a href="#">Reparaciones</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                ---}}
             </div>
             <!-- /row -->
         </div>
@@ -187,9 +191,8 @@
                 <div class="col-md-12 text-center">
                     <span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
-                                class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                                                                    target="_blank">Colorlib</a>
+                        Dirección: Sucre y Quito 09-29 Ambato - Ecuador Teléfono: 0999323908  Email:compumega495@gmail.com
+
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 

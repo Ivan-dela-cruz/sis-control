@@ -2,7 +2,7 @@
     <ul class="nav nav-pills flex-column">
         <li class="logo-nav-item">
             <a class="navbar-brand" href="#">
-                <img src="{{asset('img/logoaj.png')}}" width="145" height="145" alt="QuillPro">
+                <img src="{{asset('img/rrr.png')}}" width="145" height="145" alt="QuillPro">
             </a>
         </li>
         <li>

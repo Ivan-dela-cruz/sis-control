@@ -27,20 +27,32 @@ class HomeController extends Controller
     {
         $id = Auth::id();
         $user = User::where('id', $id)->where('estado_p', 1)->first();
-        $rol = $user->roles->implode('name', ', ');
-        switch ($rol) {
-            case 'admin';
-                return redirect()->route('administrador');
-                break;
-            case 'secundario';
-                return redirect()->route('tecnico-secundario');
-                break;
-            case 'principal';
-                return redirect()->route('tecnico-principal');
-                break;
-            case 'cliente';
-                return redirect()->route('cliente');
-                break;
+
+        if (!($user == null)) {
+            $rol = $user->roles->implode('name', ', ');
+            switch ($rol) {
+                case 'admin';
+                    return redirect()->route('administrador');
+                    break;
+                case 'secundario';
+                    return redirect()->route('tecnico-secundario');
+                    break;
+                case 'principal';
+                    return redirect()->route('tecnico-principal');
+                    break;
+                case 'cliente';
+                    return redirect()->route('cliente');
+                    break;
+            }
+        } else {
+
+            Auth::logout($user);
+
+            return redirect()->route('login')->with("message", "Usuario no encontrado");
         }
+        Auth::logout($user);
+
+        return redirect()->route('login')->with("message", "Usuario no encontrado");
     }
+
 }

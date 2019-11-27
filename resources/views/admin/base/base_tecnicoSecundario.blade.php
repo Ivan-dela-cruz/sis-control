@@ -78,68 +78,76 @@
 
                     @yield('content')
 
-                    <div class="row mb-5">
-                        <div class="col-md-12">
-                            <footer>
-                                Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link"
-                                                target="_blank"
-                                                style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span
-                                            style="color:#ffa733;font-weight:bold">5</span>Builder</a>
-                            </footer>
-                        </div>
-                    </div>
 
                 </main>
+                <br>
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <footer class="pull-right">
+                            <hr>
+                            CompuMega - <a href="#"
+                                           target="_blank"
+                                           style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Solo
+                                <span
+                                        style="color:#ffa733;font-weight:bold">-</span>Tecnología
+
+                            </a>
+                            Dirección: Sucre y Quito 09-29 Ambato - Ecuador Teléfono: 0999323908
+
+                            <hr>
+                        </footer>
+                    </div>
+                </div>
             </div>
+
+
         </div>
-
-
     </div>
-</div>
 
-<!-- SCRIPTS - REQUIRED START -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!-- Bootstrap core JavaScript -->
-<!-- JQuery -->
+    <!-- SCRIPTS - REQUIRED START -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
+    <!-- JQuery -->
 
 
-<script type="text/javascript" src="{{asset('assets/js/jquery/jquery-3.1.1.min.js')}}"></script>
-<!-- Popper.js - Bootstrap tooltips -->
-<script type="text/javascript" src="{{asset('assets/js/bootstrap/popper.min.js')}}"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="{{asset('assets/js/bootstrap/bootstrap.min.js')}}"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="{{asset('assets/js/bootstrap/mdb.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/jquery/jquery-3.1.1.min.js')}}"></script>
+    <!-- Popper.js - Bootstrap tooltips -->
+    <script type="text/javascript" src="{{asset('assets/js/bootstrap/popper.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{asset('assets/js/bootstrap/bootstrap.min.js')}}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{asset('assets/js/bootstrap/mdb.min.js')}}"></script>
 
-<!-- Velocity -->
-<script type="text/javascript" src="{{asset('assets/plugins/velocity/velocity.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/plugins/velocity/velocity.ui.min.js')}}"></script>
+    <!-- Velocity -->
+    <script type="text/javascript" src="{{asset('assets/plugins/velocity/velocity.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/plugins/velocity/velocity.ui.min.js')}}"></script>
 
-<!-- Custom Scrollbar -->
-<script type="text/javascript"
-        src="{{asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-<!-- jQuery Visible -->
-<script type="text/javascript" src="{{asset('assets/plugins/jquery_visible/jquery.visible.min.js')}}"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script type="text/javascript" src="{{asset('assets/js/misc/ie10-viewport-bug-workaround.js')}}"></script>
+    <!-- Custom Scrollbar -->
+    <script type="text/javascript"
+            src="{{asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <!-- jQuery Visible -->
+    <script type="text/javascript" src="{{asset('assets/plugins/jquery_visible/jquery.visible.min.js')}}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="{{asset('assets/js/misc/ie10-viewport-bug-workaround.js')}}"></script>
 
-<!-- SCRIPTS - REQUIRED END -->
+    <!-- SCRIPTS - REQUIRED END -->
 
-<!-- Form Validation -->
-<script type="text/javascript" src="{{asset('assets/plugins/form-validator/jquery.form-validator.min.js')}}"></script>
-<!-- SCRIPTS - OPTIONAL START -->
-<!-- ChartJS -->
-<script type="text/javascript" src="{{asset('assets/plugins/chartjs/chart.bundle.min.js')}}"></script>
-<!-- JVMaps -->
-<script type="text/javascript" src="{{asset('assets/plugins/jvmaps/jquery.vmap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/plugins/jvmaps/maps/jquery.vmap.usa.js')}}"></script>
-<!-- Image Placeholder -->
-<script type="text/javascript" src="{{asset('assets/js/misc/holder.min.js')}}"></script>
+    <!-- Form Validation -->
+    <script type="text/javascript"
+            src="{{asset('assets/plugins/form-validator/jquery.form-validator.min.js')}}"></script>
+    <!-- SCRIPTS - OPTIONAL START -->
+    <!-- ChartJS -->
+    <script type="text/javascript" src="{{asset('assets/plugins/chartjs/chart.bundle.min.js')}}"></script>
+    <!-- JVMaps -->
+    <script type="text/javascript" src="{{asset('assets/plugins/jvmaps/jquery.vmap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/plugins/jvmaps/maps/jquery.vmap.usa.js')}}"></script>
+    <!-- Image Placeholder -->
+    <script type="text/javascript" src="{{asset('assets/js/misc/holder.min.js')}}"></script>
 
-<!-- SCRIPTS - OPTIONAL END -->
+    <!-- SCRIPTS - OPTIONAL END -->
 
-<!-- QuillPro Scripts -->
-<script type="text/javascript" src="{{asset('assets/js/scripts.js')}}"></script>
+    <!-- QuillPro Scripts -->
+    <script type="text/javascript" src="{{asset('assets/js/scripts.js')}}"></script>
 
 
 @yield('script')

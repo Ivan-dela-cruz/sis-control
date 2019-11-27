@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <a class="navbar-brand d-block d-sm-block d-md-block d-lg-none" href="#">
-        <img src="{{asset('img/logoajazul.png')}}" width="50" height="32.3" alt="QuillPro">
+        <img src="{{asset('img/rrr.png')}}" width="50" height="32.3" alt="QuillPro">
     </a>
     <button class="hamburger hamburger--slider" type="button" data-target=".sidebar" aria-controls="sidebar"
             aria-expanded="false" aria-label="Toggle Sidebar">
@@ -30,12 +30,15 @@
                         {{ csrf_field() }}
                     </form>
                 </li>
+
+                {{---
                 <li class="media">
                     <a class="dropdown-item" href="#">
                         <i class="fa fa-user"></i>
                         Mi perfil
                     </a>
                 </li>
+                ---}}
             </ul>
         </li>
     </ul>
@@ -84,12 +87,14 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
+                    {{-----
                     <li class="media">
                         <a class="dropdown-item" href="#">
                             <i class="fa fa-user"></i>
                             Mi perfil
                         </a>
                     </li>
+                    ---}}
                 </ul>
             </li>
         </ul>

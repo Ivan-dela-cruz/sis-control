@@ -77,11 +77,26 @@
             <div class="right-column">
                 @include('admin/base/top_menu')
                 <main id="sectionRefresh" class="main-content p-4" role="main">
-
                     @yield('content')
 
-
                 </main>
+                <br>
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <footer class="pull-right">
+                            <hr>
+                            CompuMega - <a href="#"
+                                           target="_blank"
+                                           style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Solo <span
+                                        style="color:#ffa733;font-weight:bold">-</span>Tecnología
+
+                            </a>
+                             Dirección: Sucre y Quito 09-29 Ambato - Ecuador Teléfono: 0999323908
+
+                            <hr>
+                        </footer>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -54,13 +54,15 @@
         <div id="top-header">
             <div class="container">
                 <ul class="header-links pull-left">
-                    <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Latacunga</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i> 099 932 3908</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> compumega2019@gmail.com</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Dirección: Sucre y Quito 09-29 Ambato</a></li>
                 </ul>
                 <ul class="header-links pull-right">
 
+                    {{--
                     <li><a href="#"><i class="fa fa-user-o"></i> Mi perfil</a></li>
+                    --}}
                 </ul>
             </div>
         </div>

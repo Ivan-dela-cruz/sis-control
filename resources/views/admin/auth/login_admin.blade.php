@@ -5,16 +5,16 @@
             <div class="row mx-0">
                 <div class="col-md-7 order-md-2 signin-right-column px-5 bg-dark">
                     <a class="signin-logo d-sm-block d-md-none" href="#">
-                        <img src="{{asset('img/logoaj.png')}}" width="145" height="145" alt="QuillPro">
+                        <img src="{{asset('img/rrr.png')}}" width="145" height="145" alt="QuillPro">
                     </a>
                     <h1 class="display-4">Inicio de sesión</h1>
                     <p class="lead mb-5">
-                        Sistema de incidencias -AJ Computación
+                        Sistema de incidencias - COMPUMEGA
                     </p>
                 </div>
                 <div class="col-md-5 order-md-1 signin-left-column bg-white">
                     <a class="align-content-center signin-logo d-sm-none d-md-block" href="#">
-                        <img src="{{asset('img/logoajazul.png')}}" width="200" height="200" alt="QuillPro">
+                        <img src="{{asset('img/rrr.png')}}" width="200" height="200" alt="QuillPro">
                     </a>
                     <form method="POST" action="{{ route('login.custom') }}">
                         @csrf
@@ -29,8 +29,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
-                            <small id="emailHelp" class="form-text text-muted">Inicie sesión con su email o nombre de
-                                usuario
+                            <small id="emailHelp" class="form-text text-muted">Inicie sesión con su email
                             </small>
                         </div>
                         <div class="form-group">
@@ -50,6 +49,7 @@
                             <i class="batch-icon batch-icon-key"></i>
                             Iniciar sesión
                         </button>
+                        {{---
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
@@ -59,6 +59,7 @@
                         <p class="text-center">
                             Olvidaste tu contrseña? <a href="sisu-signup.html">Presiona aquí</a>
                         </p>
+                        ---}}
                     </form>
                 </div>
             </div>

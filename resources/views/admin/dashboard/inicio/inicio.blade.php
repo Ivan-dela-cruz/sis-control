@@ -95,7 +95,7 @@
                 <div class="card-media-list">
 
                     @foreach($ordenesAsignadas as $orden)
-                        <div class="media clickable" data-qp-link="profiles-member-profile.html">
+                        <div class="media clickable" data-qp-link="{{route('revision-orden-admin',$orden->id)}}">
                             <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
                                 <img src="{{asset('img/teccolor.png')}}" width="44" height="44">
                             </div>
@@ -112,6 +112,7 @@
                             </div>
                         </div>
                     @endforeach
+
 
                 </div>
             </div>
@@ -145,14 +146,4 @@
     </div>
 
 
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <footer>
-                Desarrollado por - <a href="#"
-                                      target="_blank"
-                                      style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">De<span
-                            style="color:#ffa733;font-weight:bold">Sof</span>Si</a>
-            </footer>
-        </div>
-    </div>
 @endsection

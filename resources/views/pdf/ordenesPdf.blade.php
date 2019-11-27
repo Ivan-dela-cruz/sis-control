@@ -43,6 +43,12 @@
         margin-right: 35%;
         font-size: 13px;
     }
+    #tiutlo_pdf {
+        text-align: center;
+        margin-left: 10%;
+        margin-right: 35%;
+        font-size: 18px;
+    }
 
     #fact {
         /*position: relative;*/
@@ -143,14 +149,18 @@
 
 <header>
     <div id="logo">
-        <img src="{{asset('img/logoajazul.png')}}" alt="CompartiendoCodigo" id="imagen">
+        <img src="{{asset('img/rrr.png')}}" alt="CompartiendoCodigo" id="imagen">
     </div>
     <div id="datos">
+        <p id="tiutlo_pdf">
+            <b>CompuMega</b>
+            <br>Solo Tecnología
+        </p>
         <p id="encabezado">
-            <b>AJ - COMPUTACIÓN</b>
-            <br>Vicente León - Latacunga - Cotopaxi - Ecuador
-            <br>Telefono: 09817539874
-            <br>Email: ajcomputacion.gmail.com
+
+            Sucre y Quito 09-29 Ambato - Ecuador
+            <br>Telefono: 0999323908
+            <br>Email: compumega2019.gmail.com
         </p>
     </div>
 </header>

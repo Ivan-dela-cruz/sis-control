@@ -30,9 +30,6 @@
                                         <div class="form-group">
                                             <label for="cedula_p" class="active">Cédula</label>
                                             <input type="text" class="form-control" id="cedula_p" name="cedula_p"
-                                                   data-validation="numeric"
-                                                   data-validation-length="9-10"
-                                                   data-validation-error-msg="El número debe tener(10 dígitos)"
                                                    placeholder="Ingrese su numero de cédula"
                                                    value="{{ old('cedula_p') }}"
                                             >
@@ -44,7 +41,7 @@
                                         <div class="form-group">
                                             <label for="nombre_p" class="active">Nombres</label>
                                             <input type="text" class="form-control" id="nombre_p" name="nombre_p"
-                                                   data-validation="alphabet" placeholder="Ingrese sus nombres"
+                                                    placeholder="Ingrese sus nombres"
                                                    value="{{old('nombre_p')}}">
                                             @if($errors->has('nombre_p'))
                                                 <label class="text-danger">{{$errors->first('nombre_p')}} </label>
@@ -53,7 +50,7 @@
                                         <div class="form-group">
                                             <label for="apellido_p" class="active">Apellidos</label>
                                             <input type="text" class="form-control" id="apellido_p" name="apellido_p"
-                                                   data-validation="alphabet" placeholder="Ingrese sus apellidos"
+                                                   placeholder="Ingrese sus apellidos"
                                                    value="{{old('apellido_p')}}">
                                             @if($errors->has('apellido_p'))
                                                 <label class="text-danger">{{$errors->first('apellido_p')}} </label>
@@ -62,7 +59,6 @@
                                         <div class="form-group">
                                             <label for="telefono_p" class="active">Teléfono</label>
                                             <input type="text" class="form-control" id="telefono_p" name="telefono_p"
-                                                   data-validation="numeric"
                                                    placeholder="Ingrese su numero de teléfono"
                                                    value="{{old('telefono_p')}}">
                                             @if($errors->has('telefono_p'))
@@ -75,15 +71,14 @@
                                         <div class="form-group">
                                             <label for="direccion_p" class="active">Dirección</label>
                                             <input type="text" class="form-control" name="direccion_p" id="direccion_p"
-                                                   data-validation="alphanumeric"
                                                    placeholder="Ingrese su dirección" value="{{old('direccion_p')}}">
                                             @if($errors->has('direccion_p'))
                                                 <label class="text-danger">{{$errors->first('direccion_p')}} </label>
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <label for="direccion_p" class="active">Tipo de usuario</label>
-                                            <select disabled class="form-control" name="tipo_p" id="tipo_p">
+                                            <label hidden for="direccion_p" class="active">Tipo de usuario</label>
+                                            <select hidden disabled class="form-control" name="tipo_p" id="tipo_p">
                                                 <option value="2">Cliente</option>
                                                 <option selected value="0">Administrador</option>
                                                 <option value="1">Técnico</option>
@@ -92,9 +87,6 @@
                                         <div class="form-group">
                                             <label for="name" class="active">Nombre de usuario(3-12 carácteres)</label>
                                             <input type="text" class="form-control" name="name" id="name"
-                                                   data-validation="length alphanumeric"
-                                                   data-validation-length="3-12"
-                                                   data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)"
                                                    placeholder="Ingrese el nombre de usuario" value=" {{old('name')}}">
                                             @if($errors->has('name'))
                                                 <label class="text-danger">{{$errors->first('name')}} </label>
@@ -103,7 +95,7 @@
                                         <div class="form-group">
                                             <label for="email" class="active">Email</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                   data-validation="email" placeholder="Enter Email"
+                                                    placeholder="Enter Email"
                                                    value="{{old('email')}}"
                                             >
                                             @if($errors->has('email'))
@@ -140,7 +132,7 @@
 
     <!-- SCRIPTS - DEMO START -->
     <!-- Form Validation -->
-    <script type="text/javascript" src="{{asset('assets/demo/js/forms-validation.js')}}"></script>
+
     <!-- SCRIPTS - DEMO START -->
 
     <script>

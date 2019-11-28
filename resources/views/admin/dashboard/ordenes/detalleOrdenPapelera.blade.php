@@ -120,6 +120,12 @@
                                                 @if($registro->equipo->tipo_t==4)
                                                     Tablet
                                                 @endif
+                                                @if($registro->equipo->tipo_t==5)
+                                                    Impresoras
+                                                @endif
+                                                @if($registro->equipo->tipo_t==6)
+                                                    Otros
+                                                @endif
 
                                             </td>
                                             <td>{{$registro->accesorios_re}}</td>

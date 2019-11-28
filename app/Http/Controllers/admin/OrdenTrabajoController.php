@@ -140,7 +140,7 @@ class OrdenTrabajoController extends Controller
                         'orden_trabajos.*'
                     )
                     ->where('users.' . $parametro, 'like', '%' . $query . '%')
-                    ->where('estado_or', 0)
+                   // ->where('estado_or', 0)
                     ->where('orden_trabajos.status', 1)
                     ->orderBy('orden_trabajos.id', 'desc')
                     ->paginate(10);
@@ -169,7 +169,7 @@ class OrdenTrabajoController extends Controller
                         'orden_trabajos.*'
                     )
                     ->where('orden_trabajos.' . $parametro, 'like', '%' . $query . '%')
-                    ->where('estado_or', 0)
+                   // ->where('estado_or', 0)
                     ->where('orden_trabajos.status', 1)
                     ->orderBy('orden_trabajos.id', 'DESC')
                     ->paginate(10);
@@ -186,7 +186,6 @@ class OrdenTrabajoController extends Controller
                     if ($tecnico->tipo_t == 1) {
                         return view('admin.dashboard.ordenes.listarOrdenesTecnicoSecundario', compact('ordenes', 'parametro'));
                     }
-
                 }
             }
 
@@ -194,7 +193,7 @@ class OrdenTrabajoController extends Controller
             $parametro = 'cedula_p';
             $ordenes = DB::table('users')
                 ->join('orden_trabajos', 'users.id', '=', 'orden_trabajos.id_cli')
-                ->where('estado_or', 0)
+                //->where('estado_or', 0)
                 ->where('orden_trabajos.status', 1)
                 ->select(
                     'users.*',
@@ -290,6 +289,10 @@ class OrdenTrabajoController extends Controller
                     $tipoequipo = 'CPU';
                 } elseif ($request->tipo_t == 3) {
                     $tipoequipo = 'Monitor';
+                }elseif ($request->tipo_t == 5) {
+                    $tipoequipo = 'Impresora';
+                } elseif ($request->tipo_t == 6) {
+                    $tipoequipo = 'Otros';
                 } else {
                     $tipoequipo = 'Tablet';
                 }
@@ -337,6 +340,10 @@ class OrdenTrabajoController extends Controller
                         $tipoequipo = 'CPU';
                     } elseif ($equipo->tipo_t == 3) {
                         $tipoequipo = 'Monitor';
+                    }elseif ($equipo->tipo_t == 5) {
+                        $tipoequipo = 'Impresora';
+                    } elseif ($equipo->tipo_t == 6) {
+                        $tipoequipo = 'Otros';
                     } else {
                         $tipoequipo = 'Tablet';
                     }
@@ -360,6 +367,10 @@ class OrdenTrabajoController extends Controller
                         $tipoequipo = 'CPU';
                     } elseif ($equipo->tipo_t == 3) {
                         $tipoequipo = 'Monitor';
+                    }elseif ($equipo->tipo_t == 5) {
+                        $tipoequipo = 'Impresora';
+                    } elseif ($equipo->tipo_t == 6) {
+                        $tipoequipo = 'Otros';
                     } else {
                         $tipoequipo = 'Tablet';
                     }
@@ -476,7 +487,11 @@ class OrdenTrabajoController extends Controller
                             $tipoequipo = 2;
                         } elseif ($det[$i]['tipo'] == 'Monitor') {
                             $tipoequipo = 3;
-                        } else {
+                        } elseif ($det[$i]['tipo'] == 'Impresoras') {
+                            $tipoequipo = 5;
+                        }elseif ($det[$i]['tipo'] == 'Otros') {
+                            $tipoequipo = 6;
+                        }else {
                             $tipoequipo = 4;
                         }
                         // registramos el nuevo equipo

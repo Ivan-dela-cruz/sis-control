@@ -20,7 +20,7 @@
     <div class="col-md-6">
 
         <div class="form-group">
-            {{ Form::label('modelo_t', 'Modelo dle equipo') }}
+            {{ Form::label('modelo_t', 'Modelo del equipo') }}
             {{ Form::text('modelo_t', null, ['class' => 'form-control', 'id' => 'modelo_t']) }}
         </div>
         @if($errors->has('modelo_t'))
@@ -32,7 +32,10 @@
                '1' => 'Laptop',
                '2' => 'CPU',
                '3' => 'Monitor',
-               '4' => 'Tablet'
+               '4' => 'Tablet',
+               '5' => 'Impresoras',
+               '6' => 'Otros'
+
                ),null,['class'=>'form-control','id'=>'tipo_p'])}}
         </div>
 

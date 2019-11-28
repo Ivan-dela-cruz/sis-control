@@ -62,8 +62,8 @@
                                             <td>
                                                 <a href="">orden - {{$orden->codigo_or}}</a>
                                             </td>
-                                            <td>{{$orden->nombre_p}}  {{$orden->apellido_p}}</td>
-                                            <td>{{$orden->observacion_problema_or}}</td>
+                                            <td class="text-uppercase">{{$orden->nombre_p}}  {{$orden->apellido_p}}</td>
+                                            <td class="text-uppercase">{{$orden->observacion_problema_or}}</td>
                                             <td>
                                                 @if($orden->etapa_servicio_or==1)
                                                     <span class="badge badge-primary">Ingreso</span>

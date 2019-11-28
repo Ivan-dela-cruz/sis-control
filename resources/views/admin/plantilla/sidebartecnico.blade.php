@@ -6,7 +6,7 @@
             </a>
         </li>
         <li>
-            <h6 class="nav-header">TÉCNICO PRINCIPAL</h6>
+            <h6 class="nav-header">TÉCNICO SECUNDARIO</h6>
         </li>
         <li class="nav-item">
             <a class="nav-link active" href="index.html">

@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <p><b>Nombre cliente: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp; <label
-                                                    class="nom_cli">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</label>
+                                                    class="nom_cli text-uppercase">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</label>
                                         </p>
                                         <input hidden id="ordencliente" type="text">
                                     </div>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="form-group">
                                         <p><b>Dirección cliente: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli text-uppercase">
                                                 {{$orden->user->direccion_p}}</label>
                                         </p>
                                     </div>
@@ -104,9 +104,9 @@
                                             <td>
                                                 <a href="">{{$registro->equipo->serie_e}}</a>
                                             </td>
-                                            <td>{{$registro->equipo->marca_e}}</td>
+                                            <td class="text-uppercase">{{$registro->equipo->marca_e}}</td>
                                             <td>{{$registro->equipo->modelo_t}}</td>
-                                            <td>
+                                            <td class="text-uppercase">
                                                 @if($registro->equipo->tipo_t==1)
                                                     Laptop
                                                 @endif
@@ -119,10 +119,16 @@
                                                 @if($registro->equipo->tipo_t==4)
                                                     Tablet
                                                 @endif
+                                                @if($registro->equipo->tipo_t==5)
+                                                    Impresoras
+                                                @endif
+                                                @if($registro->equipo->tipo_t==6)
+                                                    Otros
+                                                @endif
 
                                             </td>
-                                            <td>{{$registro->accesorios_re}}</td>
-                                            <td>{{$registro->problema_re}}</td>
+                                            <td class="text-uppercase">{{$registro->accesorios_re}}</td>
+                                            <td class="text-uppercase">{{$registro->problema_re}}</td>
                                             <td>{{Carbon\Carbon::parse($registro->created_at)->format('Y-m-d')}}</td>
                                             <td>{{$registro->fecha_salida_re}}</td>
                                         </tr>

@@ -13,7 +13,9 @@
             @if($errors->has('cedula_p'))
                 <label class="text-danger">{{$errors->first('cedula_p')}} </label>
             @endif
-
+            <label hidden id="lb-cedula-ecuador" class="text-danger">El número de cédula
+                no
+                pertenece a ninguna región del país </label>
         </div>
         <div class="form-group">
             <label for="nombre_p" class="active">Nombres</label>
@@ -113,8 +115,8 @@
         <div class="form-group">
             <label for="tipo_t" class="active">Tipo de técnico</label>
             {{Form::select('tipo_t',array(
-                                   '0' => 'Principal',
-                                   '1' => 'Secundario',
+                                   '1' => 'Principal',
+                                   '0' => 'Secundario',
                                    ),$tecnico->tipo_t,['id'=>'tipo_t','class'=>'form-control'])}}
 
         </div>
@@ -124,15 +126,8 @@
 <hr>
 <div class="col-md-12">
     <div class="form-group">
-        <button class="btn btn-success pull-right" type="submit">Guardar</button>
+        <button id="validate" class="btn btn-success pull-right" type="submit">Guardar</button>
         <a href="{{url()->previous()}}" class="btn btn-danger pull-right">Cancelar</a>
 
     </div>
 </div>
-
-@section('script')
-
-    <script type="text/javascript">
-
-    </script>
-@endsection

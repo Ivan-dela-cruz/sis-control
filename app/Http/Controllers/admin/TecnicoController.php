@@ -265,8 +265,36 @@ class TecnicoController extends Controller
         // guarda los nuevos datos en la basee de datos
         $tecnico->save();
 
+
+
+
+
+
+
+
+
+
+        if ($request->tipo_t == 0) {
+            /// le asignamos un rol de admnistrador
+            $user->removeRole('secundario');
+            $user->assignRole('principal');
+        }
+        if ($request->tipo_t == 1) {
+            /// le asignamos un rol de admnistrador
+            $user->removeRole('principal');
+            $user->assignRole('secundario');
+        }
+
+
+
         //redirije a la vista principal de los tecnicos
         return redirect()->route('tecnicos.index');
+
+
+
+
+
+
     }
 
     /**
@@ -301,6 +329,7 @@ class TecnicoController extends Controller
                     ->orWhere('apellido_p', 'like', '%' . $query . '%')
                     ->where('estado_p', 1)
                     ->where('tipo_p', 1)
+                    ->where('tecnicos.tipo_t', 0)
                     ->orderBy('id', 'desc')
                     ->get();
 

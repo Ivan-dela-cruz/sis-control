@@ -70,10 +70,11 @@
                                                         <img src="assets/img/profile-pic.jpg" width="44" height="44">
                                                     </div>
                                                     <div class="media-body">
-                                                        <div class="heading mt-1">
-                                                            {{$tecnico->nombre_p}}  {{$tecnico->apellido_p}}
+                                                        <div class="heading mt-1 text-uppercase">
+                                                            <span class="text-uppercase">{{$tecnico->nombre_p}}  {{$tecnico->apellido_p}}</span>
+
                                                         </div>
-                                                        <div class="subtext">{{$tecnico->profesion_t}}</div>
+                                                        <div class="subtext text-uppercase">{{$tecnico->profesion_t}}</div>
 
 
                                                     </div>
@@ -81,15 +82,15 @@
                                             </td>
                                             <td>
                                                 @if ($tecnico->tipo_t==0)
-                                                    <p class="text-uppercase text-priamry">Tecnico principal</p>
-                                                @else
                                                     <p class="text-uppercase text-secondary">Tecnico secundario</p>
+                                                @else
+                                                    <p class="text-uppercase text-primary">Tecnico principal</p>
                                                 @endif
 
 
                                             </td>
                                             <td>
-                                                <p>{{$tecnico->especialidad_t}}</p>
+                                                <p class="text-uppercase">{{$tecnico->especialidad_t}}</p>
                                             </td>
                                             <td>
                                                 <a href="#">{{$tecnico->email}}</a>

@@ -65,6 +65,8 @@
                                                     <option value="2">CPU</option>
                                                     <option value="3">Monitor</option>
                                                     <option value="4">Tablet</option>
+                                                    <option value="5">Impresora</option>
+                                                    <option value="6">Otros</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">

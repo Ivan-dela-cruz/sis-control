@@ -14,7 +14,7 @@
                 <div class="card-media-list">
                     <div class="col-lg-7">
                         <div class="input-group mb-3">
-                            <input name="query" id="searchTecnico" type="text" class="form-control"
+                            <input hidden name="query" id="searchTecnico" type="text" class="form-control"
                                    placeholder="Buscar técnico"
                                    aria-label="Buscar orden"
                                    aria-describedby="basic-addon2">

@@ -67,7 +67,7 @@
                                                         <img src="assets/img/profile-pic.jpg" width="44" height="44">
                                                     </div>
                                                     <div class="media-body">
-                                                        <div class="heading mt-1">
+                                                        <div class="heading mt-1 text-uppercase">
                                                             {{$user->nombre_p}}  {{$user->apellido_p}}
                                                         </div>
                                                         <div class="subtext">{{$user->name}}</div>

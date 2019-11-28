@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <p><b>Nombre cliente: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp; <label
-                                                    class="nom_cli">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</label>
+                                                    class="nom_cli text-uppercase">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</label>
                                         </p>
                                         <input hidden id="ordencliente" type="text">
                                     </div>
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="form-group">
                                         <p><b>Dirección cliente: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli text-uppercase">
                                                 {{$orden->user->direccion_p}}</label>
                                         </p>
                                     </div>
@@ -119,6 +119,12 @@
                                                 @if($registro->equipo->tipo_t==4)
                                                     Tablet
                                                 @endif
+                                                @if($registro->equipo->tipo_t==5)
+                                                    Impresoras
+                                                @endif
+                                                @if($registro->equipo->tipo_t==6)
+                                                    Otros
+                                                @endif
 
                                             </td>
                                             <td>{{$registro->accesorios_re}}</td>
@@ -154,8 +160,8 @@
                                                 <span class="badge badge-warning spanEtapaR">Revisón</span>
                                             </td>
                                         @endif
-                                        <td>{{$orden->observacion_problema_or}}</td>
-                                        <td>{{$orden->observacion_solucion_or}}</td>
+                                        <td class="text-uppercase">{{$orden->observacion_problema_or}}</td>
+                                        <td class="text-uppercase">{{$orden->observacion_solucion_or}}</td>
                                     </tr>
                                     <tbody>
                                     </tbody>
@@ -242,8 +248,8 @@
 
         });
         $('#searchTecnico').keyup(function () {
-            // var query = $(this).val();
-            //buscarTecnico(query);
+            var query = $(this).val();
+            buscarTecnico(query);
         });
         $('.asignar-tec').click(function () {
             var tex = $(this).data('id-tecnico');

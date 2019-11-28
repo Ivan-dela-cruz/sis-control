@@ -45,7 +45,7 @@
                                         <div class="heading mt-1">
                                             Direccón domicilio
                                         </div>
-                                        <div id="dir-p" class="subtext"></div>
+                                        <div id="dir-p" class="subtext text-uppercase"></div>
                                         <hr>
                                     </div>
                                     <div class="media-body">
@@ -87,7 +87,7 @@
                                         <div class="heading mt-1">
                                             Tipo de usuario
                                         </div>
-                                        <div id="tipo-p" class="subtext"></div>
+                                        <div id="tipo-p" class="subtext text-uppercase"></div>
                                         <hr>
                                     </div>
                                 </div>

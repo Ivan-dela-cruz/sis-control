@@ -7,9 +7,9 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/img/favicon.png">
 
-    <title>QuillPro - Bootstrap 4 Dashboard Template</title>
 
-    <title>AJ-COMPUTACIÓN|500</title>
+
+    <title>COMPUMEGA|500</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
@@ -60,7 +60,7 @@
                         <div class="display-4 mb-3">Error del Servidor</div>
                         <div class="lead">Estás viendo esta página porque hay un error con nuestro servidor.</div>
                         <div class="lead">No entre en pánico, solo espere un poco y luego actualice.</div>
-                        <div class="lead">Si ya lo ha hecho y este error sigue apareciendo, envíenos un correo electrónico a<a href="mailto:email@example.com"> email@example.com</a>.</div>
+                        <div class="lead">Si ya lo ha hecho y este error sigue apareciendo, envíenos un correo electrónico a<a href="#"> compumega2109.gmail.com</a>.</div>
                     </div>
                 </div>
             </main>

@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/img/favicon.png">
 
-    <title>AJ-COMPUTACIÓN|404</title>
+    <title>COMPUMEGA|404</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
@@ -61,7 +61,7 @@
                         </div>
                         <div class="lead">Consulte con el administrador <br>
                             <a class="btn btn-primary btn-gradient waves-effect waves-light"
-                               href="{{url()->previous()}}">regresar atras </a>.
+                               href="http://localhost/sis-control/public/">regresar atras </a>.
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <p class="pull-right font-italic"><a href="{{route('listar-ordenes-finalizadas-admin')}}">Ordenes Finalizadas</a>/Detalle
+            <p class="pull-right font-italic"><a href="{{route('listar-ordenes-finalizadas-admin')}}">Ordenes
+                    Finalizadas</a>/Detalle
                 orden
                 - {{$orden->codigo_or}} </p>
         </div>
@@ -41,7 +42,7 @@
                                     <div class="form-group">
                                         <p><b>Nombre cliente: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp; <label
-                                                    class="nom_cli">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</label>
+                                                    class="nom_cli text-uppercase">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</label>
                                         </p>
                                         <input hidden id="id-orden-detalle" type="text" value="{{$orden->id}}">
                                         <input hidden id="id-orden-cod" type="text" value="{{$orden->codigo_or}}">
@@ -54,7 +55,7 @@
                                     </div>
                                     <div class="form-group">
                                         <p><b>Dirección cliente: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli text-uppercase">
                                                 {{$orden->user->direccion_p}}</label>
                                         </p>
                                     </div>
@@ -89,7 +90,7 @@
                                     <div class="form-group">
                                         <p><b>Nombres Técnico: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp;<label
-                                                    class="tecnico-encargado">{{$tecnico->user->nombre_p}}  {{$tecnico->user->apellido_p}}</label>
+                                                    class="tecnico-encargado text-uppercase">{{$tecnico->user->nombre_p}}  {{$tecnico->user->apellido_p}}</label>
                                         </p>
                                     </div>
 
@@ -103,14 +104,15 @@
                                 <div class="col-md-4 mx-5">
                                     <div class="form-group">
                                         <p><b>Profesión: </b>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli text-uppercase">
                                                 {{$tecnico->profesion_t}}</label>
                                         </p>
                                     </div>
                                     <div class="form-group">
                                         <p><b>Especialidad: </b>
                                             &nbsp;&nbsp;&nbsp;&nbsp;<label
-                                                    class="tlf_cli"> {{$tecnico->especialidad_t}}</label></p>
+                                                    class="tlf_cli text-uppercase"> {{$tecnico->especialidad_t}}</label>
+                                        </p>
                                     </div>
 
                                 </div>
@@ -141,7 +143,7 @@
                                             </td>
                                             <td>{{$registro->equipo->marca_e}}</td>
                                             <td>{{$registro->equipo->modelo_t}}</td>
-                                            <td>
+                                            <td class="text-uppercase">
                                                 @if($registro->equipo->tipo_t==1)
                                                     Laptop
                                                 @endif
@@ -154,10 +156,16 @@
                                                 @if($registro->equipo->tipo_t==4)
                                                     Tablet
                                                 @endif
+                                                @if($registro->equipo->tipo_t==5)
+                                                    Impresoras
+                                                @endif
+                                                @if($registro->equipo->tipo_t==6)
+                                                    Otros
+                                                @endif
 
                                             </td>
-                                            <td>{{$registro->accesorios_re}}</td>
-                                            <td>{{$registro->problema_re}}</td>
+                                            <td class="text-uppercase">{{$registro->accesorios_re}}</td>
+                                            <td class="text-uppercase">{{$registro->problema_re}}</td>
                                             <td>{{Carbon\Carbon::parse($registro->created_at)->format('Y-m-d')}}</td>
                                             <td class="salida-regis{{$registro->id}}">{{$registro->fecha_salida_re}}</td>
                                         </tr>
@@ -184,13 +192,13 @@
                                                 <span class="badge badge-success">Terminado</span>
                                             </td>
                                         @endif
-                                        <td>{{$orden->observacion_problema_or}}</td>
-                                        <td class="orden-solucion-id{{$orden->id}}">{{$orden->observacion_solucion_or}}</td>
+                                        <td class="text-uppercase">{{$orden->observacion_problema_or}}</td>
+                                        <td class="orden-solucion-id{{$orden->id}} text-uppercase">{{$orden->observacion_solucion_or}}</td>
                                     </tr>
                                     <tbody>
                                     </tbody>
                                 </table>
-                                <textarea hidden name="" id="solucion-anterior" cols="30"
+                                <textarea class="text-uppercase" hidden name="" id="solucion-anterior" cols="30"
                                           rows="10">{{$orden->observacion_solucion_or}}</textarea>
                             </div>
                             <hr>

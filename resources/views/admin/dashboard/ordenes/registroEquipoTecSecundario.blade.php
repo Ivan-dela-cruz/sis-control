@@ -43,7 +43,7 @@
                                         <h3>Datos del cliente</h3>
                                         <div class="form-group">
                                             <p><b>Nombre cliente: </b>
-                                                &nbsp;&nbsp;&nbsp;&nbsp; <label class="nom_cli">S/N</label></p>
+                                                &nbsp;&nbsp;&nbsp;&nbsp; <label class="nom_cli text-uppercase">S/N</label></p>
                                             <input hidden id="ordencliente" type="text">
                                         </div>
                                         <div class="form-group">
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="form-group">
                                             <p><b>Dirección cliente: </b>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<label class="dir_cli text-uppercase">
                                                     Ciudad/Avenida/Calle</label>
                                             </p>
                                         </div>
@@ -74,7 +74,7 @@
                                         <div class="form-group">
                                             <p><b>Regitrado por: </b>
 
-                                                &nbsp;&nbsp;&nbsp;&nbsp;<label> {{$nombres_tec}}</label>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<label class="text-uppercase"> {{$nombres_tec}}</label>
                                             </p>
                                         </div>
                                     </div>

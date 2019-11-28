@@ -43,6 +43,7 @@
         margin-right: 35%;
         font-size: 13px;
     }
+
     #tiutlo_pdf {
         text-align: center;
         margin-left: 10%;
@@ -180,7 +181,7 @@
                 <th>
                     <p>
                         Sr(a).
-                        <span style="font-weight: normal;">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</span>
+                        <span style="font-weight: normal;text-transform: uppercase;">{{$orden->user->nombre_p}} {{$orden->user->apellido_p}}</span>
                     </p>
                     <p id="cliente">
 
@@ -190,7 +191,7 @@
                     </p>
                     <p id="cliente">
                         Dirección:
-                        <span style="font-weight: normal;">{{$orden->user->direccion_p}}</span>
+                        <span style="font-weight: normal;text-transform: uppercase;">{{$orden->user->direccion_p}}</span>
 
                     </p>
 
@@ -228,7 +229,13 @@
             <tbody>
             <tr id="datoOrden">
                 <td class="tdOrdenDetalle">{{$orden->codigo_or}}</td>
-                <td class="tdOrdenDetalle">{{$tecnico->user->nombre_p}} {{$tecnico->user->apellido_p}}</td>
+                @if($tecnico==null)
+                    <td class="tdOrdenDetalle">No hay técnico asignado</td>
+                @else
+                    <td style="font-weight: normal;text-transform: uppercase;" class="tdOrdenDetalle">{{$tecnico->user->nombre_p}} {{$tecnico->user->apellido_p}}</td>
+                @endif
+
+
                 <td class="tdOrdenDetalle">{{\Carbon\Carbon::parse($orden->created_at)->format('Y-m-d') }}</td>
                 <td class="tdOrdenDetalle">{{$orden->fecha_salida_or}}</td>
                 <td class="tdOrdenDetalle">
@@ -273,8 +280,8 @@
                     <td class="tdOrdenDetalle">
                         <ul style="margin: 0;">
                             <li><b>Serie: </b> <span> {{$registro->equipo->serie_e}}</span></li>
-                            <li><b>Marca: </b> <span> {{$registro->equipo->marca_e}}</span></li>
-                            <li><b>Modelo: </b> <span> {{$registro->equipo->modelo_t}}</span></li>
+                            <li><b>Marca: </b> <span style="font-weight: normal;text-transform: uppercase;"> {{$registro->equipo->marca_e}}</span></li>
+                            <li><b>Modelo: </b> <span > {{$registro->equipo->modelo_t}}</span></li>
                             <li><b>Tipo: </b><span>
                                     @if($registro->equipo->tipo_t==1)
                                         Laptop
@@ -288,19 +295,25 @@
                                     @if($registro->equipo->tipo_t==4)
                                         Tablet
                                     @endif
+                                    @if($registro->equipo->tipo_t==5)
+                                        Impresora
+                                    @endif
+                                    @if($registro->equipo->tipo_t==6)
+                                        Otros
+                                    @endif
                                 </span></li>
                         </ul>
                     </td>
                     <td class="tdOrdenDetalle">
                         {{\Carbon\Carbon::parse($registro->equipo->created_at)->format('Y-m-d')}}
                     </td>
-                    <td class="tdOrdenDetalle">
+                    <td style="font-weight: normal;text-transform: uppercase;" class="tdOrdenDetalle">
                         {{$registro->equipo->descripcion_e}}
                     </td>
-                    <td class="tdOrdenDetalle">
+                    <td style="font-weight: normal;text-transform: uppercase;" class="tdOrdenDetalle">
                         {{$registro->accesorios_re}}
                     </td>
-                    <td class="tdOrdenDetalle">
+                    <td style="font-weight: normal;text-transform: uppercase;" class="tdOrdenDetalle">
                         {{$registro->problema_re}}
                     </td>
 
@@ -330,10 +343,10 @@
             <tr>
 
 
-                <td class="tdOrdenDetalle">
+                <td style="font-weight: normal;text-transform: uppercase;" class="tdOrdenDetalle">
                     {{$orden->observacion_problema_or}}
                 </td>
-                <td class="tdOrdenDetalle">
+                <td style="font-weight: normal;text-transform: uppercase;" class="tdOrdenDetalle">
                     {{$orden->observacion_solucion_or}}
                 </td>
             </tr>

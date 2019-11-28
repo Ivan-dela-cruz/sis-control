@@ -63,7 +63,7 @@
                                         <tr class="equipo{{$equipo->id}}">
                                             <td class="id_e">{{$equipo->id}}</td>
                                             <td class="serie_e">{{$equipo->serie_e}}</td>
-                                            <td class="marca_e">{{$equipo->marca_e}}</td>
+                                            <td class="marca_e text-uppercase">{{$equipo->marca_e}}</td>
                                             <td>{{$equipo->modelo_t}}</td>
                                             <td>
                                                 @if($equipo->tipo_t==1)
@@ -78,6 +78,12 @@
                                                 @if($equipo->tipo_t==4)
                                                     Tablet
                                                 @endif
+                                                @if($equipo->tipo_t==5)
+                                                    Impresoras
+                                                @endif
+                                                @if($equipo->tipo_t==6)
+                                                    Otros
+                                                @endif
                                             </td>
                                             <td class="text-center">
                                                 @if($equipo->estado_e==1)
@@ -87,7 +93,7 @@
                                                 @endif
 
                                             </td>
-                                            <td>{{$equipo->descripcion_e}}</td>
+                                            <td class="text-uppercase">{{$equipo->descripcion_e}}</td>
                                             <td>{{$equipo->user->cedula_p}}</td>
                                             <td>{{\Carbon\Carbon::parse($equipo->updated_at)->format('Y-m-d')}}</td>
                                             <td class="text-center">

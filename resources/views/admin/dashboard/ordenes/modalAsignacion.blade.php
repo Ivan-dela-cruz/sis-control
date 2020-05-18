@@ -19,7 +19,6 @@
                                    aria-label="Buscar orden"
                                    aria-describedby="basic-addon2">
                         </div>
-
                     </div>
                     <div class="col-lg-12">
                         <div class="card-table table-responsive">
@@ -59,16 +58,11 @@
                                 </tbody>
                             </table>
                             <hr>
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
             {{--
-
-
             --}}
         </div>
     </div>

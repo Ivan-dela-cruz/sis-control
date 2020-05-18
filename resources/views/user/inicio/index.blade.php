@@ -34,15 +34,10 @@
 @endsection
 
 @section('content')
-    <!-- container -->
     <div class="container">
-        <!-- row -->
         <div class="row">
-
             <div class="col-lg-12">
-
                 <div class="table-responsive">
-
                     <table class="table table-responsive">
                         <thead style="background-color: #15161D;" class="bg-primary">
                         <tr>
@@ -61,7 +56,6 @@
                             @foreach($ordenes as $orden)
                                 @if ($orden->etapa_servicio_or!=3)
                                     <tr class="orden{{$orden->id}}">
-
                                         <td>
                                             <a href="">orden - {{$orden->codigo_or}}</a>
                                         </td>
@@ -70,20 +64,16 @@
                                         <td>
                                             @if($orden->etapa_servicio_or==1)
                                                 <span class="btn-primary">Ingreso</span>
-
                                             @endif
                                             @if($orden->etapa_servicio_or==2)
                                                 <span class="btn-warning"> Revisión</span>
-
                                             @endif
                                             @if($orden->etapa_servicio_or==3)
                                                 <span class="btn-success">Terminado</span>
-
                                             @endif
                                         </td>
                                         <td>{{Carbon\Carbon::parse($orden->created_at)->format('Y-m-d') }}</td>
                                         <td>{{$orden->fecha_salida_or}}</td>
-
                                         <td class="text-right">
                                             @if ($orden->etapa_servicio_or==1)
                                                 <a title="Imprimir orden"
@@ -109,7 +99,6 @@
                                                     <i class="fa fa-print"></i>
                                                 </a>
                                             @endif
-
                                             <a title="Ver detalles" href="{{route('ver-orden-cliente',$orden->id)}}"
                                                data-id-orden="{{$orden->id}}"
                                                class="btn  btn-primary btn-sm verOrden">

@@ -57,6 +57,7 @@ class ClienteController extends Controller
     public function create()
     {
         $users = User::all();
+
         return view('admin.dashboard.usuarios.clientes.registroCliente', compact('users'));
     }
 
